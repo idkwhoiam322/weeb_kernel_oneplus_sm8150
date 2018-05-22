@@ -107,9 +107,6 @@ static bool sugov_should_update_freq(struct sugov_policy *sg_policy, u64 time)
 	    !cpufreq_can_do_remote_dvfs(sg_policy->policy))
 		return false;
 
-	if (sg_policy->work_in_progress)
-		return false;
-
 	if (unlikely(sg_policy->need_freq_update)) {
 		sg_policy->need_freq_update = false;
 		/*
@@ -183,7 +180,7 @@ static void sugov_update_commit(struct sugov_policy *sg_policy, u64 time,
 		for_each_cpu(cpu, policy->cpus) {
 			trace_cpu_frequency(next_freq, cpu);
 		}
-	} else {
+	} else if (!sg_policy->work_in_progress) {
 		if (likely(use_pelt()))
 			sg_policy->work_in_progress = true;
 		sched_irq_work_queue(&sg_policy->irq_work);
@@ -341,6 +338,13 @@ static void sugov_update_single(struct update_util_data *hook, u64 time,
 	sugov_set_iowait_boost(sg_cpu, time, flags);
 	sg_cpu->last_update = time;
 
+	/*
+	 * For slow-switch systems, single policy requests can't run at the
+	 * moment if update is in progress, unless we acquire update_lock.
+	 */
+	if (sg_policy->work_in_progress)
+		return;
+
 	if (!sugov_should_update_freq(sg_policy, time))
 		return;
 
@@ -456,14 +460,27 @@ static void sugov_update_shared(struct update_util_data *hook, u64 time,
 static void sugov_work(struct kthread_work *work)
 {
 	struct sugov_policy *sg_policy = container_of(work, struct sugov_policy, work);
+	unsigned int freq;
+	unsigned long flags;
+
+	/*
+	 * Hold sg_policy->update_lock shortly to handle the case where:
+	 * incase sg_policy->next_freq is read here, and then updated by
+	 * sugov_update_shared just before work_in_progress is set to false
+	 * here, we may miss queueing the new update.
+	 *
+	 * Note: If a work was queued after the update_lock is released,
+	 * sugov_work will just be called again by kthread_work code; and the
+	 * request will be proceed before the sugov thread sleeps.
+	 */
+	raw_spin_lock_irqsave(&sg_policy->update_lock, flags);
+	freq = sg_policy->next_freq;
+	sg_policy->work_in_progress = false;
+	raw_spin_unlock_irqrestore(&sg_policy->update_lock, flags);
 
 	mutex_lock(&sg_policy->work_lock);
-	__cpufreq_driver_target(sg_policy->policy, sg_policy->next_freq,
-				CPUFREQ_RELATION_L);
+	__cpufreq_driver_target(sg_policy->policy, freq, CPUFREQ_RELATION_L);
 	mutex_unlock(&sg_policy->work_lock);
-
-	if (likely(use_pelt()))
-		sg_policy->work_in_progress = false;
 }
 
 static void sugov_irq_work(struct irq_work *irq_work)
