@@ -9244,7 +9244,6 @@ void hdd_bus_bw_compute_reset_prev_txrx_stats(struct hdd_adapter *adapter)
 
 #endif /* MSM_PLATFORM */
 
-#ifdef WLAN_DEBUG
 static uint8_t *convert_level_to_string(uint32_t level)
 {
 	switch (level) {
@@ -9261,8 +9260,6 @@ static uint8_t *convert_level_to_string(uint32_t level)
 		return "INVAL";
 	}
 }
-#endif
-
 
 /**
  * wlan_hdd_display_tx_rx_histogram() - display tx rx histogram
@@ -14168,9 +14165,6 @@ static ssize_t wlan_hdd_state_ctrl_param_write(struct file *filp,
 		goto exit;
 	}
 
-<<<<<<< HEAD
-	if (!cds_is_driver_loaded() || cds_is_driver_recovering()) {
-=======
 	if (!hdd_loaded) {
 		if (hdd_driver_load()) {
 			pr_err("%s: Failed to init hdd module\n", __func__);
@@ -14178,8 +14172,7 @@ static ssize_t wlan_hdd_state_ctrl_param_write(struct file *filp,
 		}
 	}
 
-	if (!cds_is_driver_loaded()) {
->>>>>>> 0e4f2dba7313... qcacld: defer hdd initialization and rely on userspace writing to /dev/wlan
+	if (!cds_is_driver_loaded() || cds_is_driver_recovering()) {
 		init_completion(&wlan_start_comp);
 		rc = wait_for_completion_timeout(&wlan_start_comp,
 				msecs_to_jiffies(HDD_WLAN_START_WAIT_TIME));
@@ -14459,14 +14452,9 @@ static int hdd_driver_load(void)
 
 pld_deinit:
 	pld_deinit();
-<<<<<<< HEAD
 	/* Wait for any ref taken on /dev/wlan to be released */
 	while (qdf_atomic_read(&wlan_hdd_state_fops_ref))
 		;
-param_destroy:
-	wlan_hdd_state_ctrl_param_destroy();
-=======
->>>>>>> 0e4f2dba7313... qcacld: defer hdd initialization and rely on userspace writing to /dev/wlan
 wakelock_destroy:
 	qdf_wake_lock_destroy(&wlan_wake_lock);
 comp_deinit:
