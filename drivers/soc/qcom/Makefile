@@ -103,3 +103,7 @@ obj-$(CONFIG_MSM_HAB) += hab/
 obj-$(CONFIG_QCOM_HYP_CORE_CTL) += hyp_core_ctl.o
 obj-$(CONFIG_RF_CABLE_DETECT) += op_rf_cable_monitor.o
 obj-$(CONFIG_QCOM_AOP_DDRSS_COMMANDS) += aop_ddrss_cmds.o
+
+CFLAGS_rpm_stats.o += -DCONFIG_DEBUG_FS
+CFLAGS_rpm_master_stat.o += -DCONFIG_DEBUG_FS
+CFLAGS_rpmh_master_stat.o += -DCONFIG_DEBUG_FS
