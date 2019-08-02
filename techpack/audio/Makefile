@@ -61,7 +61,7 @@ endif
 
 LINUXINCLUDE    += \
                 -I$(srctree)/techpack/audio/include/elliptic
-obj-y += dsp/elliptic
+#obj-y += dsp/elliptic
 
 obj-y += soc/
 obj-y += dsp/
