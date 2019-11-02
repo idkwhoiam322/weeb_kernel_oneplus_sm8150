@@ -47,6 +47,8 @@
 static inline bool task_fits_max(struct task_struct *p, int cpu);
 #endif /* CONFIG_SMP */
 
+bool energy_aware_enable = false;
+
 #ifdef CONFIG_SCHED_WALT
 
 static void walt_fixup_sched_stats_fair(struct rq *rq, struct task_struct *p,

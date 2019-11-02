@@ -3096,9 +3096,11 @@ static inline void clear_reserved(int cpu)
 	clear_bit(CPU_RESERVED, &rq->extra_flags);
 }
 
+extern bool energy_aware_enable;
+
 static inline bool energy_aware(void)
 {
-	return sched_feat(ENERGY_AWARE);
+       return energy_aware_enable;
 }
 
 struct sched_avg_stats {

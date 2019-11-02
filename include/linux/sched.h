@@ -31,6 +31,7 @@
 // tedlin@ASTI 2019/06/12 add for CONFIG_CONTROL_CENTER
 #include <oneplus/control_center/control_center_helper.h>
 
+extern bool energy_aware_enable;
 extern bool disable_boost;
 
 #if defined(CONFIG_SCHED_TUNE) && defined(CONFIG_CGROUP_SCHEDTUNE)
