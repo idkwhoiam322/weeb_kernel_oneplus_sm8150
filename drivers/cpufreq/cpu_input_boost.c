@@ -11,6 +11,7 @@
 #include <linux/kthread.h>
 #include <linux/moduleparam.h>
 #include <linux/msm_drm_notify.h>
+#include <linux/power_hal.h>
 #include <linux/slab.h>
 #include <linux/version.h>
 
@@ -38,6 +39,8 @@ static unsigned int cpu_freq_min_big __read_mostly =
 static unsigned int cpu_freq_min_prime __read_mostly =
 	CONFIG_CPU_FREQ_MIN_PERFP;
 
+static unsigned short powerhal_boost_duration __read_mostly =
+	CONFIG_POWERHAL_BOOST_DURATION_MS;
 static unsigned short input_boost_duration __read_mostly =
 	CONFIG_INPUT_BOOST_DURATION_MS;
 static unsigned short wake_boost_duration __read_mostly =
@@ -56,30 +59,42 @@ module_param(cpu_freq_min_prime, uint, 0644);
 unsigned short cib_max_boost_duration __read_mostly =
 	CONFIG_MAX_BOOST_DURATION_MS;
 
+module_param(powerhal_boost_duration, short, 0644);
 module_param(input_boost_duration, short, 0644);
 module_param(wake_boost_duration, short, 0644);
 module_param(cib_max_boost_duration, short, 0644);
 
 enum {
 	SCREEN_ON,
+	POWERHAL_BOOST,
+	POWERHAL_MAX_BOOST,
 	INPUT_BOOST,
 	MAX_BOOST
 };
 
 struct boost_drv {
+	struct delayed_work powerhal_unboost;
+	struct delayed_work powerhal_max_unboost;
 	struct delayed_work input_unboost;
 	struct delayed_work max_unboost;
 	struct notifier_block cpu_notif;
 	struct notifier_block msm_drm_notif;
 	wait_queue_head_t boost_waitq;
+	atomic_long_t powerhal_max_boost_expires;
 	atomic_long_t max_boost_expires;
 	unsigned long state;
 };
 
+static void powerhal_unboost_worker(struct work_struct *work);
+static void powerhal_max_unboost_worker(struct work_struct *work);
 static void input_unboost_worker(struct work_struct *work);
 static void max_unboost_worker(struct work_struct *work);
 
 static struct boost_drv boost_drv_g __read_mostly = {
+	.powerhal_unboost = __DELAYED_WORK_INITIALIZER(boost_drv_g.powerhal_unboost,
+							powerhal_unboost_worker, 0),
+	.powerhal_max_unboost = __DELAYED_WORK_INITIALIZER(boost_drv_g.powerhal_max_unboost,
+							powerhal_max_unboost_worker, 0),
 	.input_unboost = __DELAYED_WORK_INITIALIZER(boost_drv_g.input_unboost,
 						    input_unboost_worker, 0),
 	.max_unboost = __DELAYED_WORK_INITIALIZER(boost_drv_g.max_unboost,
@@ -143,6 +158,59 @@ static void update_online_cpu_policy(void)
 	put_online_cpus();
 }
 
+static void __powerhal_boost_kick(struct boost_drv *b)
+{
+	if (!test_bit(SCREEN_ON, &b->state))
+		return;
+
+	if (!powerhal_boost_duration)
+		return;
+
+	set_bit(POWERHAL_BOOST, &b->state);
+	if (!mod_delayed_work(system_unbound_wq, &b->powerhal_unboost,
+				msecs_to_jiffies(powerhal_boost_duration)))
+		wake_up(&b->boost_waitq);
+}
+
+void powerhal_boost_kick(void)
+{
+	struct boost_drv *b = &boost_drv_g;
+
+	__powerhal_boost_kick(b);
+}
+
+static void __powerhal_boost_kick_max(struct boost_drv *b,
+				       unsigned int duration_ms)
+{
+	unsigned long boost_jiffies = msecs_to_jiffies(duration_ms);
+	unsigned long curr_expires, new_expires;
+
+	if (!test_bit(SCREEN_ON, &b->state))
+		return;
+
+	do {
+		curr_expires = atomic_long_read(&b->powerhal_max_boost_expires);
+		new_expires = jiffies + boost_jiffies;
+
+		/* Skip this boost if there's a longer boost in effect */
+		if (time_after(curr_expires, new_expires))
+			return;
+	} while (atomic_long_cmpxchg(&b->powerhal_max_boost_expires, curr_expires,
+				     new_expires) != curr_expires);
+
+	set_bit(POWERHAL_MAX_BOOST, &b->state);
+	if (!mod_delayed_work(system_unbound_wq, &b->powerhal_max_unboost,
+			      boost_jiffies))
+		wake_up(&b->boost_waitq);
+}
+
+void powerhal_boost_kick_max(unsigned int duration_ms)
+{
+	struct boost_drv *b = &boost_drv_g;
+
+	__powerhal_boost_kick_max(b, duration_ms);
+}
+
 static void __cpu_input_boost_kick(struct boost_drv *b)
 {
 	if (!test_bit(SCREEN_ON, &b->state))
@@ -194,6 +262,24 @@ void cpu_input_boost_kick_max(unsigned int duration_ms)
 	struct boost_drv *b = &boost_drv_g;
 
 	__cpu_input_boost_kick_max(b, duration_ms);
+}
+
+static void powerhal_unboost_worker(struct work_struct *work)
+{
+	struct boost_drv *b = container_of(to_delayed_work(work),
+					   typeof(*b), powerhal_unboost);
+
+	clear_bit(POWERHAL_BOOST, &b->state);
+	wake_up(&b->boost_waitq);
+}
+
+static void powerhal_max_unboost_worker(struct work_struct *work)
+{
+	struct boost_drv *b = container_of(to_delayed_work(work),
+					   typeof(*b), powerhal_max_unboost);
+
+	clear_bit(POWERHAL_MAX_BOOST, &b->state);
+	wake_up(&b->boost_waitq);
 }
 
 static void input_unboost_worker(struct work_struct *work)
@@ -258,10 +344,18 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 	}
 
 	/* Boost CPU to max frequency for max boost */
-	if (test_bit(MAX_BOOST, &b->state)) {
+	if (test_bit(MAX_BOOST, &b->state))
 		policy->min = get_max_boost_freq(policy);
-		return NOTIFY_OK;
+
+	/* Do powerhal boost for powerhal_max_boost */
+	if (test_bit(POWERHAL_MAX_BOOST, &b->state)) {
+		/* Do nothing for now */
 	}
+
+	/* return early if being max bosted */
+	if (test_bit(MAX_BOOST, &b->state) ||
+		test_bit(POWERHAL_MAX_BOOST, &b->state))
+		return NOTIFY_OK;
 
 	/*
 	 * Boost to policy->max if the boost frequency is higher. When
@@ -271,6 +365,10 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 		policy->min = get_input_boost_freq(policy);
 	else
 		policy->min = get_min_freq(policy);
+
+	if (test_bit(POWERHAL_BOOST, &b->state)) {
+		/* Do nothing for now */
+	}
 
 	return NOTIFY_OK;
 }
@@ -303,6 +401,8 @@ static void cpu_input_boost_input_event(struct input_handle *handle,
 					int value)
 {
 	struct boost_drv *b = handle->handler->private;
+
+	__powerhal_boost_kick(b);
 
 	__cpu_input_boost_kick(b);
 }
