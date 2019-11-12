@@ -16,4 +16,7 @@ static inline void powerhal_boost_kick(void) { }
 static inline void powerhal_boost_kick_max(unsigned int duration_ms) { }
 #endif
 
+/* UFS Boosting */
+void set_ufshcd_clkgate_enable_status(u32 value);
+
 #endif /* _POWER_HAL_H */
