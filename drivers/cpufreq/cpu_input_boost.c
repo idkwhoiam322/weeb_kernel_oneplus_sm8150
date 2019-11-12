@@ -342,6 +342,8 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 		policy->min = get_min_freq(policy);
 		/* Enable EAS behaviour */
 		energy_aware_enable = true;
+		/* UFS unboost */
+		set_ufshcd_clkgate_enable_status(1);
 		return NOTIFY_OK;
 	}
 
@@ -353,6 +355,9 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 	if (test_bit(POWERHAL_MAX_BOOST, &b->state)) {
 		/* Disable EAS behaviour */
 		energy_aware_enable = false;
+
+		/* UFS boost */
+		set_ufshcd_clkgate_enable_status(0);
 	} else {
 		/* Enable EAS behaviour */
 		energy_aware_enable = true;
@@ -373,7 +378,11 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 		policy->min = get_min_freq(policy);
 
 	if (test_bit(POWERHAL_BOOST, &b->state)) {
-		/* Do nothing for now */
+		/* UFS boost */
+		set_ufshcd_clkgate_enable_status(0);
+	} else {
+		/* UFS boost */
+		set_ufshcd_clkgate_enable_status(1);
 	}
 
 	return NOTIFY_OK;
