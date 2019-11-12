@@ -340,6 +340,8 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 	/* Unboost when the screen is off */
 	if (!test_bit(SCREEN_ON, &b->state)) {
 		policy->min = get_min_freq(policy);
+		/* Enable EAS behaviour */
+		energy_aware_enable = true;
 		return NOTIFY_OK;
 	}
 
@@ -349,7 +351,11 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 
 	/* Do powerhal boost for powerhal_max_boost */
 	if (test_bit(POWERHAL_MAX_BOOST, &b->state)) {
-		/* Do nothing for now */
+		/* Disable EAS behaviour */
+		energy_aware_enable = false;
+	} else {
+		/* Enable EAS behaviour */
+		energy_aware_enable = true;
 	}
 
 	/* return early if being max bosted */
