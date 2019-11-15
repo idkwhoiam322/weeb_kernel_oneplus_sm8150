@@ -51,6 +51,7 @@
 #include <linux/project_info.h>
 
 #include <linux/power_hal.h>
+#include <linux/binfmts.h>
 
 struct Scsi_Host *ph_host;
 
@@ -2487,6 +2488,9 @@ static ssize_t ufshcd_clkgate_enable_store(struct device *dev,
 
 	if (kstrtou32(buf, 0, &value))
 		return -EINVAL;
+
+	if (task_is_booster(current))
+		return count;
 
 	value = !!value;
 
