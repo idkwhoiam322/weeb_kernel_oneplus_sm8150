@@ -26,6 +26,9 @@
 #include "msm_vidc_clocks.h"
 #include <linux/dma-buf.h>
 
+#include <linux/power_hal.h>
+bool video_streaming = false;
+
 #define MAX_EVENTS 30
 
 static int try_get_ctrl(struct msm_vidc_inst *inst,
@@ -1980,6 +1983,8 @@ void *msm_vidc_open(int core_id, int session_type)
 	setup_timer(&inst->batch_timer,
 				batch_timer_callback, (unsigned long)inst);
 
+	disable_schedtune_boost("top-app", true);
+	video_streaming = true;
 	return inst;
 fail_init:
 	mutex_lock(&core->lock);
@@ -2208,6 +2213,8 @@ int msm_vidc_close(void *instance)
 	msm_comm_session_clean(inst);
 
 	kref_put(&inst->kref, close_helper);
+	disable_schedtune_boost("top-app", false);
+	video_streaming = false;
 	return 0;
 }
 EXPORT_SYMBOL(msm_vidc_close);

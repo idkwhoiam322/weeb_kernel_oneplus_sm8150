@@ -68,6 +68,7 @@ enum {
 	SCREEN_ON,
 	POWERHAL_BOOST,
 	POWERHAL_MAX_BOOST,
+	VIDEO_STREAMING_INPUT_EVENT,
 	INPUT_BOOST,
 	MAX_BOOST
 };
@@ -75,18 +76,21 @@ enum {
 struct boost_drv {
 	struct delayed_work powerhal_unboost;
 	struct delayed_work powerhal_max_unboost;
+	struct delayed_work video_streaming_unboost;
 	struct delayed_work input_unboost;
 	struct delayed_work max_unboost;
 	struct notifier_block cpu_notif;
 	struct notifier_block msm_drm_notif;
 	wait_queue_head_t boost_waitq;
 	atomic_long_t powerhal_max_boost_expires;
+	atomic_long_t video_streaming_expires;
 	atomic_long_t max_boost_expires;
 	unsigned long state;
 };
 
 static void powerhal_unboost_worker(struct work_struct *work);
 static void powerhal_max_unboost_worker(struct work_struct *work);
+static void video_streaming_unboost_worker(struct work_struct *work);
 static void input_unboost_worker(struct work_struct *work);
 static void max_unboost_worker(struct work_struct *work);
 
@@ -95,6 +99,9 @@ static struct boost_drv boost_drv_g __read_mostly = {
 							powerhal_unboost_worker, 0),
 	.powerhal_max_unboost = __DELAYED_WORK_INITIALIZER(boost_drv_g.powerhal_max_unboost,
 							powerhal_max_unboost_worker, 0),
+	.video_streaming_unboost =
+		__DELAYED_WORK_INITIALIZER(boost_drv_g.video_streaming_unboost,
+							video_streaming_unboost_worker, 0),
 	.input_unboost = __DELAYED_WORK_INITIALIZER(boost_drv_g.input_unboost,
 						    input_unboost_worker, 0),
 	.max_unboost = __DELAYED_WORK_INITIALIZER(boost_drv_g.max_unboost,
@@ -211,6 +218,41 @@ void powerhal_boost_kick_max(unsigned int duration_ms)
 	__powerhal_boost_kick_max(b, duration_ms);
 }
 
+static void __video_streaming_disable_schedtune(struct boost_drv *b)
+{
+	unsigned long boost_jiffies = msecs_to_jiffies(3500);
+	unsigned long curr_expires, new_expires;
+
+	if (!test_bit(SCREEN_ON, &b->state))
+		return;
+
+	/* Don't do anything if video is not playing */
+	if (!video_streaming)
+		return;
+
+	do {
+		curr_expires = atomic_long_read(&b->video_streaming_expires);
+		new_expires = jiffies + boost_jiffies;
+
+		/* Skip this boost if there's a longer boost in effect */
+		if (time_after(curr_expires, new_expires))
+			return;
+	} while (atomic_long_cmpxchg(&b->video_streaming_expires, curr_expires,
+				     new_expires) != curr_expires);
+
+	set_bit(VIDEO_STREAMING_INPUT_EVENT, &b->state);
+	if (!mod_delayed_work(system_unbound_wq, &b->video_streaming_unboost,
+			      boost_jiffies))
+		wake_up(&b->boost_waitq);
+}
+
+void video_streaming_disable_schedtune(void)
+{
+	struct boost_drv *b = &boost_drv_g;
+
+	__video_streaming_disable_schedtune(b);
+}
+
 static void __cpu_input_boost_kick(struct boost_drv *b)
 {
 	if (!test_bit(SCREEN_ON, &b->state))
@@ -279,6 +321,15 @@ static void powerhal_max_unboost_worker(struct work_struct *work)
 					   typeof(*b), powerhal_max_unboost);
 
 	clear_bit(POWERHAL_MAX_BOOST, &b->state);
+	wake_up(&b->boost_waitq);
+}
+
+static void video_streaming_unboost_worker(struct work_struct *work)
+{
+	struct boost_drv *b = container_of(to_delayed_work(work),
+					   typeof(*b), video_streaming_unboost);
+
+	clear_bit(VIDEO_STREAMING_INPUT_EVENT, &b->state);
 	wake_up(&b->boost_waitq);
 }
 
@@ -363,6 +414,12 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 		energy_aware_enable = true;
 	}
 
+	/* Put VIDEO_STREAMING_INPUT_EVENT check here to cover max_boost cases */
+	if (test_bit(VIDEO_STREAMING_INPUT_EVENT, &b->state))
+		disable_schedtune_boost("top-app", false);
+	else if (video_streaming)
+		disable_schedtune_boost("top-app", true);
+
 	/* return early if being max bosted */
 	if (test_bit(MAX_BOOST, &b->state) ||
 		test_bit(POWERHAL_MAX_BOOST, &b->state))
@@ -416,6 +473,8 @@ static void cpu_input_boost_input_event(struct input_handle *handle,
 					int value)
 {
 	struct boost_drv *b = handle->handler->private;
+
+	__video_streaming_disable_schedtune(b);
 
 	__powerhal_boost_kick(b);
 
