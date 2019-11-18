@@ -392,6 +392,7 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 	/* Unboost when the screen is off */
 	if (!test_bit(SCREEN_ON, &b->state)) {
 		policy->min = get_min_freq(policy);
+		disable_schedtune_boost("top-app", true);
 		/* Enable EAS behaviour */
 		energy_aware_enable = true;
 		/* UFS unboost */
@@ -463,7 +464,6 @@ static int msm_drm_notifier_cb(struct notifier_block *nb, unsigned long action,
 		__cpu_input_boost_kick_max(b, wake_boost_duration);
 		disable_schedtune_boost("top-app", false);
 	} else if (*blank == MSM_DRM_BLANK_POWERDOWN_CUST) {
-		disable_schedtune_boost("top-app", true);
 		clear_bit(SCREEN_ON, &b->state);
 		wake_up(&b->boost_waitq);
 	}
