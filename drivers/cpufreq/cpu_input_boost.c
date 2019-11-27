@@ -53,8 +53,12 @@ module_param(cpu_freq_min_little, uint, 0644);
 module_param(cpu_freq_min_big, uint, 0644);
 module_param(cpu_freq_min_prime, uint, 0644);
 
+unsigned short cib_max_boost_duration __read_mostly =
+	CONFIG_MAX_BOOST_DURATION_MS;
+
 module_param(input_boost_duration, short, 0644);
 module_param(wake_boost_duration, short, 0644);
+module_param(cib_max_boost_duration, short, 0644);
 
 enum {
 	SCREEN_ON,
