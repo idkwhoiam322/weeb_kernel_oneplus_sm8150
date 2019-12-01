@@ -50,7 +50,7 @@
 #include "ufs-qcom.h"
 #include <linux/project_info.h>
 
-#include <linux/power_hal.h>
+#include <linux/cpu_input_boost.h>
 #include <linux/binfmts.h>
 
 struct Scsi_Host *ph_host;

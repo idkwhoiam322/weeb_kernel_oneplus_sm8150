@@ -26,7 +26,7 @@
 #include "msm_vidc_clocks.h"
 #include <linux/dma-buf.h>
 
-#include <linux/power_hal.h>
+#include <linux/cpu_input_boost.h>
 bool video_streaming = false;
 
 #define MAX_EVENTS 30

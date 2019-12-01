@@ -97,7 +97,6 @@
 #include <linux/simple_lmk.h>
 #include <linux/cpu_input_boost.h>
 #include <linux/devfreq_boost.h>
-#include <linux/power_hal.h>
 
 // tedlin@ASTI 2019/06/12 add for CONFIG_HOUSTON
 #include <oneplus/houston/houston_helper.h>
