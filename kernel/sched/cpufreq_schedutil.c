@@ -866,8 +866,6 @@ static int sugov_start(struct cpufreq_policy *policy)
 					     policy_is_shared(policy) ?
 							sugov_update_shared :
 							sugov_update_single);
-		ht_register_cpu_util(cpu, cpumask_first(policy->related_cpus),
-				&sg_cpu->util, &sg_policy->hispeed_util);
 	}
 #ifdef CONFIG_CONTROL_CENTER
 	policy->cc_enable = true;
