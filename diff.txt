@@ -1,0 +1,2774 @@
+On branch R
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+	modified:   AndroidKernel.mk
+	new file:   Androidbp
+	modified:   Documentation/ABI/testing/sysfs-bus-coresight-devices-tmc
+	new file:   Documentation/ABI/testing/sysfs-class-gnss
+	modified:   Documentation/ABI/testing/sysfs-class-power
+	new file:   Documentation/ABI/testing/sysfs-class-wakeup
+	modified:   Documentation/ABI/testing/sysfs-fs-f2fs
+	new file:   Documentation/ABI/testing/sysfs-kernel-ion
+	modified:   Documentation/ABI/testing/sysfs-power
+	modified:   Documentation/admin-guide/dynamic-debug-howto.rst
+	modified:   Documentation/admin-guide/kernel-parameters.rst
+	modified:   Documentation/admin-guide/kernel-parameters.txt
+	new file:   Documentation/arm/msm/msm_smp2p.txt
+	new file:   Documentation/arm64/tagged-address-abi.rst
+	modified:   Documentation/arm64/tagged-pointers.txt
+	modified:   Documentation/block/00-INDEX
+	new file:   Documentation/block/index.rst
+	new file:   Documentation/block/inline-encryption.rst
+	modified:   Documentation/dev-tools/gcov.rst
+	modified:   Documentation/dev-tools/kasan.rst
+	modified:   Documentation/dev-tools/kcov.rst
+	modified:   Documentation/devicetree/bindings/arm/coresight.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/acpuclock/clock-a7.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/bam_dmux.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/clock-controller.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/core_sleep_status.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/diag.txt
+	modified:   Documentation/devicetree/bindings/arm/msm/imem.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/ipc-spinlock.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/jtag-fuse.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/limits_lmh.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/lpm-workarounds.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/mpm.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/msm_core.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/msm_ipc_router.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/msm_ipc_router_smd_xprt.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/msm_thermal.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/pm.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/pm_snoc_client.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/qcom,osm-sdm660.txt
+	modified:   Documentation/devicetree/bindings/arm/msm/rdbg-smp2p.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/rpm-log.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/rpm-rbcpr-stats.txt
+	modified:   Documentation/devicetree/bindings/arm/msm/sleepstate-smp2p.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/smdpkt.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/smdtty.txt
+	new file:   Documentation/devicetree/bindings/arm/msm/system_stats.txt
+	modified:   Documentation/devicetree/bindings/clock/qcom,camcc.txt
+	modified:   Documentation/devicetree/bindings/clock/qcom,debugcc.txt
+	modified:   Documentation/devicetree/bindings/clock/qcom,gcc.txt
+	modified:   Documentation/devicetree/bindings/clock/qcom,gpucc.txt
+	modified:   Documentation/devicetree/bindings/clock/qcom,mmcc.txt
+	new file:   Documentation/devicetree/bindings/clock/qcom,msm-clock-controller.txt
+	modified:   Documentation/devicetree/bindings/clock/qcom,npucc.txt
+	modified:   Documentation/devicetree/bindings/clock/qcom,rpmcc.txt
+	modified:   Documentation/devicetree/bindings/clock/qcom,scc.txt
+	new file:   Documentation/devicetree/bindings/clock/qcom,sdm-cpucc.txt
+	modified:   Documentation/devicetree/bindings/clock/qcom,videocc.txt
+	new file:   Documentation/devicetree/bindings/coresight/coresight.txt
+	new file:   Documentation/devicetree/bindings/devfreq/devfreq-spdm.txt
+	modified:   Documentation/devicetree/bindings/display/msm/sde-lease.txt
+	modified:   Documentation/devicetree/bindings/display/msm/sde.txt
+	modified:   Documentation/devicetree/bindings/drm/msm/mdss-dsi-panel.txt
+	modified:   Documentation/devicetree/bindings/drm/msm/sde-shd.txt
+	new file:   Documentation/devicetree/bindings/fb/mdss-dp.txt
+	modified:   Documentation/devicetree/bindings/fb/mdss-dsi-panel.txt
+	modified:   Documentation/devicetree/bindings/fb/mdss-edp.txt
+	new file:   Documentation/devicetree/bindings/gnss/gnss.txt
+	new file:   Documentation/devicetree/bindings/gpio/gpio-smp2p.txt
+	new file:   Documentation/devicetree/bindings/gpio/qpnp-pin.txt
+	modified:   Documentation/devicetree/bindings/gpu/adreno.txt
+	new file:   Documentation/devicetree/bindings/hwmon/qpnp-adc-voltage.txt
+	modified:   Documentation/devicetree/bindings/iio/adc/qcom-rradc.txt
+	new file:   Documentation/devicetree/bindings/iio/imu/invn-iam20680.txt
+	modified:   Documentation/devicetree/bindings/input/qpnp-power-on.txt
+	modified:   Documentation/devicetree/bindings/input/qti-haptics.txt
+	new file:   Documentation/devicetree/bindings/input/sensors/smi130.txt
+	new file:   Documentation/devicetree/bindings/input/touchscreen/raydium_ts.txt
+	modified:   Documentation/devicetree/bindings/interrupt-controller/qti,mpm.txt
+	modified:   Documentation/devicetree/bindings/interrupt-controller/qti,pdc.txt
+	modified:   Documentation/devicetree/bindings/leds/backlight/qcom-spmi-wled.txt
+	new file:   Documentation/devicetree/bindings/leds/leds-qcom-clk.txt
+	new file:   Documentation/devicetree/bindings/leds/leds-qpnp-wled.txt
+	new file:   Documentation/devicetree/bindings/leds/leds-qpnp.txt
+	modified:   Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.txt
+	new file:   Documentation/devicetree/bindings/media/video/laser-sensor.txt
+	new file:   Documentation/devicetree/bindings/media/video/msm-ais-ife.txt
+	modified:   Documentation/devicetree/bindings/media/video/msm-cam-ife-csid.txt
+	modified:   Documentation/devicetree/bindings/media/video/msm-cam-smmu.txt
+	modified:   Documentation/devicetree/bindings/media/video/msm-cam-vfe.txt
+	new file:   Documentation/devicetree/bindings/media/video/msm-vidc-vmem.txt
+	modified:   Documentation/devicetree/bindings/media/video/msm-vidc.txt
+	modified:   Documentation/devicetree/bindings/misc/qpnp-misc.txt
+	new file:   Documentation/devicetree/bindings/net/can/k61-can.txt
+	new file:   Documentation/devicetree/bindings/net/msm-emac.txt
+	modified:   Documentation/devicetree/bindings/net/qcom,emac-dwc-eqos.txt
+	new file:   Documentation/devicetree/bindings/net/qcom,sja1105p-eth-switch.txt
+	new file:   Documentation/devicetree/bindings/net/qcom,stmmac-ethqos.txt
+	new file:   Documentation/devicetree/bindings/net/qrtr-ethernet-dev.txt
+	modified:   Documentation/devicetree/bindings/net/stmmac.txt
+	new file:   Documentation/devicetree/bindings/pil/pil-blackghost.txt
+	new file:   Documentation/devicetree/bindings/pil/pil-q6v5-mss.txt
+	new file:   Documentation/devicetree/bindings/pinctrl/qcm,sdm429w-pinctrl.txt
+	new file:   Documentation/devicetree/bindings/pinctrl/qcom,mdm9607-pinctrl.txt
+	new file:   Documentation/devicetree/bindings/pinctrl/qcom,sdm660-pinctrl.txt
+	modified:   Documentation/devicetree/bindings/pinctrl/qcom,sdmshrike-pinctrl
+	new file:   Documentation/devicetree/bindings/platform/msm/qpnp-coincell.txt
+	new file:   Documentation/devicetree/bindings/platform/msm/veth_ipa.txt
+	new file:   Documentation/devicetree/bindings/power/smb358-charger.txt
+	modified:   Documentation/devicetree/bindings/power/supply/qcom/qpnp-fg-gen3.txt
+	modified:   Documentation/devicetree/bindings/power/supply/qcom/qpnp-fg-gen4.txt
+	modified:   Documentation/devicetree/bindings/power/supply/qcom/qpnp-smb2.txt
+	modified:   Documentation/devicetree/bindings/power/supply/qcom/qpnp-smb5.txt
+	new file:   Documentation/devicetree/bindings/ptp/qcom,ptp_virtual.txt
+	new file:   Documentation/devicetree/bindings/pwm/pwm-qpnp.txt
+	new file:   Documentation/devicetree/bindings/regulator/cpr3-regulator.txt
+	new file:   Documentation/devicetree/bindings/regulator/cpr4-mmss-ldo-regulator.txt
+	new file:   Documentation/devicetree/bindings/regulator/cprh-kbss-regulator.txt
+	new file:   Documentation/devicetree/bindings/regulator/msm_gfx_ldo.txt
+	new file:   Documentation/devicetree/bindings/regulator/qpnp-regulator.txt
+	modified:   Documentation/devicetree/bindings/serial/qcom,msm-geni-uart.txt
+	new file:   Documentation/devicetree/bindings/soc/qcom/apm.txt
+	new file:   Documentation/devicetree/bindings/soc/qcom/bam_dmux.txt
+	new file:   Documentation/devicetree/bindings/soc/qcom/bg_daemon.txt
+	new file:   Documentation/devicetree/bindings/soc/qcom/bg_rsb.txt
+	new file:   Documentation/devicetree/bindings/soc/qcom/bg_spi.txt
+	new file:   Documentation/devicetree/bindings/soc/qcom/bgrsb_rpmsg.txt
+	new file:   Documentation/devicetree/bindings/soc/qcom/blocknames.txt
+	new file:   Documentation/devicetree/bindings/soc/qcom/hgsl-tcsr.txt
+	new file:   Documentation/devicetree/bindings/soc/qcom/hgsl.txt
+	new file:   Documentation/devicetree/bindings/soc/qcom/qcom,glink-bgcom-xprt.txt
+	modified:   Documentation/devicetree/bindings/sound/qcom,hsi2s.txt
+	new file:   Documentation/devicetree/bindings/sound/tfa9897.txt
+	modified:   Documentation/devicetree/bindings/sound/wcd_codec.txt
+	modified:   Documentation/devicetree/bindings/spi/spi_qsd.txt
+	modified:   Documentation/devicetree/bindings/thermal/qcom-adc-tm.txt
+	modified:   Documentation/devicetree/bindings/thermal/qcom-lmh-dcvs.txt
+	new file:   Documentation/devicetree/bindings/thermal/qpnp-adc-tm.txt
+	new file:   Documentation/devicetree/bindings/thermal/qpnp-temp-alarm.txt
+	modified:   Documentation/devicetree/bindings/thermal/qti-qmi-sensor.txt
+	modified:   Documentation/devicetree/bindings/thermal/tsens.txt
+	new file:   Documentation/devicetree/bindings/tty/serial/msm_serial.txt
+	modified:   Documentation/devicetree/bindings/ufs/ufs-qcom.txt
+	modified:   Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
+	modified:   Documentation/devicetree/bindings/uio/msm_sharedmem.txt
+	new file:   Documentation/devicetree/bindings/usb/msm-ehci-hsic.txt
+	new file:   Documentation/devicetree/bindings/usb/msm-hsic-peripheral.txt
+	modified:   Documentation/devicetree/bindings/usb/msm-hsusb.txt
+	modified:   Documentation/devicetree/bindings/usb/msm-ssusb.txt
+	modified:   Documentation/devicetree/bindings/usb/qpnp-pdphy.txt
+	modified:   Documentation/devicetree/bindings/usb/usb-xhci.txt
+	new file:   Documentation/devicetree/bindings/wcnss/wcnss-wlan.txt
+	modified:   Documentation/dontdiff
+	modified:   Documentation/features/debug/KASAN/arch-support.txt
+	new file:   Documentation/filesystems/ext4/verity.rst
+	modified:   Documentation/filesystems/f2fs.txt
+	modified:   Documentation/filesystems/fscrypt.rst
+	new file:   Documentation/filesystems/fsverity.rst
+	modified:   Documentation/filesystems/index.rst
+	modified:   Documentation/power/swsusp.txt
+	new file:   Documentation/usb/raw-gadget.rst
+	modified:   MAINTAINERS
+	modified:   arch/arm/Kconfig
+	modified:   arch/arm/Makefile
+	modified:   arch/arm/common/Kconfig
+	modified:   arch/arm/common/Makefile
+	deleted:    arch/arm/common/fiq_glue.S
+	deleted:    arch/arm/common/fiq_glue_setup.c
+	new file:   arch/arm/configs/mdm9607-128mb-perf_defconfig
+	new file:   arch/arm/configs/mdm9607-perf_defconfig
+	new file:   arch/arm/configs/mdm9607_defconfig
+	new file:   arch/arm/configs/vendor/mdm9607-128mb-perf_defconfig
+	new file:   arch/arm/configs/vendor/mdm9607-perf_defconfig
+	new file:   arch/arm/configs/vendor/mdm9607_defconfig
+	new file:   arch/arm/configs/vendor/sdm429-bg-perf_defconfig
+	new file:   arch/arm/configs/vendor/sdm429-bg_defconfig
+	modified:   arch/arm/include/asm/dma-iommu.h
+	deleted:    arch/arm/include/asm/fiq_glue.h
+	modified:   arch/arm/include/uapi/asm/setup.h
+	modified:   arch/arm/kvm/Kconfig
+	modified:   arch/arm/lib/Makefile
+	new file:   arch/arm/lib/backtrace-clang.S
+	modified:   arch/arm/mach-qcom/Kconfig
+	new file:   arch/arm/mach-qcom/board-660.c
+	new file:   arch/arm/mach-qcom/board-mdm9607.c
+	new file:   arch/arm/mach-qcom/board-sdm429w.c
+	modified:   arch/arm/mm/dma-mapping.c
+	modified:   arch/arm/mm/ioremap.c
+	modified:   arch/arm/tools/syscall.tbl
+	modified:   arch/arm64/Kconfig.platforms
+	modified:   arch/arm64/boot/dts/qcom/atoll-usb.dtsi
+	new file:   arch/arm64/boot/dts/qcom/dsi-panel-auo-416p-amoled-cmd.dtsi
+	new file:   arch/arm64/boot/dts/qcom/dsi-panel-hx8399c-fhd-plus-video.dtsi
+	new file:   arch/arm64/boot/dts/qcom/dsi-panel-lgd-incell-sw49106-fhd-video.dtsi
+	new file:   arch/arm64/boot/dts/qcom/dsi-panel-nt35597-dualmipi-wqxga-cmd.dtsi
+	new file:   arch/arm64/boot/dts/qcom/dsi-panel-nt35597-dualmipi-wqxga-video.dtsi
+	modified:   arch/arm64/boot/dts/qcom/dsi-panel-nt35597-truly-dsc-wqxga-cmd.dtsi
+	modified:   arch/arm64/boot/dts/qcom/dsi-panel-nt35597-truly-dsc-wqxga-video.dtsi
+	modified:   arch/arm64/boot/dts/qcom/dsi-panel-nt35597-truly-dualmipi-wqxga-cmd.dtsi
+	modified:   arch/arm64/boot/dts/qcom/dsi-panel-nt35597-truly-dualmipi-wqxga-video.dtsi
+	modified:   arch/arm64/boot/dts/qcom/dsi-panel-nt36850-truly-dualmipi-wqhd-cmd.dtsi
+	new file:   arch/arm64/boot/dts/qcom/dsi-panel-rm67195-amoled-fhd-cmd.dtsi
+	new file:   arch/arm64/boot/dts/qcom/dsi-panel-sharp-dualmipi-wqxga-video.dtsi
+	modified:   arch/arm64/boot/dts/qcom/dsi-panel-sim-video.dtsi
+	new file:   arch/arm64/boot/dts/qcom/dsi-panel-truly-1080p-cmd.dtsi
+	new file:   arch/arm64/boot/dts/qcom/dsi-panel-truly-1080p-video.dtsi
+	new file:   arch/arm64/boot/dts/qcom/fg-gen3-batterydata-I13Z5P-680mAh.dtsi
+	new file:   arch/arm64/boot/dts/qcom/fg-gen3-batterydata-ascent-3450mah.dtsi
+	new file:   arch/arm64/boot/dts/qcom/fg-gen3-batterydata-itech-3000mah.dtsi
+	new file:   arch/arm64/boot/dts/qcom/fg-gen3-batterydata-qrd-skuk-4v4-3000mah.dtsi
+	new file:   arch/arm64/boot/dts/qcom/mdm9607-bus.dtsi
+	new file:   arch/arm64/boot/dts/qcom/mdm9607-cdp.dts
+	new file:   arch/arm64/boot/dts/qcom/mdm9607-cdp.dtsi
+	new file:   arch/arm64/boot/dts/qcom/mdm9607-coresight.dtsi
+	new file:   arch/arm64/boot/dts/qcom/mdm9607-display.dtsi
+	new file:   arch/arm64/boot/dts/qcom/mdm9607-ion.dtsi
+	new file:   arch/arm64/boot/dts/qcom/mdm9607-mtp.dts
+	new file:   arch/arm64/boot/dts/qcom/mdm9607-mtp.dtsi
+	new file:   arch/arm64/boot/dts/qcom/mdm9607-pinctrl.dtsi
+	new file:   arch/arm64/boot/dts/qcom/mdm9607-pm.dtsi
+	new file:   arch/arm64/boot/dts/qcom/mdm9607-rcm.dts
+	new file:   arch/arm64/boot/dts/qcom/mdm9607-regulator.dtsi
+	new file:   arch/arm64/boot/dts/qcom/mdm9607-smp2p.dtsi
+	new file:   arch/arm64/boot/dts/qcom/mdm9607-thermal.dtsi
+	new file:   arch/arm64/boot/dts/qcom/mdm9607.dtsi
+	new file:   arch/arm64/boot/dts/qcom/msm-arm-smmu-660.dtsi
+	new file:   arch/arm64/boot/dts/qcom/msm-arm-smmu-impl-defs-660.dtsi
+	new file:   arch/arm64/boot/dts/qcom/msm-arm-smmu-impl-defs-sdm429.dtsi
+	modified:   arch/arm64/boot/dts/qcom/msm-arm-smmu-qcs405.dtsi
+	new file:   arch/arm64/boot/dts/qcom/msm-arm-smmu-sdm429.dtsi
+	modified:   arch/arm64/boot/dts/qcom/msm-arm-smmu-sdmshrike.dtsi
+	new file:   arch/arm64/boot/dts/qcom/msm-audio.dtsi
+	new file:   arch/arm64/boot/dts/qcom/msm-gdsc-660.dtsi
+	new file:   arch/arm64/boot/dts/qcom/msm-pm660-rpm-regulator.dtsi
+	new file:   arch/arm64/boot/dts/qcom/msm-pm660a.dtsi
+	new file:   arch/arm64/boot/dts/qcom/msm-pm660l-rpm-regulator.dtsi
+	modified:   arch/arm64/boot/dts/qcom/pm6155.dtsi
+	new file:   arch/arm64/boot/dts/qcom/pm660-rpm-regulator.dtsi
+	new file:   arch/arm64/boot/dts/qcom/pm660.dtsi
+	new file:   arch/arm64/boot/dts/qcom/pm660l-rpm-regulator.dtsi
+	new file:   arch/arm64/boot/dts/qcom/pm660l.dtsi
+	new file:   arch/arm64/boot/dts/qcom/pm8019-rpm-regulator.dtsi
+	new file:   arch/arm64/boot/dts/qcom/pm8019.dtsi
+	new file:   arch/arm64/boot/dts/qcom/pm8195-vm.dtsi
+	modified:   arch/arm64/boot/dts/qcom/pm8195.dtsi
+	modified:   arch/arm64/boot/dts/qcom/qcs403.dtsi
+	new file:   arch/arm64/boot/dts/qcom/qcs404-iot-robot-reference-board.dts
+	new file:   arch/arm64/boot/dts/qcom/qcs404-iot-robot-reference-dvt-board.dts
+	modified:   arch/arm64/boot/dts/qcom/qcs404.dtsi
+	modified:   arch/arm64/boot/dts/qcom/qcs405-blsp.dtsi
+	modified:   arch/arm64/boot/dts/qcom/qcs405-gpu.dtsi
+	new file:   arch/arm64/boot/dts/qcom/qcs405-iot-robot-reference-board.dts
+	new file:   arch/arm64/boot/dts/qcom/qcs405-iot-robot-reference-dvt-board.dts
+	modified:   arch/arm64/boot/dts/qcom/qcs405-pm.dtsi
+	modified:   arch/arm64/boot/dts/qcom/qcs405-thermal.dtsi
+	modified:   arch/arm64/boot/dts/qcom/qcs405.dtsi
+	modified:   arch/arm64/boot/dts/qcom/qcs410-iot.dts
+	modified:   arch/arm64/boot/dts/qcom/qcs610-iot.dtsi
+	modified:   arch/arm64/boot/dts/qcom/quin-vm-common.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa2145p-ccard-nand-dc.dts
+	new file:   arch/arm64/boot/dts/qcom/sa2145p-ccard.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa2150p-ccard-emmc-eth-phy.dts
+	new file:   arch/arm64/boot/dts/qcom/sa2150p-ccard-emmc-eth-sw.dts
+	new file:   arch/arm64/boot/dts/qcom/sa2150p-ccard-emmc.dts
+	new file:   arch/arm64/boot/dts/qcom/sa2150p-ccard-nand-dc.dts
+	new file:   arch/arm64/boot/dts/qcom/sa2150p-ccard-nand.dts
+	new file:   arch/arm64/boot/dts/qcom/sa2150p-ccard.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa515m-ccard-eth-ep.dts
+	modified:   arch/arm64/boot/dts/qcom/sa515m-ccard-usb-ep.dts
+	modified:   arch/arm64/boot/dts/qcom/sa515m-ccard.dts
+	new file:   arch/arm64/boot/dts/qcom/sa515m-flashless.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa515m-v2-ccard-eth-ep.dts
+	new file:   arch/arm64/boot/dts/qcom/sa515m-v2-ccard-eth-phy-ep.dts
+	new file:   arch/arm64/boot/dts/qcom/sa515m-v2-ccard-flashless-pcie-ep.dts
+	new file:   arch/arm64/boot/dts/qcom/sa515m-v2-ccard-flashless-usb-ep.dts
+	new file:   arch/arm64/boot/dts/qcom/sa515m-v2-ccard-pcie-ep.dts
+	new file:   arch/arm64/boot/dts/qcom/sa515m-v2-ccard-usb-ep.dts
+	new file:   arch/arm64/boot/dts/qcom/sa515m-v2-ccard.dts
+	new file:   arch/arm64/boot/dts/qcom/sa515m-v2-ttp-emmc.dts
+	new file:   arch/arm64/boot/dts/qcom/sa515m-v2-ttp-flashless-pcie-ep.dts
+	new file:   arch/arm64/boot/dts/qcom/sa515m-v2-ttp-flashless-usb-ep.dts
+	new file:   arch/arm64/boot/dts/qcom/sa515m-v2-ttp-pcie-ep.dts
+	new file:   arch/arm64/boot/dts/qcom/sa515m-v2-ttp-usb-ep.dts
+	new file:   arch/arm64/boot/dts/qcom/sa515m-v2-ttp.dts
+	new file:   arch/arm64/boot/dts/qcom/sa515m-v2-ttp.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa6155-adp-air-overlay.dts
+	modified:   arch/arm64/boot/dts/qcom/sa6155-adp-air.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa6155-adp-star-overlay.dts
+	modified:   arch/arm64/boot/dts/qcom/sa6155-adp-star.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa6155-audio.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa6155-cnss.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa6155-display-shd.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa6155-pmic.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa6155.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa6155p-adp-air-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sa6155p-adp-star-lpass-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sa6155p-adp-star-lpass.dts
+	modified:   arch/arm64/boot/dts/qcom/sa6155p-adp-star-overlay.dts
+	renamed:    arch/arm64/boot/dts/qcom/sm6150-camera-sensor-adp.dtsi -> arch/arm64/boot/dts/qcom/sa6155p-camera-sensor.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa6155p-camera.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa6155p-v2-adp-air-display-lxc-shd.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa6155p-v2-adp-air-lpass-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sa6155p-v2-adp-air-lpass.dts
+	new file:   arch/arm64/boot/dts/qcom/sa6155p-v2-adp-air-lxc-overlay.dts
+	modified:   arch/arm64/boot/dts/qcom/sa6155p-v2-adp-air-overlay.dts
+	modified:   arch/arm64/boot/dts/qcom/sa6155p-v2-adp-star-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sa6155p-vm-la.dts
+	new file:   arch/arm64/boot/dts/qcom/sa6155p-vm-la.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa6155p-vm-pcie.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa6155p-vm-pinctrl.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa6155p-vm-qupv3.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa6155p-vm-usb.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa6155p-vm.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa6155p.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8155-adp-alcor.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8155-adp-common.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8155-adp-star-display-shd.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8155-adp-star-overlay.dts
+	modified:   arch/arm64/boot/dts/qcom/sa8155-adp-star.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8155-audio.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8155-camera-sensor.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8155-camera.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8155-capture.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8155-cnss.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8155-pmic-overlay.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8155-regulator.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8155-v1.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8155-v2-adp-air-display-lxc-shd.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8155-v2-adp-air-lxc-overlay.dts
+	modified:   arch/arm64/boot/dts/qcom/sa8155-v2-adp-air-overlay.dts
+	modified:   arch/arm64/boot/dts/qcom/sa8155-v2.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8155-vm-audio.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8155-vm-la-mt.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8155-vm-la-mt.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8155-vm-la.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8155-vm-la.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8155-vm-lv-mt.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8155-vm-lv-mt.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8155-vm-lv.dts
+	renamed:    arch/arm64/boot/dts/qcom/sa6155p-vm.dts -> arch/arm64/boot/dts/qcom/sa8155-vm-lv.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8155-vm-mhi.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8155-vm-pcie.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8155-vm-qupv3.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8155-vm-usb.dtsi
+	deleted:    arch/arm64/boot/dts/qcom/sa8155-vm.dts
+	modified:   arch/arm64/boot/dts/qcom/sa8155-vm.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8155p-adp-star-lpass-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8155p-adp-star-lpass.dts
+	modified:   arch/arm64/boot/dts/qcom/sa8155p-adp-star-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8155p-v2-adp-air-capture.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8155p-v2-adp-air-lpass-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8155p-v2-adp-air-lpass.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8155p-v2-adp-air-lxc-overlay.dts
+	modified:   arch/arm64/boot/dts/qcom/sa8155p-v2-adp-air-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8155p-v2-adp-star-capture.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8195-capture.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8195-pmic.dtsi
+	renamed:    arch/arm64/boot/dts/qcom/sa8195-vm.dts -> arch/arm64/boot/dts/qcom/sa8195-vm-la-mt.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8195-vm-la-mt.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8195-vm-la.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8195-vm-la.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8195-vm-lv-cnss-lxc.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8195-vm-lv-lxc.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8195-vm-lv-lxc.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8195-vm-lv-mt.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8195-vm-lv-mt.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8195-vm-lv.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8195-vm-lv.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8195-vm-pcie.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8195-vm-usb.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8195-vm.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8195p-adp-common.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8195p-adp-star-display-shd.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8195p-adp-star-display.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8195p-adp-star-overlay.dts
+	modified:   arch/arm64/boot/dts/qcom/sa8195p-adp-star.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8195p-camera-sensor.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8195p-camera.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8195p-cnss.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8195p-pcie.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sa8195p-regulator.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8195p-v2-adp-air-capture.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8195p-v2-adp-air-display-lxc-shd.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sa8195p-v2-adp-air-lxc-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8195p-v2-adp-air-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sa8195p-v2-adp-air.dts
+	modified:   arch/arm64/boot/dts/qcom/sa8195p.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sda429-bg-dvt2-wtp-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sda429-bg-dvt2-wtp.dts
+	new file:   arch/arm64/boot/dts/qcom/sda429-bg-dvt2-wtp.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sda429-wdp-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sda429-wdp.dts
+	new file:   arch/arm64/boot/dts/qcom/sda429-wdp.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sda429-wtp-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sda429-wtp.dts
+	new file:   arch/arm64/boot/dts/qcom/sda429-wtp.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sda429.dts
+	new file:   arch/arm64/boot/dts/qcom/sda429.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sda660-cdp-external-codec-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sda660-cdp.dts
+	new file:   arch/arm64/boot/dts/qcom/sda660-mtp-external-codec-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sda660-mtp.dts
+	new file:   arch/arm64/boot/dts/qcom/sda660-pm660a-cdp.dts
+	new file:   arch/arm64/boot/dts/qcom/sda660-pm660a-mtp.dts
+	new file:   arch/arm64/boot/dts/qcom/sda660-pm660a-qrd-hdk.dts
+	new file:   arch/arm64/boot/dts/qcom/sda660-pm660a-rcm.dts
+	new file:   arch/arm64/boot/dts/qcom/sda660-pm660l.dts
+	new file:   arch/arm64/boot/dts/qcom/sda660-rcm-external-codec-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sda660-rcm.dts
+	new file:   arch/arm64/boot/dts/qcom/sda660.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-audio.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-bg-dvt2-wtp-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm429-bg-dvt2-wtp.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm429-bg-dvt2-wtp.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-bg-soc.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-blsp.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-board-common.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-bus.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-coresight.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-cpu.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-gdsc.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-ion.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-mdss-panels.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-mdss-pll.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-mdss.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-pinctrl.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-pm.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-spyro-qrd-evt-audio.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-thermal.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-vidc.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-wdp-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm429-wdp.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm429-wdp.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429-wtp-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm429-wtp.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm429-wtp.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm429.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429w-bg-pm660.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429w-gpu.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429w-pm660.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm429w-regulator.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-audio.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-blsp.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-bus.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-camera-sensor-cdp.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-camera-sensor-mtp.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-camera-sensor-qrd.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-camera.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-cdp-external-codec-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-cdp-internal-codec-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-cdp.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-cdp.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-common.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-coresight.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-external-codec.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-gpu.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-headset-jacktype-no-cdp.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-headset-jacktype-no-rcm.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-internal-codec-cdp.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-internal-codec-mtp.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-internal-codec-pm660a-cdp.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-internal-codec-pm660a-mtp.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-internal-codec-pm660a-rcm.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-internal-codec-rcm.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-internal-codec.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-ion.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-lpi.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-mdss-panels.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-mdss-pll.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-mdss.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-mtp-external-codec-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-mtp-internal-codec-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-mtp.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-mtp.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-pinctrl.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-pm.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-pm660a-cdp.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-pm660a-headset-jacktype-no-cdp.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-pm660a-headset-jacktype-no-rcm.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-pm660a-mtp.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-pm660a-qrd.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-pm660a-rcm.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-pm660a-sim.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-pm660l.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-qrd-external-codec-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-qrd.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-qrd.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-rcm-external-codec-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-rcm-internal-codec-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-rcm.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-regulator.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-sim.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-thermal.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-usbc-audio-mtp-overlay.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-usbc-audio-mtp.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-usbc-audio-rcm.dts
+	new file:   arch/arm64/boot/dts/qcom/sdm660-vidc.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-wcd.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660-wsa881x.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdm660.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdmmagpie-pm.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdmmagpie-usb.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdmmagpie.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdmshrike-coresight.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdmshrike-gpu.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdmshrike-pinctrl.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdmshrike-pm.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdmshrike-qupv3.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdmshrike-sde-pll.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdmshrike-thermal.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdmshrike-usb.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdmshrike-v2.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdmshrike-vidc.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdmshrike.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdx-audio-lpass.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdxprairie-audio-overlay.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdxprairie-audio.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdxprairie-bus.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdxprairie-cdp-audio-overlay.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdxprairie-cdp-cpe.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdxprairie-cpe-memory-map.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdxprairie-mtp-cpe.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdxprairie-pinctrl.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdxprairie-pm.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdxprairie-regulator.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdxprairie-smp2p.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sdxprairie-thermal.dtsi
+	new file:   arch/arm64/boot/dts/qcom/sdxprairie-v2-dsda-cdp.dts
+	new file:   arch/arm64/boot/dts/qcom/sdxprairie-v2-mtp-au-dsda.dts
+	modified:   arch/arm64/boot/dts/qcom/sm6150-audio.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm6150-camera.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm6150-pinctrl.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm6150-pm.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm6150-qupv3.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm6150-slpi-pinctrl.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm6150.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm8150-camera.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm8150-cdp.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm8150-mtp.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm8150-pm.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm8150-qrd.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm8150-qupv3.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm8150-regulator.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm8150-sde.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm8150-sdx50m.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm8150-slpi-pinctrl.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm8150-usb.dtsi
+	modified:   arch/arm64/boot/dts/qcom/sm8150-v2.dtsi
+	modified:   arch/arm64/boot/dts/qcom/trinket-coresight.dtsi
+	modified:   arch/arm64/boot/dts/qcom/trinket-pm.dtsi
+	modified:   arch/arm64/boot/dts/qcom/trinket.dtsi
+	modified:   arch/arm64/configs/cuttlefish_defconfig
+	new file:   arch/arm64/configs/vendor/debugfs.config
+	new file:   arch/arm64/configs/vendor/gen3auto-capture_defconfig
+	new file:   arch/arm64/configs/vendor/gen3auto-perf_defconfig
+	new file:   arch/arm64/configs/vendor/gen3auto_defconfig
+	modified:   arch/arm64/configs/vendor/qcs403-perf_defconfig
+	modified:   arch/arm64/configs/vendor/qcs403_defconfig
+	modified:   arch/arm64/configs/vendor/qcs405-perf_defconfig
+	modified:   arch/arm64/configs/vendor/qcs405_defconfig
+	new file:   arch/arm64/configs/vendor/qcs610-minimal-perf_defconfig
+	modified:   arch/arm64/configs/vendor/qti-quin-gvm-perf_defconfig
+	modified:   arch/arm64/configs/vendor/qti-quin-gvm_defconfig
+	new file:   arch/arm64/configs/vendor/sa2150p-nand-perf_defconfig
+	new file:   arch/arm64/configs/vendor/sa2150p-nand_defconfig
+	modified:   arch/arm64/configs/vendor/sa2150p-perf_defconfig
+	modified:   arch/arm64/configs/vendor/sa2150p_defconfig
+	new file:   arch/arm64/configs/vendor/sdm660-perf_defconfig
+	new file:   arch/arm64/configs/vendor/sdm660_defconfig
+	modified:   arch/arm64/configs/vendor/sdmshrike-perf_defconfig
+	modified:   arch/arm64/configs/vendor/sdmshrike_defconfig
+	modified:   arch/arm64/configs/vendor/sdmsteppe-perf_defconfig
+	modified:   arch/arm64/configs/vendor/sdmsteppe_defconfig
+	modified:   arch/arm64/configs/vendor/trinket-perf_defconfig
+	modified:   arch/arm64/configs/vendor/trinket_defconfig
+	modified:   arch/arm64/include/asm/asm-uaccess.h
+	modified:   arch/arm64/include/asm/assembler.h
+	modified:   arch/arm64/include/asm/brk-imm.h
+	modified:   arch/arm64/include/asm/cache.h
+	modified:   arch/arm64/include/asm/cpu_ops.h
+	modified:   arch/arm64/include/asm/kasan.h
+	modified:   arch/arm64/include/asm/memory.h
+	modified:   arch/arm64/include/asm/mmu_context.h
+	modified:   arch/arm64/include/asm/page.h
+	modified:   arch/arm64/include/asm/pgtable-hwdef.h
+	modified:   arch/arm64/include/asm/processor.h
+	new file:   arch/arm64/include/asm/scs.h
+	modified:   arch/arm64/include/asm/stacktrace.h
+	modified:   arch/arm64/include/asm/suspend.h
+	modified:   arch/arm64/include/asm/uaccess.h
+	modified:   arch/arm64/include/asm/unistd.h
+	modified:   arch/arm64/include/asm/unistd32.h
+	modified:   arch/arm64/kernel/Makefile
+	modified:   arch/arm64/kernel/alternative.c
+	modified:   arch/arm64/kernel/asm-offsets.c
+	modified:   arch/arm64/kernel/cpu-reset.S
+	modified:   arch/arm64/kernel/cpu-reset.h
+	modified:   arch/arm64/kernel/cpu_ops.c
+	modified:   arch/arm64/kernel/cpuinfo.c
+	modified:   arch/arm64/kernel/entry.S
+	modified:   arch/arm64/kernel/head.S
+	modified:   arch/arm64/kernel/hibernate.c
+	modified:   arch/arm64/kernel/irq.c
+	modified:   arch/arm64/kernel/machine_kexec.c
+	modified:   arch/arm64/kernel/process.c
+	new file:   arch/arm64/kernel/scs.c
+	modified:   arch/arm64/kernel/setup.c
+	modified:   arch/arm64/kernel/smp_spin_table.c
+	modified:   arch/arm64/kvm/Kconfig
+	modified:   arch/arm64/kvm/hyp/Makefile
+	modified:   arch/arm64/lib/copy_page.S
+	modified:   arch/arm64/mm/fault.c
+	modified:   arch/arm64/mm/kasan_init.c
+	modified:   arch/arm64/mm/mmu.c
+	modified:   arch/arm64/mm/proc.S
+	modified:   arch/mips/configs/generic_defconfig
+	modified:   arch/mips/kvm/Kconfig
+	modified:   arch/powerpc/kvm/Kconfig
+	modified:   arch/powerpc/perf/core-book3s.c
+	modified:   arch/s390/configs/performance_defconfig
+	modified:   arch/s390/kvm/Kconfig
+	modified:   arch/x86/Kconfig
+	modified:   arch/x86/Makefile
+	modified:   arch/x86/boot/compressed/string.c
+	modified:   arch/x86/configs/x86_64_cuttlefish_defconfig
+	modified:   arch/x86/crypto/aesni-intel_glue.c
+	modified:   arch/x86/crypto/sha1_avx2_x86_64_asm.S
+	modified:   arch/x86/crypto/sha1_ssse3_asm.S
+	modified:   arch/x86/crypto/sha1_ssse3_glue.c
+	modified:   arch/x86/crypto/sha256-avx-asm.S
+	modified:   arch/x86/crypto/sha256-avx2-asm.S
+	modified:   arch/x86/crypto/sha256-ssse3-asm.S
+	modified:   arch/x86/crypto/sha256_ssse3_glue.c
+	modified:   arch/x86/crypto/sha512-avx-asm.S
+	modified:   arch/x86/crypto/sha512-avx2-asm.S
+	modified:   arch/x86/crypto/sha512-ssse3-asm.S
+	modified:   arch/x86/crypto/sha512_ssse3_glue.c
+	modified:   arch/x86/entry/common.c
+	modified:   arch/x86/entry/syscalls/syscall_32.tbl
+	modified:   arch/x86/entry/syscalls/syscall_64.tbl
+	modified:   arch/x86/entry/vdso/Makefile
+	modified:   arch/x86/events/intel/bts.c
+	modified:   arch/x86/events/intel/core.c
+	modified:   arch/x86/events/intel/p4.c
+	modified:   arch/x86/include/asm/atomic.h
+	modified:   arch/x86/include/asm/atomic64_32.h
+	modified:   arch/x86/include/asm/atomic64_64.h
+	modified:   arch/x86/include/asm/cmpxchg.h
+	modified:   arch/x86/include/asm/cmpxchg_32.h
+	modified:   arch/x86/include/asm/cmpxchg_64.h
+	modified:   arch/x86/include/asm/kasan.h
+	modified:   arch/x86/include/asm/page_64_types.h
+	modified:   arch/x86/include/asm/sections.h
+	modified:   arch/x86/include/asm/smap.h
+	modified:   arch/x86/include/asm/uaccess.h
+	modified:   arch/x86/kernel/cpu/vmware.c
+	modified:   arch/x86/kernel/module.c
+	modified:   arch/x86/kvm/Kconfig
+	modified:   arch/x86/mm/dump_pagetables.c
+	modified:   arch/x86/mm/extable.c
+	modified:   arch/x86/mm/init_64.c
+	modified:   arch/x86/mm/kasan_init_64.c
+	modified:   arch/x86/mm/pti.c
+	modified:   arch/x86/tools/relocs.c
+	modified:   block/Kconfig
+	modified:   block/Makefile
+	new file:   block/bio-crypt-ctx.c
+	modified:   block/bio.c
+	new file:   block/blk-crypto-fallback.c
+	new file:   block/blk-crypto-internal.h
+	new file:   block/blk-crypto.c
+	modified:   block/blk-sysfs.c
+	modified:   block/elevator.c
+	new file:   block/keyslot-manager.c
+	new file:   build.config.aarch64
+	new file:   build.config.common
+	modified:   build.config.cuttlefish.aarch64
+	modified:   build.config.cuttlefish.x86_64
+	new file:   build.config.x86_64
+	new file:   disable_dbgfs.sh
+	modified:   drivers/Kconfig
+	modified:   drivers/Makefile
+	modified:   drivers/acpi/device_pm.c
+	modified:   drivers/acpi/nfit/core.c
+	modified:   drivers/android/Kconfig
+	modified:   drivers/android/Makefile
+	modified:   drivers/android/binder.c
+	new file:   drivers/android/binder_internal.h
+	new file:   drivers/android/binderfs.c
+	modified:   drivers/base/Kconfig
+	modified:   drivers/base/dd.c
+	modified:   drivers/base/memory.c
+	modified:   drivers/base/node.c
+	modified:   drivers/base/power/Makefile
+	modified:   drivers/base/power/main.c
+	modified:   drivers/base/power/power.h
+	modified:   drivers/base/power/sysfs.c
+	new file:   drivers/base/power/wakeup_stats.c
+	modified:   drivers/block/virtio_blk.c
+	modified:   drivers/bluetooth/bluetooth-power.c
+	modified:   drivers/bluetooth/btqca.c
+	modified:   drivers/bluetooth/btqca.h
+	modified:   drivers/bluetooth/hci_qca.c
+	modified:   drivers/bus/mhi/devices/mhi_netdev.c
+	modified:   drivers/char/Kconfig
+	modified:   drivers/char/Makefile
+	modified:   drivers/char/diag/Kconfig
+	modified:   drivers/char/diag/Makefile
+	modified:   drivers/char/diag/diag_dci.c
+	modified:   drivers/char/diag/diag_debugfs.c
+	modified:   drivers/char/diag/diagchar.h
+	modified:   drivers/char/diag/diagfwd.c
+	modified:   drivers/char/diag/diagfwd.h
+	modified:   drivers/char/diag/diagfwd_bridge.c
+	modified:   drivers/char/diag/diagfwd_cntl.c
+	modified:   drivers/char/diag/diagfwd_hsic.c
+	modified:   drivers/char/diag/diagfwd_mhi.c
+	modified:   drivers/char/diag/diagfwd_socket.c
+	new file:   drivers/char/msm_smd_pkt.c
+	modified:   drivers/char/tpm/Kconfig
+	new file:   drivers/char/virtio_fastrpc.c
+	modified:   drivers/clk/Kconfig
+	modified:   drivers/clk/Makefile
+	modified:   drivers/clk/clk.c
+	modified:   drivers/clk/clk.h
+	modified:   drivers/clk/clkdev.c
+	new file:   drivers/clk/msm/Kconfig
+	new file:   drivers/clk/msm/Makefile
+	new file:   drivers/clk/msm/clock-a7.c
+	new file:   drivers/clk/msm/clock-alpha-pll.c
+	new file:   drivers/clk/msm/clock-debug.c
+	new file:   drivers/clk/msm/clock-dummy.c
+	new file:   drivers/clk/msm/clock-gcc-9607.c
+	new file:   drivers/clk/msm/clock-generic.c
+	new file:   drivers/clk/msm/clock-local2.c
+	new file:   drivers/clk/msm/clock-pll.c
+	new file:   drivers/clk/msm/clock-rpm.c
+	new file:   drivers/clk/msm/clock-voter.c
+	new file:   drivers/clk/msm/clock.c
+	new file:   drivers/clk/msm/clock.h
+	new file:   drivers/clk/msm/gdsc.c
+	new file:   drivers/clk/msm/msm-clock-controller.c
+	new file:   drivers/clk/msm/reset.c
+	new file:   drivers/clk/msm/reset.h
+	modified:   drivers/clk/qcom/Kconfig
+	modified:   drivers/clk/qcom/Makefile
+	modified:   drivers/clk/qcom/camcc-sdmshrike.c
+	modified:   drivers/clk/qcom/camcc-sm6150.c
+	modified:   drivers/clk/qcom/camcc-sm8150.c
+	new file:   drivers/clk/qcom/clk-cpu-osm-660.c
+	new file:   drivers/clk/qcom/clk-cpu-sdm.c
+	modified:   drivers/clk/qcom/clk-rcg.h
+	modified:   drivers/clk/qcom/clk-rcg2.c
+	modified:   drivers/clk/qcom/clk-smd-rpm.c
+	modified:   drivers/clk/qcom/common.c
+	modified:   drivers/clk/qcom/common.h
+	new file:   drivers/clk/qcom/debugcc-sdm429w.c
+	new file:   drivers/clk/qcom/debugcc-sdmshrike.c
+	modified:   drivers/clk/qcom/dispcc-sm6150.c
+	modified:   drivers/clk/qcom/dispcc-sm8150.c
+	modified:   drivers/clk/qcom/gcc-qcs405.c
+	new file:   drivers/clk/qcom/gcc-sdm429w.c
+	new file:   drivers/clk/qcom/gcc-sdm660.c
+	modified:   drivers/clk/qcom/gcc-sdmshrike.c
+	modified:   drivers/clk/qcom/gcc-sdxprairie.c
+	modified:   drivers/clk/qcom/gcc-sm6150.c
+	modified:   drivers/clk/qcom/gcc-sm8150.c
+	modified:   drivers/clk/qcom/gdsc-regulator.c
+	new file:   drivers/clk/qcom/gpucc-sdm660.c
+	modified:   drivers/clk/qcom/gpucc-sm6150.c
+	modified:   drivers/clk/qcom/gpucc-sm8150.c
+	modified:   drivers/clk/qcom/mdss/Makefile
+	modified:   drivers/clk/qcom/mdss/mdss-dp-pll-14nm.c
+	new file:   drivers/clk/qcom/mdss/mdss-dsi-pll-12nm-util.c
+	new file:   drivers/clk/qcom/mdss/mdss-dsi-pll-12nm.c
+	new file:   drivers/clk/qcom/mdss/mdss-dsi-pll-12nm.h
+	modified:   drivers/clk/qcom/mdss/mdss-dsi-pll.h
+	new file:   drivers/clk/qcom/mmcc-sdm660.c
+	modified:   drivers/clk/qcom/npucc-sm8150.c
+	modified:   drivers/clk/qcom/scc-sm6150.c
+	modified:   drivers/clk/qcom/scc-sm8150.c
+	modified:   drivers/clk/qcom/vdd-level-405.h
+	new file:   drivers/clk/qcom/vdd-level-660.h
+	new file:   drivers/clk/qcom/vdd-level-cpu.h
+	new file:   drivers/clk/qcom/vdd-level-sdm429w.h
+	modified:   drivers/clk/qcom/videocc-sm6150.c
+	modified:   drivers/clk/qcom/videocc-sm8150.c
+	modified:   drivers/clk/qcom/virtio_clk.c
+	modified:   drivers/clk/qcom/virtio_clk_sa8195p.c
+	modified:   drivers/clk/qcom/virtio_clk_sm6150.c
+	modified:   drivers/clk/qcom/virtio_clk_sm8150.c
+	modified:   drivers/cpufreq/Kconfig
+	modified:   drivers/cpufreq/Makefile
+	new file:   drivers/cpufreq/dummy-cpufreq.c
+	modified:   drivers/cpuidle/Makefile
+	new file:   drivers/cpuidle/lpm-levels-legacy.c
+	new file:   drivers/cpuidle/lpm-levels-legacy.h
+	new file:   drivers/cpuidle/lpm-levels-of-legacy.c
+	modified:   drivers/cpuidle/lpm-levels.c
+	new file:   drivers/cpuidle/lpm-workarounds.c
+	new file:   drivers/cpuidle/lpm-workarounds.h
+	modified:   drivers/crypto/Kconfig
+	modified:   drivers/devfreq/bimc-bwmon.c
+	modified:   drivers/devfreq/governor_bw_hwmon.c
+	modified:   drivers/dma-buf/Kconfig
+	modified:   drivers/dma/qcom/gpi.c
+	modified:   drivers/dma/qcom/pci-edma.c
+	modified:   drivers/firmware/dmi-sysfs.c
+	modified:   drivers/firmware/dmi_scan.c
+	modified:   drivers/firmware/qcom/tz_log.c
+	new file:   drivers/gnss/Kconfig
+	new file:   drivers/gnss/Makefile
+	new file:   drivers/gnss/cmdline.c
+	new file:   drivers/gnss/core.c
+	new file:   drivers/gnss/serial.c
+	new file:   drivers/gnss/serial.h
+	modified:   drivers/gnsssirf/gnss_sirf.c
+	modified:   drivers/gpio/Kconfig
+	modified:   drivers/gpu/Makefile
+	modified:   drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+	modified:   drivers/gpu/drm/bridge/analogix-anx7625.c
+	modified:   drivers/gpu/drm/drm_auth.c
+	modified:   drivers/gpu/drm/drm_connector.c
+	modified:   drivers/gpu/drm/drm_ioctl.c
+	modified:   drivers/gpu/drm/drm_prime.c
+	modified:   drivers/gpu/drm/i915/Kconfig.debug
+	modified:   drivers/gpu/drm/msm-hyp/Kconfig
+	modified:   drivers/gpu/drm/msm-lease/msm_lease_drv.c
+	modified:   drivers/gpu/drm/msm/dp/dp_debug.c
+	modified:   drivers/gpu/drm/msm/dp/dp_parser.c
+	modified:   drivers/gpu/drm/msm/dsi-staging/dsi_clk.h
+	modified:   drivers/gpu/drm/msm/dsi-staging/dsi_clk_manager.c
+	modified:   drivers/gpu/drm/msm/dsi-staging/dsi_ctrl.c
+	modified:   drivers/gpu/drm/msm/dsi-staging/dsi_ctrl.h
+	modified:   drivers/gpu/drm/msm/dsi-staging/dsi_ctrl_hw_cmn.c
+	modified:   drivers/gpu/drm/msm/dsi-staging/dsi_ctrl_reg.h
+	modified:   drivers/gpu/drm/msm/dsi-staging/dsi_defs.h
+	modified:   drivers/gpu/drm/msm/dsi-staging/dsi_panel.h
+	modified:   drivers/gpu/drm/msm/dsi-staging/dsi_phy_hw_v4_0.c
+	modified:   drivers/gpu/drm/msm/msm_drv.h
+	modified:   drivers/gpu/drm/msm/sde/sde_connector.c
+	modified:   drivers/gpu/drm/msm/sde/sde_crtc.h
+	modified:   drivers/gpu/drm/msm/sde/sde_encoder.h
+	modified:   drivers/gpu/drm/msm/sde/sde_encoder_phys.h
+	modified:   drivers/gpu/drm/msm/sde/sde_encoder_phys_cmd.c
+	modified:   drivers/gpu/drm/msm/sde/sde_encoder_phys_wb.c
+	modified:   drivers/gpu/drm/msm/sde/sde_hw_ctl.c
+	modified:   drivers/gpu/drm/msm/sde/sde_hw_intf.c
+	modified:   drivers/gpu/drm/msm/sde/sde_hw_mdss.h
+	modified:   drivers/gpu/drm/msm/sde/sde_kms.h
+	modified:   drivers/gpu/drm/msm/sde_dbg.c
+	modified:   drivers/gpu/drm/msm/sde_rsc.c
+	modified:   drivers/gpu/drm/radeon/radeon_gem.c
+	modified:   drivers/gpu/drm/ttm/ttm_bo.c
+	modified:   drivers/gpu/drm/virtio/Kconfig
+	modified:   drivers/gpu/drm/virtio/Makefile
+	modified:   drivers/gpu/drm/virtio/virtgpu_debugfs.c
+	modified:   drivers/gpu/drm/virtio/virtgpu_display.c
+	deleted:    drivers/gpu/drm/virtio/virtgpu_drm_bus.c
+	modified:   drivers/gpu/drm/virtio/virtgpu_drv.c
+	modified:   drivers/gpu/drm/virtio/virtgpu_drv.h
+	modified:   drivers/gpu/drm/virtio/virtgpu_fb.c
+	modified:   drivers/gpu/drm/virtio/virtgpu_fence.c
+	modified:   drivers/gpu/drm/virtio/virtgpu_gem.c
+	modified:   drivers/gpu/drm/virtio/virtgpu_ioctl.c
+	modified:   drivers/gpu/drm/virtio/virtgpu_kms.c
+	modified:   drivers/gpu/drm/virtio/virtgpu_object.c
+	modified:   drivers/gpu/drm/virtio/virtgpu_plane.c
+	modified:   drivers/gpu/drm/virtio/virtgpu_prime.c
+	new file:   drivers/gpu/drm/virtio/virtgpu_trace.h
+	new file:   drivers/gpu/drm/virtio/virtgpu_trace_points.c
+	modified:   drivers/gpu/drm/virtio/virtgpu_ttm.c
+	modified:   drivers/gpu/drm/virtio/virtgpu_vq.c
+	modified:   drivers/gpu/msm/a6xx_reg.h
+	modified:   drivers/gpu/msm/adreno_a5xx.c
+	modified:   drivers/gpu/msm/adreno_a5xx.h
+	modified:   drivers/gpu/msm/adreno_a5xx_preempt.c
+	modified:   drivers/gpu/msm/adreno_a6xx_preempt.c
+	modified:   drivers/gpu/msm/adreno_a6xx_rgmu.c
+	modified:   drivers/gpu/msm/adreno_debugfs.c
+	modified:   drivers/gpu/msm/adreno_dispatch.c
+	modified:   drivers/gpu/msm/adreno_ioctl.c
+	modified:   drivers/gpu/msm/adreno_pm4types.h
+	modified:   drivers/gpu/msm/adreno_profile.c
+	modified:   drivers/gpu/msm/kgsl_gmu_core.c
+	modified:   drivers/gpu/msm/kgsl_gmu_core.h
+	modified:   drivers/gpu/msm/kgsl_mmu.h
+	modified:   drivers/gpu/msm/kgsl_pwrctrl.c
+	modified:   drivers/gpu/msm/kgsl_trace.c
+	modified:   drivers/gpu/msm/kgsl_trace.h
+	new file:   drivers/gpu/msm/kgsl_trace_power.h
+	new file:   drivers/gpu/trace/Kconfig
+	new file:   drivers/gpu/trace/Makefile
+	new file:   drivers/gpu/trace/trace_gpu_mem.c
+	modified:   drivers/hid/Kconfig
+	modified:   drivers/hid/Makefile
+	modified:   drivers/hid/hid-core.c
+	modified:   drivers/hid/hid-ids.h
+	new file:   drivers/hid/hid-nintendo.c
+	new file:   drivers/hid/hid-steam.c
+	modified:   drivers/hwspinlock/qcom_hwspinlock.c
+	modified:   drivers/hwtracing/coresight/Kconfig
+	modified:   drivers/hwtracing/coresight/Makefile
+	modified:   drivers/hwtracing/coresight/coresight-byte-cntr.c
+	new file:   drivers/hwtracing/coresight/coresight-catu.c
+	new file:   drivers/hwtracing/coresight/coresight-catu.h
+	modified:   drivers/hwtracing/coresight/coresight-cti.c
+	new file:   drivers/hwtracing/coresight/coresight-dbgui.c
+	modified:   drivers/hwtracing/coresight/coresight-dummy.c
+	modified:   drivers/hwtracing/coresight/coresight-dynamic-replicator.c
+	modified:   drivers/hwtracing/coresight/coresight-etb10.c
+	modified:   drivers/hwtracing/coresight/coresight-etm-perf.c
+	modified:   drivers/hwtracing/coresight/coresight-etm-perf.h
+	modified:   drivers/hwtracing/coresight/coresight-etm3x.c
+	modified:   drivers/hwtracing/coresight/coresight-etm4x-sysfs.c
+	modified:   drivers/hwtracing/coresight/coresight-etm4x.c
+	modified:   drivers/hwtracing/coresight/coresight-etm4x.h
+	modified:   drivers/hwtracing/coresight/coresight-funnel.c
+	modified:   drivers/hwtracing/coresight/coresight-priv.h
+	new file:   drivers/hwtracing/coresight/coresight-qpdi.c
+	modified:   drivers/hwtracing/coresight/coresight-replicator.c
+	modified:   drivers/hwtracing/coresight/coresight-tmc-etf.c
+	modified:   drivers/hwtracing/coresight/coresight-tpiu.c
+	modified:   drivers/hwtracing/coresight/of_coresight.c
+	modified:   drivers/i2c/busses/i2c-msm-v2.c
+	modified:   drivers/i2c/busses/virtio-i2c.c
+	modified:   drivers/iio/Kconfig
+	modified:   drivers/iio/adc/qcom-rradc.c
+	modified:   drivers/iio/adc/qcom-spmi-adc5.c
+	modified:   drivers/iio/adc/qcom-spmi-vadc.c
+	modified:   drivers/iio/imu/Kconfig
+	modified:   drivers/iio/imu/Makefile
+	new file:   drivers/iio/imu/inv_mpu/Kconfig
+	new file:   drivers/iio/imu/inv_mpu/Makefile
+	new file:   drivers/iio/imu/inv_mpu/README
+	new file:   drivers/iio/imu/inv_mpu/iam20680/inv_mpu_core_20680.c
+	new file:   drivers/iio/imu/inv_mpu/iam20680/inv_mpu_iio_reg_20680.h
+	new file:   drivers/iio/imu/inv_mpu/iam20680/inv_mpu_init_20680.c
+	new file:   drivers/iio/imu/inv_mpu/iam20680/inv_mpu_parsing_20680.c
+	new file:   drivers/iio/imu/inv_mpu/iam20680/inv_mpu_selftest_20680.c
+	new file:   drivers/iio/imu/inv_mpu/iam20680/inv_mpu_setup_20680.c
+	new file:   drivers/iio/imu/inv_mpu/inv_mpu_common.c
+	new file:   drivers/iio/imu/inv_mpu/inv_mpu_dts.c
+	new file:   drivers/iio/imu/inv_mpu/inv_mpu_dts.h
+	new file:   drivers/iio/imu/inv_mpu/inv_mpu_i2c.c
+	new file:   drivers/iio/imu/inv_mpu/inv_mpu_iio.h
+	new file:   drivers/iio/imu/inv_mpu/inv_mpu_ring.c
+	new file:   drivers/iio/imu/inv_mpu/inv_mpu_spi.c
+	new file:   drivers/iio/imu/inv_mpu/inv_mpu_timestamp.c
+	new file:   drivers/iio/imu/inv_mpu/inv_test/Kconfig
+	new file:   drivers/iio/imu/inv_mpu/inv_test/Makefile
+	new file:   drivers/iio/imu/inv_mpu/inv_test/inv_counters.c
+	new file:   drivers/iio/imu/inv_mpu/inv_test/inv_counters.h
+	modified:   drivers/iio/imu/st_asm330lhh/Kconfig
+	modified:   drivers/iio/imu/st_asm330lhh/st_asm330lhh.h
+	modified:   drivers/iio/imu/st_asm330lhh/st_asm330lhh_buffer.c
+	modified:   drivers/iio/imu/st_asm330lhh/st_asm330lhh_core.c
+	modified:   drivers/iio/imu/st_asm330lhh/st_asm330lhh_i2c.c
+	modified:   drivers/iio/imu/st_asm330lhh/st_asm330lhh_spi.c
+	modified:   drivers/infiniband/Kconfig
+	modified:   drivers/input/Kconfig
+	modified:   drivers/input/Makefile
+	modified:   drivers/input/misc/gpio_input.c
+	new file:   drivers/input/sensors/bmi160/Kconfig
+	new file:   drivers/input/sensors/bmi160/Makefile
+	new file:   drivers/input/sensors/bmi160/bmi160.c
+	new file:   drivers/input/sensors/bmi160/bmi160.h
+	new file:   drivers/input/sensors/bmi160/bmi160_driver.c
+	new file:   drivers/input/sensors/bmi160/bmi160_driver.h
+	new file:   drivers/input/sensors/bmi160/bmi160_i2c.c
+	new file:   drivers/input/sensors/bmi160/bmi160_spi.c
+	new file:   drivers/input/sensors/bmi160/bs_log.c
+	new file:   drivers/input/sensors/bmi160/bs_log.h
+	new file:   drivers/input/sensors/bmi160/bstclass.c
+	new file:   drivers/input/sensors/bmi160/bstclass.h
+	new file:   drivers/input/sensors/smi130/Kconfig
+	new file:   drivers/input/sensors/smi130/Makefile
+	new file:   drivers/input/sensors/smi130/boschclass.c
+	new file:   drivers/input/sensors/smi130/boschclass.h
+	new file:   drivers/input/sensors/smi130/bs_log.c
+	new file:   drivers/input/sensors/smi130/bs_log.h
+	new file:   drivers/input/sensors/smi130/modules.order
+	new file:   drivers/input/sensors/smi130/readme.md
+	new file:   drivers/input/sensors/smi130/smi130.c
+	new file:   drivers/input/sensors/smi130/smi130.h
+	new file:   drivers/input/sensors/smi130/smi130_acc.c
+	new file:   drivers/input/sensors/smi130/smi130_driver.c
+	new file:   drivers/input/sensors/smi130/smi130_driver.h
+	new file:   drivers/input/sensors/smi130/smi130_gyro.c
+	new file:   drivers/input/sensors/smi130/smi130_gyro.h
+	new file:   drivers/input/sensors/smi130/smi130_gyro_driver.c
+	new file:   drivers/input/sensors/smi130/smi130_i2c.c
+	new file:   drivers/input/sensors/smi130/smi130_spi.c
+	modified:   drivers/input/touchscreen/Kconfig
+	modified:   drivers/input/touchscreen/Makefile
+	new file:   drivers/input/touchscreen/raydium_wt030/Makefile
+	new file:   drivers/input/touchscreen/raydium_wt030/raydium_driver.c
+	new file:   drivers/input/touchscreen/raydium_wt030/raydium_driver.h
+	new file:   drivers/input/touchscreen/raydium_wt030/raydium_fw_update.c
+	new file:   drivers/input/touchscreen/raydium_wt030/raydium_sysfs.c
+	modified:   drivers/input/touchscreen/synaptics_tcm/synaptics_tcm_i2c.c
+	modified:   drivers/input/touchscreen/synaptics_tcm/synaptics_tcm_touch.c
+	modified:   drivers/iommu/iommu-debug.c
+	modified:   drivers/iommu/iommu.c
+	modified:   drivers/irqchip/qcom/Kconfig
+	modified:   drivers/irqchip/qcom/Makefile
+	new file:   drivers/irqchip/qcom/mpm-9607.c
+	new file:   drivers/irqchip/qcom/mpm-sdm429.c
+	new file:   drivers/irqchip/qcom/mpm-sdm660.c
+	modified:   drivers/irqchip/qcom/mpm.c
+	modified:   drivers/irqchip/qcom/mpm.h
+	new file:   drivers/irqchip/qcom/pdc-virt.c
+	modified:   drivers/irqchip/qcom/pdc.c
+	modified:   drivers/leds/Kconfig
+	modified:   drivers/leds/Makefile
+	new file:   drivers/leds/leds-qcom-clk.c
+	modified:   drivers/leds/leds-qpnp-flash-v2.c
+	modified:   drivers/mailbox/Kconfig
+	modified:   drivers/mailbox/Makefile
+	modified:   drivers/mailbox/msm_qmp.c
+	modified:   drivers/mailbox/qcom-apcs-ipc-mailbox.c
+	new file:   drivers/mailbox/qcom-gvm-ipc-mailbox.c
+	modified:   drivers/md/Kconfig
+	modified:   drivers/md/dm-bow.c
+	modified:   drivers/md/dm-bufio.c
+	modified:   drivers/md/dm-crypt.c
+	modified:   drivers/md/dm-linear.c
+	modified:   drivers/md/dm-table.c
+	modified:   drivers/md/dm.c
+	modified:   drivers/media/Makefile
+	modified:   drivers/media/dvb-core/dvb_demux.c
+	modified:   drivers/media/platform/msm/Kconfig
+	modified:   drivers/media/platform/msm/Makefile
+	modified:   drivers/media/platform/msm/ais/Makefile
+	new file:   drivers/media/platform/msm/ais/ais_isp/Makefile
+	new file:   drivers/media/platform/msm/ais/ais_isp/ais_ife_dev.c
+	new file:   drivers/media/platform/msm/ais/ais_isp/ais_ife_dev.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/csid_hw/Makefile
+	new file:   drivers/media/platform/msm/ais/ais_isp/csid_hw/ais_ife_csid170.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/csid_hw/ais_ife_csid175.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/csid_hw/ais_ife_csid175_200.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/csid_hw/ais_ife_csid17x.c
+	new file:   drivers/media/platform/msm/ais/ais_isp/csid_hw/ais_ife_csid_core.c
+	new file:   drivers/media/platform/msm/ais/ais_isp/csid_hw/ais_ife_csid_core.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/csid_hw/ais_ife_csid_dev.c
+	new file:   drivers/media/platform/msm/ais/ais_isp/csid_hw/ais_ife_csid_dev.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/csid_hw/ais_ife_csid_lite17x.c
+	new file:   drivers/media/platform/msm/ais/ais_isp/csid_hw/ais_ife_csid_lite17x.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/csid_hw/ais_ife_csid_soc.c
+	new file:   drivers/media/platform/msm/ais/ais_isp/csid_hw/ais_ife_csid_soc.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/include/ais_ife_csid_hw_intf.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/include/ais_isp_hw.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/include/ais_vfe_hw_intf.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/utils/Makefile
+	new file:   drivers/media/platform/msm/ais/ais_isp/utils/ais_isp_trace.c
+	new file:   drivers/media/platform/msm/ais/ais_isp/utils/ais_isp_trace.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/Makefile
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/ais_vfe_core.c
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/ais_vfe_core.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/ais_vfe_dev.c
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/ais_vfe_dev.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/ais_vfe_soc.c
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/ais_vfe_soc.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/vfe17x/Makefile
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/vfe17x/ais_vfe170.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/vfe17x/ais_vfe175.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/vfe17x/ais_vfe175_130.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/vfe17x/ais_vfe17x.c
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/vfe17x/ais_vfe_lite17x.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/vfe_bus/ais_vfe_bus_rd_ver1.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/vfe_bus/ais_vfe_bus_ver1.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/vfe_bus/ais_vfe_bus_ver2.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/vfe_bus/include/ais_vfe_bus.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/vfe_top/ais_vfe_camif_lite_ver2.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/vfe_top/ais_vfe_camif_ver2.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/vfe_top/ais_vfe_fe_ver1.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/vfe_top/ais_vfe_rdi.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/vfe_top/ais_vfe_top_ver2.h
+	new file:   drivers/media/platform/msm/ais/ais_isp/vfe_hw/vfe_top/include/ais_vfe_top.h
+	modified:   drivers/media/platform/msm/ais/cam_cdm/cam_cdm_core_common.c
+	modified:   drivers/media/platform/msm/ais/cam_cdm/cam_cdm_hw_core.c
+	modified:   drivers/media/platform/msm/ais/cam_cdm/cam_cdm_util.c
+	modified:   drivers/media/platform/msm/ais/cam_cdm/cam_cdm_util.h
+	modified:   drivers/media/platform/msm/ais/cam_core/cam_context.c
+	modified:   drivers/media/platform/msm/ais/cam_core/cam_context.h
+	modified:   drivers/media/platform/msm/ais/cam_core/cam_context_utils.h
+	modified:   drivers/media/platform/msm/ais/cam_core/cam_hw_intf.h
+	modified:   drivers/media/platform/msm/ais/cam_core/cam_hw_mgr_intf.h
+	modified:   drivers/media/platform/msm/ais/cam_core/cam_node.c
+	modified:   drivers/media/platform/msm/ais/cam_cpas/cam_cpas_hw.c
+	modified:   drivers/media/platform/msm/ais/cam_cpas/cam_cpas_hw.h
+	modified:   drivers/media/platform/msm/ais/cam_cpas/cpas_top/cam_cpastop_hw.c
+	new file:   drivers/media/platform/msm/ais/cam_cpas/cpas_top/cpastop_v150_110.h
+	new file:   drivers/media/platform/msm/ais/cam_cpas/cpas_top/cpastop_v175_111.h
+	modified:   drivers/media/platform/msm/ais/cam_cpas/include/cam_cpas_api.h
+	modified:   drivers/media/platform/msm/ais/cam_fd/cam_fd_context.c
+	modified:   drivers/media/platform/msm/ais/cam_fd/fd_hw_mgr/cam_fd_hw_mgr.c
+	modified:   drivers/media/platform/msm/ais/cam_fd/fd_hw_mgr/cam_fd_hw_mgr.h
+	modified:   drivers/media/platform/msm/ais/cam_fd/fd_hw_mgr/fd_hw/cam_fd_hw_core.c
+	modified:   drivers/media/platform/msm/ais/cam_fd/fd_hw_mgr/fd_hw/cam_fd_hw_dev.c
+	modified:   drivers/media/platform/msm/ais/cam_fd/fd_hw_mgr/fd_hw/cam_fd_hw_intf.h
+	modified:   drivers/media/platform/msm/ais/cam_fd/fd_hw_mgr/fd_hw/cam_fd_hw_soc.c
+	new file:   drivers/media/platform/msm/ais/cam_hyp_intf/Makefile
+	new file:   drivers/media/platform/msm/ais/cam_hyp_intf/cam_hyp_intf.c
+	modified:   drivers/media/platform/msm/ais/cam_icp/cam_icp_context.c
+	modified:   drivers/media/platform/msm/ais/cam_icp/fw_inc/hfi_sys_defs.h
+	modified:   drivers/media/platform/msm/ais/cam_icp/icp_hw/a5_hw/a5_core.c
+	modified:   drivers/media/platform/msm/ais/cam_icp/icp_hw/bps_hw/bps_core.c
+	modified:   drivers/media/platform/msm/ais/cam_icp/icp_hw/icp_hw_mgr/cam_icp_hw_mgr.c
+	modified:   drivers/media/platform/msm/ais/cam_icp/icp_hw/icp_hw_mgr/cam_icp_hw_mgr.h
+	modified:   drivers/media/platform/msm/ais/cam_icp/icp_hw/icp_hw_mgr/include/cam_a5_hw_intf.h
+	modified:   drivers/media/platform/msm/ais/cam_icp/icp_hw/include/cam_icp_hw_mgr_intf.h
+	modified:   drivers/media/platform/msm/ais/cam_icp/icp_hw/ipe_hw/ipe_core.c
+	modified:   drivers/media/platform/msm/ais/cam_isp/cam_isp_context.c
+	modified:   drivers/media/platform/msm/ais/cam_isp/cam_isp_context.h
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/cam_ife_hw_mgr.c
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/cam_ife_hw_mgr.h
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/hw_utils/cam_isp_packet_parser.c
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/hw_utils/cam_tasklet_util.c
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/hw_utils/include/cam_isp_packet_parser.h
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/include/cam_isp_hw_mgr_intf.h
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/ife_csid_hw/Makefile
+	new file:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/ife_csid_hw/cam_csid_ppi170.c
+	new file:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/ife_csid_hw/cam_csid_ppi170.h
+	new file:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/ife_csid_hw/cam_csid_ppi_core.c
+	new file:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/ife_csid_hw/cam_csid_ppi_core.h
+	new file:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/ife_csid_hw/cam_csid_ppi_dev.c
+	new file:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/ife_csid_hw/cam_csid_ppi_dev.h
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/ife_csid_hw/cam_ife_csid170.h
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/ife_csid_hw/cam_ife_csid175.h
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/ife_csid_hw/cam_ife_csid175_200.h
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/ife_csid_hw/cam_ife_csid_core.c
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/ife_csid_hw/cam_ife_csid_core.h
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/ife_csid_hw/cam_ife_csid_dev.c
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/ife_csid_hw/cam_ife_csid_soc.c
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/include/cam_ife_csid_hw_intf.h
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/include/cam_isp_hw.h
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/include/cam_vfe_hw_intf.h
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/vfe_hw/cam_vfe_core.c
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/vfe_hw/cam_vfe_dev.c
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/vfe_hw/cam_vfe_soc.c
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/vfe_hw/vfe17x/cam_vfe170.h
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/vfe_hw/vfe17x/cam_vfe175.h
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/vfe_hw/vfe17x/cam_vfe175_130.h
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/vfe_hw/vfe_bus/cam_vfe_bus_ver2.c
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/vfe_hw/vfe_bus/cam_vfe_bus_ver2.h
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/vfe_hw/vfe_top/cam_vfe_camif_lite_ver2.c
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/vfe_hw/vfe_top/cam_vfe_camif_ver2.c
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/vfe_hw/vfe_top/cam_vfe_fe_ver1.c
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/vfe_hw/vfe_top/cam_vfe_rdi.c
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/vfe_hw/vfe_top/cam_vfe_top_ver2.c
+	modified:   drivers/media/platform/msm/ais/cam_isp/isp_hw_mgr/isp_hw/vfe_hw/vfe_top/cam_vfe_top_ver2.h
+	modified:   drivers/media/platform/msm/ais/cam_jpeg/cam_jpeg_context.c
+	modified:   drivers/media/platform/msm/ais/cam_jpeg/jpeg_hw/cam_jpeg_hw_mgr.c
+	modified:   drivers/media/platform/msm/ais/cam_jpeg/jpeg_hw/cam_jpeg_hw_mgr.h
+	modified:   drivers/media/platform/msm/ais/cam_jpeg/jpeg_hw/include/cam_jpeg_hw_intf.h
+	modified:   drivers/media/platform/msm/ais/cam_jpeg/jpeg_hw/jpeg_dma_hw/jpeg_dma_core.c
+	modified:   drivers/media/platform/msm/ais/cam_jpeg/jpeg_hw/jpeg_enc_hw/cam_jpeg_enc_hw_info_ver_4_2_0.h
+	modified:   drivers/media/platform/msm/ais/cam_jpeg/jpeg_hw/jpeg_enc_hw/jpeg_enc_core.c
+	modified:   drivers/media/platform/msm/ais/cam_jpeg/jpeg_hw/jpeg_enc_hw/jpeg_enc_core.h
+	modified:   drivers/media/platform/msm/ais/cam_lrme/cam_lrme_context.c
+	modified:   drivers/media/platform/msm/ais/cam_lrme/lrme_hw_mgr/cam_lrme_hw_mgr.c
+	modified:   drivers/media/platform/msm/ais/cam_lrme/lrme_hw_mgr/lrme_hw/cam_lrme_hw_core.c
+	modified:   drivers/media/platform/msm/ais/cam_lrme/lrme_hw_mgr/lrme_hw/cam_lrme_hw_core.h
+	modified:   drivers/media/platform/msm/ais/cam_lrme/lrme_hw_mgr/lrme_hw/cam_lrme_hw_intf.h
+	modified:   drivers/media/platform/msm/ais/cam_lrme/lrme_hw_mgr/lrme_hw/cam_lrme_hw_soc.c
+	modified:   drivers/media/platform/msm/ais/cam_req_mgr/cam_mem_mgr.c
+	modified:   drivers/media/platform/msm/ais/cam_req_mgr/cam_req_mgr_core.c
+	modified:   drivers/media/platform/msm/ais/cam_req_mgr/cam_req_mgr_core.h
+	modified:   drivers/media/platform/msm/ais/cam_req_mgr/cam_req_mgr_dev.c
+	modified:   drivers/media/platform/msm/ais/cam_req_mgr/cam_req_mgr_interface.h
+	modified:   drivers/media/platform/msm/ais/cam_req_mgr/cam_req_mgr_util.c
+	modified:   drivers/media/platform/msm/ais/cam_req_mgr/cam_req_mgr_util.h
+	modified:   drivers/media/platform/msm/ais/cam_req_mgr/cam_req_mgr_workq.c
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/Makefile
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_actuator/cam_actuator_core.c
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_cci/cam_cci_core.c
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_cci/cam_cci_core.h
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_cci/cam_cci_dev.c
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_cci/cam_cci_dev.h
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_cci/cam_cci_hwreg.h
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_cci/cam_cci_soc.c
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_csiphy/cam_csiphy_core.c
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_csiphy/cam_csiphy_soc.c
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_csiphy/include/cam_csiphy_1_1_hwreg.h
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_csiphy/include/cam_csiphy_1_2_hwreg.h
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_csiphy/include/cam_csiphy_2_0_hwreg.h
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_eeprom/cam_eeprom_core.c
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_eeprom/cam_eeprom_dev.h
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_flash/cam_flash_core.c
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_flash/cam_flash_dev.c
+	new file:   drivers/media/platform/msm/ais/cam_sensor_module/cam_ir_led/Makefile
+	new file:   drivers/media/platform/msm/ais/cam_sensor_module/cam_ir_led/cam_ir_led_core.c
+	new file:   drivers/media/platform/msm/ais/cam_sensor_module/cam_ir_led/cam_ir_led_core.h
+	new file:   drivers/media/platform/msm/ais/cam_sensor_module/cam_ir_led/cam_ir_led_dev.c
+	new file:   drivers/media/platform/msm/ais/cam_sensor_module/cam_ir_led/cam_ir_led_dev.h
+	new file:   drivers/media/platform/msm/ais/cam_sensor_module/cam_ir_led/cam_ir_led_soc.c
+	new file:   drivers/media/platform/msm/ais/cam_sensor_module/cam_ir_led/cam_ir_led_soc.h
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_ois/cam_ois_core.c
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_sensor/cam_sensor_core.c
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_sensor/cam_sensor_dev.c
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_sensor/cam_sensor_dev.h
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_sensor/cam_sensor_soc.c
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_sensor_io/cam_sensor_cci_i2c.c
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_sensor_utils/cam_sensor_cmn_header.h
+	modified:   drivers/media/platform/msm/ais/cam_sensor_module/cam_sensor_utils/cam_sensor_util.c
+	modified:   drivers/media/platform/msm/ais/cam_smmu/cam_smmu_api.c
+	modified:   drivers/media/platform/msm/ais/cam_sync/cam_sync_private.h
+	modified:   drivers/media/platform/msm/ais/cam_sync/cam_sync_util.c
+	modified:   drivers/media/platform/msm/ais/cam_sync/cam_sync_util.h
+	modified:   drivers/media/platform/msm/ais/cam_utils/cam_common_util.c
+	modified:   drivers/media/platform/msm/ais/cam_utils/cam_common_util.h
+	modified:   drivers/media/platform/msm/ais/cam_utils/cam_debug_util.c
+	modified:   drivers/media/platform/msm/ais/cam_utils/cam_debug_util.h
+	modified:   drivers/media/platform/msm/ais/cam_utils/cam_packet_util.c
+	modified:   drivers/media/platform/msm/ais/cam_utils/cam_packet_util.h
+	modified:   drivers/media/platform/msm/ais/cam_utils/cam_soc_util.c
+	modified:   drivers/media/platform/msm/ais/cam_utils/cam_soc_util.h
+	modified:   drivers/media/platform/msm/camera/cam_core/cam_hw_mgr_intf.h
+	modified:   drivers/media/platform/msm/camera/cam_hyp_intf/cam_hyp_intf.c
+	modified:   drivers/media/platform/msm/camera/cam_isp/isp_hw_mgr/isp_hw/ife_csid_hw/cam_csid_ppi_core.c
+	new file:   drivers/media/platform/msm/camera/cam_jpeg/jpeg_hw/jpeg_dma_hw/cam_jpeg_dma_hw_info_ver_4_2_0.h
+	modified:   drivers/media/platform/msm/camera/cam_jpeg/jpeg_hw/jpeg_dma_hw/jpeg_dma_core.h
+	modified:   drivers/media/platform/msm/camera/cam_jpeg/jpeg_hw/jpeg_dma_hw/jpeg_dma_dev.c
+	modified:   drivers/media/platform/msm/camera/cam_jpeg/jpeg_hw/jpeg_enc_hw/jpeg_enc_dev.c
+	modified:   drivers/media/platform/msm/camera/cam_lrme/lrme_hw_mgr/lrme_hw/cam_lrme_hw_dev.c
+	modified:   drivers/media/platform/msm/camera/cam_sensor_module/cam_ir_led/cam_ir_led_dev.c
+	modified:   drivers/media/platform/msm/camera/cam_sync/cam_sync_util.c
+	modified:   drivers/media/platform/msm/camera/cam_utils/cam_io_util.c
+	modified:   drivers/media/platform/msm/camera/cam_utils/cam_trace.h
+	modified:   drivers/media/platform/msm/camera_v2/isp/msm_buf_mgr.c
+	modified:   drivers/media/platform/msm/camera_v2/isp/msm_buf_mgr.h
+	modified:   drivers/media/platform/msm/camera_v2/isp/msm_isp47.c
+	modified:   drivers/media/platform/msm/camera_v2/isp/msm_isp48.c
+	modified:   drivers/media/platform/msm/camera_v2/isp/msm_isp48.h
+	modified:   drivers/media/platform/msm/camera_v2/isp/msm_isp_axi_util.c
+	modified:   drivers/media/platform/msm/camera_v2/msm.c
+	modified:   drivers/media/platform/msm/camera_v2/pproc/cpp/msm_cpp.c
+	modified:   drivers/media/platform/msm/camera_v2/sensor/csid/include/msm_csid_3_5_hwreg.h
+	modified:   drivers/media/platform/msm/camera_v2/sensor/csiphy/include/msm_csiphy_3_5_hwreg.h
+	modified:   drivers/media/platform/msm/dvb/demux/mpq_dmx_plugin_common.c
+	modified:   drivers/media/platform/msm/dvb/demux/mpq_sdmx.c
+	modified:   drivers/media/platform/msm/npu/npu_dev.c
+	modified:   drivers/media/platform/msm/npu/npu_host_ipc.c
+	modified:   drivers/media/platform/msm/npu/npu_hw_access.c
+	modified:   drivers/media/platform/msm/npu/npu_mgr.c
+	modified:   drivers/media/platform/msm/sde/rotator/sde_rotator_base.h
+	modified:   drivers/media/platform/msm/vidc/hfi_packetization.c
+	modified:   drivers/media/platform/msm/vidc/msm_v4l2_vidc.c
+	modified:   drivers/media/platform/msm/vidc/msm_vdec.c
+	modified:   drivers/media/platform/msm/vidc/msm_vidc.c
+	modified:   drivers/media/platform/msm/vidc/msm_vidc_clocks.c
+	modified:   drivers/media/platform/msm/vidc/msm_vidc_common.c
+	modified:   drivers/media/platform/msm/vidc/msm_vidc_res_parse.c
+	modified:   drivers/media/platform/msm/vidc/msm_vidc_resources.h
+	new file:   drivers/media/platform/msm/vidc_3x/Kconfig
+	new file:   drivers/media/platform/msm/vidc_3x/Makefile
+	new file:   drivers/media/platform/msm/vidc_3x/governors/Kconfig
+	new file:   drivers/media/platform/msm/vidc_3x/governors/Makefile
+	new file:   drivers/media/platform/msm/vidc_3x/governors/fixedpoint.h
+	new file:   drivers/media/platform/msm/vidc_3x/governors/msm_vidc_dyn_gov.c
+	new file:   drivers/media/platform/msm/vidc_3x/governors/msm_vidc_table_gov.c
+	new file:   drivers/media/platform/msm/vidc_3x/hfi_packetization.c
+	new file:   drivers/media/platform/msm/vidc_3x/hfi_packetization.h
+	new file:   drivers/media/platform/msm/vidc_3x/hfi_response_handler.c
+	new file:   drivers/media/platform/msm/vidc_3x/msm_smem.c
+	new file:   drivers/media/platform/msm/vidc_3x/msm_v4l2_vidc.c
+	new file:   drivers/media/platform/msm/vidc_3x/msm_vdec.c
+	new file:   drivers/media/platform/msm/vidc_3x/msm_vdec.h
+	new file:   drivers/media/platform/msm/vidc_3x/msm_venc.c
+	new file:   drivers/media/platform/msm/vidc_3x/msm_venc.h
+	new file:   drivers/media/platform/msm/vidc_3x/msm_vidc.c
+	new file:   drivers/media/platform/msm/vidc_3x/msm_vidc_common.c
+	new file:   drivers/media/platform/msm/vidc_3x/msm_vidc_common.h
+	new file:   drivers/media/platform/msm/vidc_3x/msm_vidc_dcvs.c
+	new file:   drivers/media/platform/msm/vidc_3x/msm_vidc_dcvs.h
+	new file:   drivers/media/platform/msm/vidc_3x/msm_vidc_debug.c
+	new file:   drivers/media/platform/msm/vidc_3x/msm_vidc_debug.h
+	new file:   drivers/media/platform/msm/vidc_3x/msm_vidc_internal.h
+	new file:   drivers/media/platform/msm/vidc_3x/msm_vidc_res_parse.c
+	new file:   drivers/media/platform/msm/vidc_3x/msm_vidc_res_parse.h
+	new file:   drivers/media/platform/msm/vidc_3x/msm_vidc_resources.h
+	new file:   drivers/media/platform/msm/vidc_3x/venus_boot.c
+	new file:   drivers/media/platform/msm/vidc_3x/venus_boot.h
+	new file:   drivers/media/platform/msm/vidc_3x/venus_hfi.c
+	new file:   drivers/media/platform/msm/vidc_3x/venus_hfi.h
+	new file:   drivers/media/platform/msm/vidc_3x/vidc_hfi.c
+	new file:   drivers/media/platform/msm/vidc_3x/vidc_hfi.h
+	new file:   drivers/media/platform/msm/vidc_3x/vidc_hfi_api.h
+	new file:   drivers/media/platform/msm/vidc_3x/vidc_hfi_helper.h
+	new file:   drivers/media/platform/msm/vidc_3x/vidc_hfi_io.h
+	new file:   drivers/media/platform/msm/vidc_3x/vmem/Kconfig
+	new file:   drivers/media/platform/msm/vidc_3x/vmem/Makefile
+	new file:   drivers/media/platform/msm/vidc_3x/vmem/vmem.c
+	new file:   drivers/media/platform/msm/vidc_3x/vmem/vmem.h
+	new file:   drivers/media/platform/msm/vidc_3x/vmem/vmem_debugfs.c
+	new file:   drivers/media/platform/msm/vidc_3x/vmem/vmem_debugfs.h
+	modified:   drivers/media/v4l2-core/Kconfig
+	modified:   drivers/media/v4l2-core/v4l2-compat-ioctl32.c
+	modified:   drivers/media/v4l2-core/v4l2-ctrls.c
+	modified:   drivers/media/v4l2-core/v4l2-ioctl.c
+	modified:   drivers/media/v4l2-core/videobuf-dma-contig.c
+	new file:   drivers/media/v4l2loopback-master/Makefile
+	new file:   drivers/media/v4l2loopback-master/v4l2loopback.c
+	new file:   drivers/media/v4l2loopback-master/v4l2loopback_formats.h
+	modified:   drivers/mfd/ab8500-debugfs.c
+	modified:   drivers/misc/Kconfig
+	modified:   drivers/misc/Makefile
+	modified:   drivers/misc/hdcp_qseecom.c
+	modified:   drivers/misc/lkdtm_perms.c
+	new file:   drivers/misc/profiler.c
+	modified:   drivers/misc/qpnp-misc.c
+	modified:   drivers/misc/uid_sys_stats.c
+	modified:   drivers/mmc/core/Kconfig
+	modified:   drivers/mmc/core/Makefile
+	modified:   drivers/mmc/core/block.c
+	modified:   drivers/mmc/core/core.c
+	modified:   drivers/mmc/core/core.h
+	new file:   drivers/mmc/core/crypto.c
+	new file:   drivers/mmc/core/crypto.h
+	modified:   drivers/mmc/core/host.c
+	modified:   drivers/mmc/core/mmc.c
+	modified:   drivers/mmc/core/queue.c
+	modified:   drivers/mmc/core/quirks.h
+	modified:   drivers/mmc/core/slot-gpio.c
+	modified:   drivers/mmc/host/Kconfig
+	modified:   drivers/mmc/host/Makefile
+	new file:   drivers/mmc/host/cmdq_hci-crypto-qti.c
+	new file:   drivers/mmc/host/cmdq_hci-crypto-qti.h
+	new file:   drivers/mmc/host/cmdq_hci-crypto.c
+	new file:   drivers/mmc/host/cmdq_hci-crypto.h
+	modified:   drivers/mmc/host/cmdq_hci.c
+	modified:   drivers/mmc/host/cmdq_hci.h
+	deleted:    drivers/mmc/host/sdhci-msm-ice.c
+	deleted:    drivers/mmc/host/sdhci-msm-ice.h
+	modified:   drivers/mmc/host/sdhci-msm.h
+	modified:   drivers/mmc/host/sdhci.c
+	modified:   drivers/mmc/host/sdhci.h
+	modified:   drivers/mtd/devices/msm_qpic_nand.h
+	modified:   drivers/mtd/ubi/attach.c
+	modified:   drivers/mtd/ubi/build.c
+	modified:   drivers/mtd/ubi/io.c
+	modified:   drivers/mtd/ubi/ubi.h
+	modified:   drivers/mtd/ubi/wl.c
+	modified:   drivers/net/can/spi/qti-can.c
+	modified:   drivers/net/ethernet/Kconfig
+	modified:   drivers/net/ethernet/Makefile
+	new file:   drivers/net/ethernet/qcom/Kconfig
+	new file:   drivers/net/ethernet/qcom/Makefile
+	new file:   drivers/net/ethernet/qcom/msm_rmnet_bam.c
+	modified:   drivers/net/ethernet/qualcomm/rmnet/rmnet_config.c
+	modified:   drivers/net/ethernet/qualcomm/rmnet/rmnet_handlers.c
+	modified:   drivers/net/ethernet/qualcomm/rmnet/rmnet_vnd.c
+	modified:   drivers/net/ethernet/qualcomm/rmnet/rmnet_vnd.h
+	modified:   drivers/net/ethernet/stmicro/stmmac/Kconfig
+	modified:   drivers/net/ethernet/stmicro/stmmac/common.h
+	new file:   drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ipa-offload.h
+	new file:   drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ipa.c
+	new file:   drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ipa.h
+	modified:   drivers/net/ethernet/stmicro/stmmac/dwmac4.h
+	modified:   drivers/net/ethernet/stmicro/stmmac/dwmac4_core.c
+	modified:   drivers/net/ethernet/stmicro/stmmac/dwmac4_descs.c
+	modified:   drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.c
+	modified:   drivers/net/ethernet/stmicro/stmmac/dwmac4_lib.c
+	modified:   drivers/net/ethernet/stmicro/stmmac/stmmac_hwtstamp.c
+	modified:   drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
+	modified:   drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+	modified:   drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.h
+	modified:   drivers/net/usb/cdc_ether.c
+	modified:   drivers/net/usb/usbnet.c
+	modified:   drivers/net/wireless/cnss2/Kconfig
+	modified:   drivers/net/wireless/cnss2/bus.h
+	modified:   drivers/net/wireless/cnss2/main.c
+	modified:   drivers/net/wireless/cnss2/qmi.c
+	modified:   drivers/net/wireless/cnss2/qmi.h
+	modified:   drivers/net/wireless/cnss2/wlan_firmware_service_v01.c
+	modified:   drivers/net/wireless/cnss2/wlan_firmware_service_v01.h
+	modified:   drivers/net/wireless/cnss_genl/cnss_nl.c
+	modified:   drivers/nfc/nq-nci.c
+	modified:   drivers/nfc/nq-nci.h
+	modified:   drivers/nvdimm/Kconfig
+	modified:   drivers/nvdimm/Makefile
+	modified:   drivers/nvdimm/bus.c
+	modified:   drivers/nvdimm/claim.c
+	modified:   drivers/nvdimm/nd.h
+	new file:   drivers/nvdimm/nd_virtio.c
+	new file:   drivers/nvdimm/of_pmem.c
+	modified:   drivers/nvdimm/pmem.c
+	modified:   drivers/nvdimm/region_devs.c
+	new file:   drivers/nvdimm/virtio_pmem.c
+	new file:   drivers/nvdimm/virtio_pmem.h
+	modified:   drivers/pinctrl/pinctrl-sx150x.c
+	modified:   drivers/pinctrl/qcom/Kconfig
+	modified:   drivers/pinctrl/qcom/Makefile
+	new file:   drivers/pinctrl/qcom/pinctrl-mdm9607.c
+	new file:   drivers/pinctrl/qcom/pinctrl-sdm429w.c
+	new file:   drivers/pinctrl/qcom/pinctrl-sdm660.c
+	modified:   drivers/pinctrl/qcom/pinctrl-sdmshrike.c
+	modified:   drivers/pinctrl/qcom/pinctrl-sm6150.c
+	modified:   drivers/pinctrl/qcom/pinctrl-sm8150.c
+	modified:   drivers/platform/msm/Kconfig
+	modified:   drivers/platform/msm/ep_pcie/ep_pcie_com.h
+	modified:   drivers/platform/msm/gsi/gsi_dbg.c
+	modified:   drivers/platform/msm/ipa/ipa_clients/ipa_uc_offload.c
+	modified:   drivers/platform/msm/ipa/ipa_clients/ipa_usb.c
+	modified:   drivers/platform/msm/ipa/ipa_clients/rndis_ipa_trace.h
+	new file:   drivers/platform/msm/ipa/ipa_v2/Makefile
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_client.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_debugfs.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_dma.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_dp.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_flt.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_hdr.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_hw_defs.h
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_i.h
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_interrupts.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_intf.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_mhi.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_nat.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_qmi_service.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_qmi_service.h
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_qmi_service_v01.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_ram_mmap.h
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_reg.h
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_rt.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_trace.h
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_uc.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_uc_mhi.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_uc_ntn.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_uc_offload_i.h
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_uc_wdi.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_utils.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/ipa_wdi3_i.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/rmnet_ipa.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/rmnet_ipa_fd_ioctl.c
+	new file:   drivers/platform/msm/ipa/ipa_v2/teth_bridge.c
+	modified:   drivers/platform/msm/ipa/ipa_v3/ipa_dma.c
+	modified:   drivers/platform/msm/ipa/ipa_v3/ipa_flt.c
+	modified:   drivers/platform/msm/ipa/ipa_v3/ipa_hdr.c
+	modified:   drivers/platform/msm/ipa/ipa_v3/ipa_odl.h
+	modified:   drivers/platform/msm/ipa/ipa_v3/ipa_pm.c
+	modified:   drivers/platform/msm/ipa/ipa_v3/ipa_pm.h
+	modified:   drivers/platform/msm/ipa/ipa_v3/ipa_qmi_service.h
+	modified:   drivers/platform/msm/ipa/ipa_v3/ipa_rt.c
+	modified:   drivers/platform/msm/ipa/ipa_v3/ipa_trace.h
+	modified:   drivers/platform/msm/ipa/ipa_v3/ipa_uc_offload_i.h
+	modified:   drivers/platform/msm/ipa/ipa_v3/ipa_wigig_i.c
+	modified:   drivers/platform/msm/ipa/ipa_v3/ipahal/ipahal_reg.c
+	modified:   drivers/platform/msm/ipa/ipa_v3/ipahal/ipahal_reg.h
+	modified:   drivers/platform/msm/ipa/test/ipa_ut_framework.c
+	modified:   drivers/platform/msm/mhi_dev/mhi_ring.c
+	modified:   drivers/platform/msm/mhi_dev/mhi_sm.c
+	new file:   drivers/platform/msm/veth_ipa/Makefile
+	new file:   drivers/platform/msm/veth_ipa/veth_emac_mgt.c
+	new file:   drivers/platform/msm/veth_ipa/veth_emac_mgt.h
+	new file:   drivers/platform/msm/veth_ipa/veth_ipa.c
+	new file:   drivers/platform/msm/veth_ipa/veth_ipa.h
+	modified:   drivers/power/reset/msm-poweroff.c
+	modified:   drivers/power/reset/msm-vm-poweroff.c
+	modified:   drivers/power/supply/qcom/Kconfig
+	modified:   drivers/power/supply/qcom/Makefile
+	modified:   drivers/power/supply/qcom/fg-alg.h
+	modified:   drivers/power/supply/qcom/fg-core.h
+	modified:   drivers/power/supply/qcom/fg-reg.h
+	modified:   drivers/power/supply/qcom/fg-util.c
+	modified:   drivers/power/supply/qcom/qpnp-fg-gen3.c
+	modified:   drivers/power/supply/qcom/qpnp-smb2.c
+	modified:   drivers/power/supply/qcom/smb-lib.c
+	modified:   drivers/power/supply/qcom/smb-lib.h
+	modified:   drivers/power/supply/qcom/smb-reg.h
+	modified:   drivers/power/supply/qcom/smb1390-charger-psy.c
+	modified:   drivers/power/supply/qcom/smb1390-charger.c
+	new file:   drivers/power/supply/qcom/smb358-charger.c
+	modified:   drivers/power/supply/qcom/step-chg-jeita.c
+	modified:   drivers/regulator/Kconfig
+	modified:   drivers/regulator/Makefile
+	modified:   drivers/regulator/cpr-regulator.c
+	new file:   drivers/regulator/cpr3-regulator.c
+	new file:   drivers/regulator/cpr3-regulator.h
+	new file:   drivers/regulator/cpr3-util.c
+	new file:   drivers/regulator/cpr4-mmss-ldo-regulator.c
+	new file:   drivers/regulator/cprh-kbss-regulator.c
+	modified:   drivers/regulator/mem-acc-regulator.c
+	new file:   drivers/regulator/msm_gfx_ldo.c
+	modified:   drivers/regulator/qpnp-labibb-regulator.c
+	modified:   drivers/regulator/qpnp-lcdb-regulator.c
+	modified:   drivers/regulator/virtio_regulator.c
+	modified:   drivers/remoteproc/Kconfig
+	modified:   drivers/rpmsg/Kconfig
+	modified:   drivers/rpmsg/Makefile
+	new file:   drivers/rpmsg/qcom_glink_bgcom.c
+	modified:   drivers/rpmsg/qcom_smd.c
+	modified:   drivers/rpmsg/rpm-smd.c
+	modified:   drivers/rtc/qpnp-rtc.c
+	modified:   drivers/scsi/scsi_lib.c
+	modified:   drivers/scsi/ufs/Kconfig
+	modified:   drivers/scsi/ufs/Makefile
+	modified:   drivers/scsi/ufs/ufs-qcom.h
+	modified:   drivers/scsi/ufs/ufs.h
+	new file:   drivers/scsi/ufs/ufshcd-crypto-qti.c
+	new file:   drivers/scsi/ufs/ufshcd-crypto-qti.h
+	new file:   drivers/scsi/ufs/ufshcd-crypto.c
+	new file:   drivers/scsi/ufs/ufshcd-crypto.h
+	modified:   drivers/scsi/ufs/ufshci.h
+	new file:   drivers/soc/qcom/adsp_lpm_voting_v01.c
+	new file:   drivers/soc/qcom/adsp_lpm_voting_v01.h
+	new file:   drivers/soc/qcom/adsp_vote_qmi.c
+	new file:   drivers/soc/qcom/apm.c
+	new file:   drivers/soc/qcom/bam_dmux.c
+	new file:   drivers/soc/qcom/bam_dmux_private.h
+	new file:   drivers/soc/qcom/bg_rsb.c
+	new file:   drivers/soc/qcom/bgcom.h
+	new file:   drivers/soc/qcom/bgcom_interface.c
+	new file:   drivers/soc/qcom/bgcom_interface.h
+	new file:   drivers/soc/qcom/bgcom_spi.c
+	new file:   drivers/soc/qcom/bgrsb.h
+	new file:   drivers/soc/qcom/bgrsb_rpmsg.c
+	new file:   drivers/soc/qcom/bgrsb_rpmsg.h
+	modified:   drivers/soc/qcom/boot_marker.c
+	modified:   drivers/soc/qcom/boot_stats.c
+	new file:   drivers/soc/qcom/crypto-qti-common.c
+	new file:   drivers/soc/qcom/crypto-qti-ice-regs.h
+	new file:   drivers/soc/qcom/crypto-qti-platform.h
+	new file:   drivers/soc/qcom/crypto-qti-tz.c
+	new file:   drivers/soc/qcom/crypto-qti-tz.h
+	new file:   drivers/soc/qcom/dcc.c
+	modified:   drivers/soc/qcom/fsa4480-i2c.c
+	modified:   drivers/soc/qcom/hab/Kconfig
+	modified:   drivers/soc/qcom/hab/Makefile
+	modified:   drivers/soc/qcom/hab/ghs_comm.c
+	new file:   drivers/soc/qcom/hab/ghs_comm_linux.c
+	modified:   drivers/soc/qcom/hab/hab.c
+	modified:   drivers/soc/qcom/hab/hab.h
+	modified:   drivers/soc/qcom/hab/hab_ghs.c
+	modified:   drivers/soc/qcom/hab/hab_ghs.h
+	new file:   drivers/soc/qcom/hab/hab_ghs_linux.c
+	new file:   drivers/soc/qcom/hab/hab_ghs_os.h
+	new file:   drivers/soc/qcom/hab/hab_linux.c
+	modified:   drivers/soc/qcom/hab/hab_mem_linux.c
+	modified:   drivers/soc/qcom/hab/hab_mimex.c
+	modified:   drivers/soc/qcom/hab/hab_msg.c
+	modified:   drivers/soc/qcom/hab/hab_open.c
+	new file:   drivers/soc/qcom/hab/hab_os.h
+	modified:   drivers/soc/qcom/hab/hab_pipe.c
+	modified:   drivers/soc/qcom/hab/hab_pipe.h
+	modified:   drivers/soc/qcom/hab/hab_qvm.c
+	modified:   drivers/soc/qcom/hab/hab_qvm.h
+	new file:   drivers/soc/qcom/hab/hab_qvm_linux.c
+	new file:   drivers/soc/qcom/hab/hab_qvm_os.h
+	modified:   drivers/soc/qcom/hab/hab_stat.c
+	modified:   drivers/soc/qcom/hab/hab_vchan.c
+	modified:   drivers/soc/qcom/hab/khab.c
+	modified:   drivers/soc/qcom/hab/khab_test.c
+	modified:   drivers/soc/qcom/hab/qvm_comm.c
+	new file:   drivers/soc/qcom/hab/qvm_comm_linux.c
+	new file:   drivers/soc/qcom/hgsl/Kconfig
+	new file:   drivers/soc/qcom/hgsl/Makefile
+	new file:   drivers/soc/qcom/hgsl/hgsl.c
+	new file:   drivers/soc/qcom/hgsl/hgsl_tcsr.c
+	new file:   drivers/soc/qcom/hgsl/hgsl_tcsr.h
+	modified:   drivers/soc/qcom/icnss.c
+	modified:   drivers/soc/qcom/icnss_private.h
+	new file:   drivers/soc/qcom/idle-v7.S
+	new file:   drivers/soc/qcom/idle.h
+	modified:   drivers/soc/qcom/jtagv8-etm.c
+	modified:   drivers/soc/qcom/mem-offline.c
+	modified:   drivers/soc/qcom/memory_dump_v2.c
+	modified:   drivers/soc/qcom/memshare/msm_memshare.c
+	modified:   drivers/soc/qcom/memshare/msm_memshare.h
+	modified:   drivers/soc/qcom/minidump_log.c
+	new file:   drivers/soc/qcom/msm-pm.c
+	modified:   drivers/soc/qcom/msm_bus/Makefile
+	modified:   drivers/soc/qcom/msm_bus/msm_bus_core.h
+	modified:   drivers/soc/qcom/msm_bus/msm_bus_dbg.c
+	new file:   drivers/soc/qcom/msm_bus/msm_bus_dbg_rpmh.c
+	modified:   drivers/soc/qcom/msm_bus/msm_bus_fabric_adhoc.c
+	modified:   drivers/soc/qcom/msm_bus/msm_bus_fabric_rpmh.c
+	modified:   drivers/soc/qcom/msm_bus/msm_bus_rpmh.h
+	new file:   drivers/soc/qcom/msm_drm_notify.c
+	new file:   drivers/soc/qcom/pil-msa.c
+	new file:   drivers/soc/qcom/pil-msa.h
+	new file:   drivers/soc/qcom/pil-q6v5-mss.c
+	new file:   drivers/soc/qcom/pil-q6v5.c
+	new file:   drivers/soc/qcom/pil-q6v5.h
+	new file:   drivers/soc/qcom/pil_bg_intf.h
+	new file:   drivers/soc/qcom/pm-boot.c
+	new file:   drivers/soc/qcom/pm-boot.h
+	modified:   drivers/soc/qcom/qdsp6v2/cdsp-loader.c
+	modified:   drivers/soc/qcom/qmi_rmnet.c
+	new file:   drivers/soc/qcom/rename_block_device.c
+	modified:   drivers/soc/qcom/rpmh.c
+	new file:   drivers/soc/qcom/scm-boot.c
+	modified:   drivers/soc/qcom/scm.c
+	modified:   drivers/soc/qcom/secure_buffer.c
+	modified:   drivers/soc/qcom/service-notifier.c
+	new file:   drivers/soc/qcom/sideband_notify.c
+	modified:   drivers/soc/qcom/smem.c
+	modified:   drivers/soc/qcom/smp2p.c
+	modified:   drivers/soc/qcom/smsm.c
+	modified:   drivers/soc/qcom/spcom.c
+	modified:   drivers/soc/qcom/spm_devices.c
+	new file:   drivers/soc/qcom/subsys-pil-bg.c
+	modified:   drivers/soc/qcom/subsys-pil-tz.c
+	modified:   drivers/soc/qcom/subsystem_restart.c
+	modified:   drivers/soc/qcom/watchdog_v2.c
+	new file:   drivers/soc/qcom/wcnss/Kconfig
+	new file:   drivers/soc/qcom/wcnss/Makefile
+	new file:   drivers/soc/qcom/wcnss/wcnss_vreg.c
+	new file:   drivers/soc/qcom/wcnss/wcnss_wlan.c
+	modified:   drivers/soc/tegra/Kconfig
+	modified:   drivers/spi/spi_qsd.c
+	modified:   drivers/spmi/spmi-pmic-arb.c
+	modified:   drivers/spmi/viospmi-pmic-arb.c
+	modified:   drivers/staging/android/Kconfig
+	modified:   drivers/staging/android/Makefile
+	deleted:    drivers/staging/android/fiq_debugger/Kconfig
+	deleted:    drivers/staging/android/fiq_debugger/Makefile
+	deleted:    drivers/staging/android/fiq_debugger/fiq_debugger.c
+	deleted:    drivers/staging/android/fiq_debugger/fiq_debugger.h
+	deleted:    drivers/staging/android/fiq_debugger/fiq_debugger_arm.c
+	deleted:    drivers/staging/android/fiq_debugger/fiq_debugger_arm64.c
+	deleted:    drivers/staging/android/fiq_debugger/fiq_debugger_priv.h
+	deleted:    drivers/staging/android/fiq_debugger/fiq_debugger_ringbuf.h
+	deleted:    drivers/staging/android/fiq_debugger/fiq_watchdog.c
+	deleted:    drivers/staging/android/fiq_debugger/fiq_watchdog.h
+	modified:   drivers/staging/android/ion/ion.h
+	modified:   drivers/staging/android/ion/ion_carveout_heap.c
+	modified:   drivers/staging/android/ion/ion_cma_heap.c
+	modified:   drivers/staging/android/ion/ion_system_secure_heap.c
+	modified:   drivers/thermal/msm-tsens.c
+	modified:   drivers/thermal/qcom-spmi-temp-alarm.c
+	modified:   drivers/thermal/qcom/adc-tm.c
+	modified:   drivers/thermal/qcom/adc-tm.h
+	modified:   drivers/thermal/qcom/adc-tm5.c
+	modified:   drivers/thermal/qcom/msm_lmh_dcvs.c
+	modified:   drivers/thermal/qcom/qmi_sensors.c
+	modified:   drivers/thermal/qcom/qti_virtual_sensor.c
+	modified:   drivers/thermal/tsens1xxx.c
+	modified:   drivers/thermal/tsens_calib.c
+	modified:   drivers/tty/serdev/core.c
+	modified:   drivers/tty/serdev/serdev-ttyport.c
+	modified:   drivers/tty/sysrq.c
+	modified:   drivers/uio/msm_sharedmem/msm_sharedmem.c
+	modified:   drivers/usb/core/hub.c
+	modified:   drivers/usb/core/quirks.c
+	modified:   drivers/usb/dwc3/core.c
+	modified:   drivers/usb/dwc3/debugfs.c
+	modified:   drivers/usb/dwc3/host.c
+	modified:   drivers/usb/gadget/Kconfig
+	modified:   drivers/usb/gadget/Makefile
+	new file:   drivers/usb/gadget/ci13xxx_msm.c
+	new file:   drivers/usb/gadget/ci13xxx_msm_hsic.c
+	new file:   drivers/usb/gadget/ci13xxx_udc.c
+	new file:   drivers/usb/gadget/ci13xxx_udc.h
+	modified:   drivers/usb/gadget/epautoconf.c
+	modified:   drivers/usb/gadget/function/Makefile
+	modified:   drivers/usb/gadget/function/f_ccid.c
+	modified:   drivers/usb/gadget/function/f_cdev.c
+	modified:   drivers/usb/gadget/function/f_diag.c
+	modified:   drivers/usb/gadget/function/f_ecm.c
+	modified:   drivers/usb/gadget/function/f_fs.c
+	modified:   drivers/usb/gadget/function/f_gsi.h
+	new file:   drivers/usb/gadget/function/f_ipc.c
+	new file:   drivers/usb/gadget/function/f_mbim.c
+	new file:   drivers/usb/gadget/function/f_mdm_data.c
+	modified:   drivers/usb/gadget/function/f_midi.c
+	new file:   drivers/usb/gadget/function/f_qc_rndis.c
+	modified:   drivers/usb/gadget/function/f_qdss.c
+	new file:   drivers/usb/gadget/function/f_rmnet.c
+	modified:   drivers/usb/gadget/function/f_rndis.c
+	modified:   drivers/usb/gadget/function/f_serial.c
+	modified:   drivers/usb/gadget/function/f_uac1_legacy.c
+	modified:   drivers/usb/gadget/function/f_uvc.c
+	modified:   drivers/usb/gadget/function/rndis.c
+	modified:   drivers/usb/gadget/function/rndis.h
+	new file:   drivers/usb/gadget/function/u_bam_dmux.c
+	new file:   drivers/usb/gadget/function/u_ctrl_qti.c
+	new file:   drivers/usb/gadget/function/u_data_ipa.c
+	new file:   drivers/usb/gadget/function/u_data_ipa.h
+	modified:   drivers/usb/gadget/function/u_ether.c
+	modified:   drivers/usb/gadget/function/u_ether.h
+	modified:   drivers/usb/gadget/function/u_qdss.c
+	new file:   drivers/usb/gadget/function/u_rmnet.h
+	modified:   drivers/usb/gadget/function/u_uac1_legacy.c
+	modified:   drivers/usb/gadget/function/u_uac1_legacy.h
+	modified:   drivers/usb/gadget/function/uvc.h
+	modified:   drivers/usb/gadget/function/uvc_configfs.c
+	modified:   drivers/usb/gadget/legacy/Kconfig
+	new file:   drivers/usb/gadget/legacy/raw_gadget.c
+	modified:   drivers/usb/gadget/udc/Kconfig
+	modified:   drivers/usb/gadget/udc/dummy_hcd.c
+	modified:   drivers/usb/host/Kconfig
+	modified:   drivers/usb/host/ehci-hcd.c
+	new file:   drivers/usb/host/ehci-msm-hsic.c
+	modified:   drivers/usb/host/ehci.h
+	modified:   drivers/usb/host/xhci-plat.c
+	modified:   drivers/usb/host/xhci.c
+	modified:   drivers/usb/misc/Kconfig
+	modified:   drivers/usb/misc/Makefile
+	modified:   drivers/usb/misc/diag_bridge.c
+	new file:   drivers/usb/misc/ks_bridge.c
+	new file:   drivers/usb/misc/mdm_data_bridge.c
+	modified:   drivers/usb/phy/phy-msm-qusb-v2.c
+	modified:   drivers/usb/phy/phy-msm-qusb.c
+	modified:   drivers/usb/phy/phy-msm-snps-hs.c
+	modified:   drivers/usb/phy/phy-msm-ssusb.c
+	modified:   drivers/usb/phy/phy-msm-usb.c
+	modified:   drivers/vfio/Kconfig
+	modified:   drivers/vhost/vhost.c
+	modified:   drivers/vhost/vhost.h
+	modified:   drivers/video/backlight/qcom-spmi-wled.c
+	modified:   drivers/video/fbdev/msm/Kconfig
+	modified:   drivers/video/fbdev/msm/Makefile
+	modified:   drivers/video/fbdev/msm/dsi_status_6g.c
+	modified:   drivers/video/fbdev/msm/dsi_status_v2.c
+	modified:   drivers/video/fbdev/msm/mdp3.c
+	modified:   drivers/video/fbdev/msm/mdp3.h
+	modified:   drivers/video/fbdev/msm/mdp3_ctrl.c
+	modified:   drivers/video/fbdev/msm/mdp3_ctrl.h
+	modified:   drivers/video/fbdev/msm/mdp3_ppp.c
+	modified:   drivers/video/fbdev/msm/mdss_cec_core.c
+	modified:   drivers/video/fbdev/msm/mdss_compat_utils.c
+	modified:   drivers/video/fbdev/msm/mdss_compat_utils.h
+	modified:   drivers/video/fbdev/msm/mdss_dba_utils.c
+	modified:   drivers/video/fbdev/msm/mdss_dba_utils.h
+	modified:   drivers/video/fbdev/msm/mdss_debug.h
+	modified:   drivers/video/fbdev/msm/mdss_debug_xlog.c
+	new file:   drivers/video/fbdev/msm/mdss_dp.c
+	new file:   drivers/video/fbdev/msm/mdss_dp.h
+	new file:   drivers/video/fbdev/msm/mdss_dp_aux.c
+	new file:   drivers/video/fbdev/msm/mdss_dp_hdcp2p2.c
+	new file:   drivers/video/fbdev/msm/mdss_dp_util.c
+	new file:   drivers/video/fbdev/msm/mdss_dp_util.h
+	modified:   drivers/video/fbdev/msm/mdss_dsi.c
+	modified:   drivers/video/fbdev/msm/mdss_dsi.h
+	modified:   drivers/video/fbdev/msm/mdss_dsi_clk.c
+	modified:   drivers/video/fbdev/msm/mdss_dsi_clk.h
+	modified:   drivers/video/fbdev/msm/mdss_dsi_cmd.h
+	modified:   drivers/video/fbdev/msm/mdss_dsi_host.c
+	modified:   drivers/video/fbdev/msm/mdss_dsi_panel.c
+	modified:   drivers/video/fbdev/msm/mdss_dsi_phy.c
+	modified:   drivers/video/fbdev/msm/mdss_dsi_phy.h
+	new file:   drivers/video/fbdev/msm/mdss_dsi_phy_v3.c
+	modified:   drivers/video/fbdev/msm/mdss_dsi_status.c
+	modified:   drivers/video/fbdev/msm/mdss_fb.c
+	modified:   drivers/video/fbdev/msm/mdss_fb.h
+	modified:   drivers/video/fbdev/msm/mdss_hdcp.h
+	modified:   drivers/video/fbdev/msm/mdss_mdp_ctl.c
+	modified:   drivers/video/fbdev/msm/mdss_mdp_debug.c
+	modified:   drivers/video/fbdev/msm/mdss_mdp_debug.h
+	modified:   drivers/video/fbdev/msm/mdss_mdp_formats.h
+	modified:   drivers/video/fbdev/msm/mdss_mdp_hwio.h
+	modified:   drivers/video/fbdev/msm/mdss_mdp_intf_cmd.c
+	modified:   drivers/video/fbdev/msm/mdss_mdp_intf_video.c
+	modified:   drivers/video/fbdev/msm/mdss_mdp_intf_writeback.c
+	modified:   drivers/video/fbdev/msm/mdss_mdp_pipe.c
+	modified:   drivers/video/fbdev/msm/mdss_mdp_pp.h
+	modified:   drivers/video/fbdev/msm/mdss_mdp_pp_cache_config.c
+	modified:   drivers/video/fbdev/msm/mdss_mdp_pp_cache_config.h
+	modified:   drivers/video/fbdev/msm/mdss_mdp_pp_common.h
+	new file:   drivers/video/fbdev/msm/mdss_mdp_pp_stub.c
+	modified:   drivers/video/fbdev/msm/mdss_mdp_pp_v3.c
+	modified:   drivers/video/fbdev/msm/mdss_mdp_trace.h
+	modified:   drivers/video/fbdev/msm/mdss_mdp_wfd.c
+	modified:   drivers/video/fbdev/msm/mdss_mdp_wfd.h
+	modified:   drivers/video/fbdev/msm/mdss_panel.c
+	modified:   drivers/video/fbdev/msm/mdss_panel.h
+	modified:   drivers/video/fbdev/msm/mdss_rgb.c
+	modified:   drivers/video/fbdev/msm/mdss_smmu.h
+	modified:   drivers/video/fbdev/msm/mdss_spi_panel.c
+	modified:   drivers/video/fbdev/msm/mdss_util.c
+	modified:   drivers/video/fbdev/msm/mdss_wb.c
+	modified:   drivers/video/fbdev/msm/mdss_wb.h
+	modified:   drivers/video/fbdev/msm/msm_mdss_io_8974.c
+	modified:   drivers/virtio/Kconfig
+	modified:   drivers/virtio/virtio_input.c
+	modified:   drivers/virtio/virtio_mmio.c
+	modified:   fs/9p/vfs_addr.c
+	modified:   fs/Kconfig
+	modified:   fs/Makefile
+	modified:   fs/block_dev.c
+	modified:   fs/buffer.c
+	modified:   fs/crypto/Kconfig
+	modified:   fs/crypto/Makefile
+	modified:   fs/crypto/bio.c
+	modified:   fs/crypto/crypto.c
+	modified:   fs/crypto/fname.c
+	deleted:    fs/crypto/fscrypt_ice.h
+	modified:   fs/crypto/fscrypt_private.h
+	new file:   fs/crypto/hkdf.c
+	modified:   fs/crypto/hooks.c
+	new file:   fs/crypto/inline_crypt.c
+	deleted:    fs/crypto/keyinfo.c
+	new file:   fs/crypto/keyring.c
+	new file:   fs/crypto/keysetup.c
+	new file:   fs/crypto/keysetup_v1.c
+	modified:   fs/crypto/policy.c
+	modified:   fs/direct-io.c
+	modified:   fs/ext4/Kconfig
+	modified:   fs/ext4/Makefile
+	modified:   fs/ext4/dir.c
+	modified:   fs/ext4/ext4.h
+	modified:   fs/ext4/ext4_jbd2.h
+	modified:   fs/ext4/extents.c
+	modified:   fs/ext4/file.c
+	modified:   fs/ext4/hash.c
+	modified:   fs/ext4/ialloc.c
+	modified:   fs/ext4/inline.c
+	modified:   fs/ext4/inode.c
+	modified:   fs/ext4/ioctl.c
+	modified:   fs/ext4/move_extent.c
+	modified:   fs/ext4/super.c
+	modified:   fs/ext4/sysfs.c
+	new file:   fs/ext4/verity.c
+	modified:   fs/f2fs/Kconfig
+	modified:   fs/f2fs/Makefile
+	modified:   fs/f2fs/acl.c
+	modified:   fs/f2fs/acl.h
+	new file:   fs/f2fs/compress.c
+	modified:   fs/f2fs/debug.c
+	modified:   fs/f2fs/dir.c
+	modified:   fs/f2fs/extent_cache.c
+	modified:   fs/f2fs/gc.h
+	modified:   fs/f2fs/hash.c
+	modified:   fs/f2fs/inline.c
+	modified:   fs/f2fs/inode.c
+	modified:   fs/f2fs/namei.c
+	modified:   fs/f2fs/node.c
+	modified:   fs/f2fs/node.h
+	modified:   fs/f2fs/recovery.c
+	modified:   fs/f2fs/segment.h
+	modified:   fs/f2fs/shrinker.c
+	modified:   fs/f2fs/trace.h
+	new file:   fs/f2fs/verity.c
+	modified:   fs/filesystems.c
+	new file:   fs/incfs/Kconfig
+	new file:   fs/incfs/Makefile
+	new file:   fs/incfs/data_mgmt.c
+	new file:   fs/incfs/data_mgmt.h
+	new file:   fs/incfs/format.c
+	new file:   fs/incfs/format.h
+	new file:   fs/incfs/integrity.c
+	new file:   fs/incfs/integrity.h
+	new file:   fs/incfs/internal.h
+	new file:   fs/incfs/main.c
+	new file:   fs/incfs/vfs.c
+	new file:   fs/incfs/vfs.h
+	modified:   fs/iomap.c
+	modified:   fs/libfs.c
+	modified:   fs/namei.c
+	modified:   fs/namespace.c
+	modified:   fs/notify/fanotify/Kconfig
+	modified:   fs/notify/inotify/Kconfig
+	modified:   fs/proc/base.c
+	modified:   fs/proc/meminfo.c
+	modified:   fs/sdcardfs/inode.c
+	modified:   fs/sdcardfs/lookup.c
+	modified:   fs/sdcardfs/main.c
+	modified:   fs/sdcardfs/sdcardfs.h
+	modified:   fs/sdcardfs/super.c
+	modified:   fs/super.c
+	modified:   fs/ubifs/Kconfig
+	modified:   fs/ubifs/Makefile
+	modified:   fs/ubifs/crypto.c
+	modified:   fs/ubifs/dir.c
+	modified:   fs/ubifs/ioctl.c
+	modified:   fs/ubifs/journal.c
+	modified:   fs/ubifs/key.h
+	modified:   fs/ubifs/sb.c
+	modified:   fs/ubifs/super.c
+	modified:   fs/ubifs/ubifs.h
+	new file:   fs/unicode/.gitignore
+	new file:   fs/unicode/Kconfig
+	new file:   fs/unicode/Makefile
+	new file:   fs/unicode/README.utf8data
+	new file:   fs/unicode/mkutf8data.c
+	new file:   fs/unicode/utf8-core.c
+	new file:   fs/unicode/utf8-norm.c
+	new file:   fs/unicode/utf8-selftest.c
+	new file:   fs/unicode/utf8data.h_shipped
+	new file:   fs/unicode/utf8n.h
+	modified:   fs/userfaultfd.c
+	new file:   fs/verity/Kconfig
+	new file:   fs/verity/Makefile
+	new file:   fs/verity/enable.c
+	new file:   fs/verity/fsverity_private.h
+	new file:   fs/verity/hash_algs.c
+	new file:   fs/verity/init.c
+	new file:   fs/verity/measure.c
+	new file:   fs/verity/open.c
+	new file:   fs/verity/signature.c
+	new file:   fs/verity/verify.c
+	new file:   gen_headers_arm.bp
+	new file:   gen_headers_arm64.bp
+	new file:   include/asm-generic/atomic-instrumented.h
+	modified:   include/crypto/ice.h
+	modified:   include/drm/drm_connector.h
+	modified:   include/drm/drm_fourcc.h
+	modified:   include/drm/drm_prime.h
+	modified:   include/drm/ttm/ttm_bo_driver.h
+	new file:   include/dt-bindings/clock/mdm-clocks-9607.h
+	new file:   include/dt-bindings/clock/mdm-clocks-hwio-9607.h
+	new file:   include/dt-bindings/clock/mdss-12nm-pll-clk.h
+	new file:   include/dt-bindings/clock/msm-clocks-a7.h
+	new file:   include/dt-bindings/clock/qcom,cpu-osm.h
+	new file:   include/dt-bindings/clock/qcom,cpu-sdm.h
+	new file:   include/dt-bindings/clock/qcom,gcc-sdm429w.h
+	new file:   include/dt-bindings/clock/qcom,gcc-sdm660.h
+	modified:   include/dt-bindings/clock/qcom,gcc-sdmshrike.h
+	new file:   include/dt-bindings/clock/qcom,gpu-sdm660.h
+	new file:   include/dt-bindings/clock/qcom,mmcc-sdm660.h
+	modified:   include/dt-bindings/clock/qcom,rpmcc.h
+	modified:   include/dt-bindings/clock/qcom,scc-sm6150.h
+	modified:   include/dt-bindings/clock/qcom,scc-sm8150.h
+	modified:   include/dt-bindings/iio/qcom,spmi-vadc.h
+	modified:   include/dt-bindings/msm/msm-bus-ids.h
+	new file:   include/dt-bindings/msm/power-on.h
+	new file:   include/dt-bindings/sound/qcom,gpr.h
+	modified:   include/dt-bindings/thermal/qmi_thermal.h
+	new file:   include/linux/bio-crypt-ctx.h
+	new file:   include/linux/blk-crypto.h
+	modified:   include/linux/bluetooth-power.h
+	modified:   include/linux/bvec.h
+	modified:   include/linux/clk-provider.h
+	new file:   include/linux/clk/gdsc.h
+	new file:   include/linux/clk/msm-clk-provider.h
+	new file:   include/linux/clk/msm-clk.h
+	new file:   include/linux/clk/msm-clock-generic.h
+	modified:   include/linux/clk/qcom.h
+	modified:   include/linux/clkdev.h
+	modified:   include/linux/compiler-clang.h
+	modified:   include/linux/compiler-gcc.h
+	modified:   include/linux/compiler.h
+	modified:   include/linux/compiler_types.h
+	modified:   include/linux/coresight-pmu.h
+	modified:   include/linux/coresight.h
+	modified:   include/linux/cpu.h
+	new file:   include/linux/crypto-qti-common.h
+	modified:   include/linux/dcache.h
+	modified:   include/linux/device-mapper.h
+	modified:   include/linux/diagchar.h
+	modified:   include/linux/f2fs_fs.h
+	modified:   include/linux/fscrypt.h
+	deleted:    include/linux/fscrypt_notsupp.h
+	deleted:    include/linux/fscrypt_supp.h
+	new file:   include/linux/fsverity.h
+	new file:   include/linux/gnss.h
+	modified:   include/linux/habmm.h
+	modified:   include/linux/hid.h
+	modified:   include/linux/i2c/i2c-msm-v2.h
+	modified:   include/linux/ieee80211.h
+	new file:   include/linux/iio/imu/mpu.h
+	modified:   include/linux/input/synaptics_tcm.h
+	modified:   include/linux/ipa_mhi.h
+	modified:   include/linux/ipa_uc_offload.h
+	modified:   include/linux/ipa_usb.h
+	modified:   include/linux/ipa_wdi3.h
+	modified:   include/linux/kasan-checks.h
+	modified:   include/linux/kasan.h
+	modified:   include/linux/kcov.h
+	modified:   include/linux/key.h
+	new file:   include/linux/keyslot-manager.h
+	modified:   include/linux/leds-qpnp-flash.h
+	modified:   include/linux/libnvdimm.h
+	modified:   include/linux/mdss_io_util.h
+	modified:   include/linux/memblock.h
+	modified:   include/linux/mm.h
+	modified:   include/linux/mmc/core.h
+	modified:   include/linux/mmc/host.h
+	modified:   include/linux/mmc/slot-gpio.h
+	modified:   include/linux/mmzone.h
+	modified:   include/linux/mod_devicetable.h
+	modified:   include/linux/module.h
+	renamed:    security/pfe/pfk_ice.h -> include/linux/msm_smd_pkt.h
+	new file:   include/linux/ndctl.h
+	modified:   include/linux/page-flags-layout.h
+	modified:   include/linux/parser.h
+	modified:   include/linux/perf_event.h
+	modified:   include/linux/pid.h
+	new file:   include/linux/platform_data/qcom_wcnss_device.h
+	modified:   include/linux/pm_wakeup.h
+	modified:   include/linux/power_supply.h
+	modified:   include/linux/proc_fs.h
+	modified:   include/linux/qpnp/qpnp-misc.h
+	new file:   include/linux/regulator/msm-ldo-regulator.h
+	modified:   include/linux/sched.h
+	new file:   include/linux/scs.h
+	modified:   include/linux/sde_rsc.h
+	modified:   include/linux/security.h
+	modified:   include/linux/seq_file.h
+	modified:   include/linux/serdev.h
+	modified:   include/linux/slab.h
+	modified:   include/linux/slab_def.h
+	modified:   include/linux/soc/qcom/smd-rpm.h
+	modified:   include/linux/spi/qcom-spi.h
+	modified:   include/linux/spinlock.h
+	modified:   include/linux/stat.h
+	modified:   include/linux/stmmac.h
+	modified:   include/linux/syscalls.h
+	modified:   include/linux/thread_info.h
+	modified:   include/linux/timer.h
+	modified:   include/linux/uaccess.h
+	new file:   include/linux/unicode.h
+	modified:   include/linux/usb.h
+	modified:   include/linux/usb/diag_bridge.h
+	modified:   include/linux/usb/gadget.h
+	modified:   include/linux/usb/hcd.h
+	new file:   include/linux/usb/ipc_bridge.h
+	new file:   include/linux/usb/msm_hsusb.h
+	modified:   include/linux/usb/msm_hsusb_hw.h
+	new file:   include/linux/usb/usb_bridge.h
+	modified:   include/linux/usb/usbnet.h
+	modified:   include/linux/usb_bam.h
+	modified:   include/linux/virtio_spmi.h
+	modified:   include/linux/wakeup_reason.h
+	new file:   include/linux/wcnss_wlan.h
+	new file:   include/media/msm_vidc.h
+	modified:   include/net/cfg80211.h
+	modified:   include/net/cnss2.h
+	modified:   include/net/cnss_nl.h
+	modified:   include/net/ndisc.h
+	modified:   include/net/netns/ipv4.h
+	modified:   include/net/tcp.h
+	modified:   include/scsi/scsi_host.h
+	new file:   include/soc/qcom/apm.h
+	new file:   include/soc/qcom/bam_dmux.h
+	modified:   include/soc/qcom/boot_stats.h
+	new file:   include/soc/qcom/clock-alpha-pll.h
+	new file:   include/soc/qcom/clock-local2.h
+	new file:   include/soc/qcom/clock-pll.h
+	new file:   include/soc/qcom/clock-rpm.h
+	new file:   include/soc/qcom/clock-voter.h
+	modified:   include/soc/qcom/lpm_levels.h
+	new file:   include/soc/qcom/msm-clock-controller.h
+	modified:   include/soc/qcom/msm_tz_smmu.h
+	new file:   include/soc/qcom/pm-legacy.h
+	new file:   include/soc/qcom/profiler.h
+	new file:   include/soc/qcom/qrtr_ethernet.h
+	modified:   include/soc/qcom/qseecomi.h
+	new file:   include/soc/qcom/sb_notification.h
+	modified:   include/soc/qcom/scm.h
+	new file:   include/soc/qcom/sde_recovery_manager.h
+	modified:   include/soc/qcom/secure_buffer.h
+	modified:   include/soc/qcom/spm.h
+	modified:   include/sound/jack.h
+	modified:   include/trace/events/f2fs.h
+	new file:   include/trace/events/gpu_mem.h
+	new file:   include/trace/events/msm_vidc.h
+	new file:   include/trace/events/namei.h
+	modified:   include/trace/events/net.h
+	modified:   include/trace/events/power.h
+	modified:   include/trace/events/trace_msm_bus.h
+	modified:   include/trace/events/trace_msm_low_power.h
+	modified:   include/trace/events/writeback.h
+	modified:   include/uapi/asm-generic/unistd.h
+	modified:   include/uapi/drm/sde_drm.h
+	modified:   include/uapi/drm/virtgpu_drm.h
+	new file:   include/uapi/linux/android/binderfs.h
+	new file:   include/uapi/linux/bgcom_interface.h
+	modified:   include/uapi/linux/dma-buf.h
+	modified:   include/uapi/linux/fs.h
+	new file:   include/uapi/linux/fscrypt.h
+	new file:   include/uapi/linux/fsverity.h
+	modified:   include/uapi/linux/habmmid.h
+	new file:   include/uapi/linux/hgsl.h
+	new file:   include/uapi/linux/incrementalfs.h
+	modified:   include/uapi/linux/input-event-codes.h
+	modified:   include/uapi/linux/kcov.h
+	modified:   include/uapi/linux/magic.h
+	modified:   include/uapi/linux/mhi.h
+	new file:   include/uapi/linux/msm_eth.h
+	modified:   include/uapi/linux/msm_kgsl.h
+	modified:   include/uapi/linux/msm_rmnet.h
+	modified:   include/uapi/linux/ndctl.h
+	modified:   include/uapi/linux/nl80211.h
+	modified:   include/uapi/linux/prctl.h
+	modified:   include/uapi/linux/sched.h
+	modified:   include/uapi/linux/stat.h
+	modified:   include/uapi/linux/taskstats.h
+	new file:   include/uapi/linux/usb/raw_gadget.h
+	modified:   include/uapi/linux/usb/usb_ctrl_qti.h
+	modified:   include/uapi/linux/usb/video.h
+	modified:   include/uapi/linux/v4l2-controls.h
+	modified:   include/uapi/linux/videodev2.h
+	modified:   include/uapi/linux/virtio_blk.h
+	modified:   include/uapi/linux/virtio_gpu.h
+	modified:   include/uapi/linux/virtio_ids.h
+	new file:   include/uapi/linux/virtio_pmem.h
+	modified:   include/uapi/media/Kbuild
+	new file:   include/uapi/media/ais_isp.h
+	modified:   include/uapi/media/ais_sensor.h
+	modified:   include/uapi/media/cam_req_mgr.h
+	modified:   include/uapi/media/cam_sync.h
+	new file:   include/uapi/media/msm_vidc.h
+	modified:   include/uapi/scsi/ufs/ufs.h
+	modified:   init/Kconfig
+	modified:   init/init_task.c
+	modified:   init/main.c
+	modified:   kernel/.gitignore
+	modified:   kernel/Makefile
+	modified:   kernel/cfi.c
+	modified:   kernel/cgroup/cpuset.c
+	modified:   kernel/events/ring_buffer.c
+	modified:   kernel/exit.c
+	modified:   kernel/gcov/Kconfig
+	modified:   kernel/gcov/Makefile
+	modified:   kernel/gcov/base.c
+	new file:   kernel/gcov/clang.c
+	modified:   kernel/gcov/gcc_3_4.c
+	modified:   kernel/gcov/gcc_4_7.c
+	new file:   kernel/gcov/gcc_base.c
+	modified:   kernel/gcov/gcov.h
+	new file:   kernel/gen_kheaders.sh
+	modified:   kernel/irq/chip.c
+	modified:   kernel/kallsyms.c
+	modified:   kernel/kcov.c
+	new file:   kernel/kheaders.c
+	modified:   kernel/memremap.c
+	modified:   kernel/module.c
+	modified:   kernel/pid.c
+	modified:   kernel/power/autosleep.c
+	modified:   kernel/power/hibernate.c
+	modified:   kernel/power/main.c
+	modified:   kernel/power/process.c
+	modified:   kernel/power/qos.c
+	modified:   kernel/power/suspend.c
+	modified:   kernel/power/wakelock.c
+	modified:   kernel/power/wakeup_reason.c
+	modified:   kernel/sched/sched.h
+	new file:   kernel/scs.c
+	modified:   kernel/signal.c
+	modified:   kernel/sys.c
+	modified:   kernel/trace/Kconfig
+	modified:   kernel/trace/trace_event_perf.c
+	modified:   kernel/workqueue.c
+	new file:   kernel_headers.py
+	modified:   lib/Kconfig.debug
+	modified:   lib/Kconfig.kasan
+	modified:   lib/Makefile
+	modified:   lib/dec_and_lock.c
+	modified:   lib/dynamic_debug.c
+	modified:   lib/strncpy_from_user.c
+	modified:   lib/strnlen_user.c
+	modified:   lib/test_kasan.c
+	new file:   lib/test_meminit.c
+	new file:   lib/test_stackinit.c
+	modified:   lib/vsprintf.c
+	modified:   mm/cma.c
+	modified:   mm/dmapool.c
+	modified:   mm/filemap.c
+	modified:   mm/frame_vector.c
+	modified:   mm/gup.c
+	modified:   mm/kasan/Makefile
+	renamed:    mm/kasan/kasan.c -> mm/kasan/common.c
+	new file:   mm/kasan/generic.c
+	new file:   mm/kasan/generic_report.c
+	new file:   mm/kasan/init.c
+	modified:   mm/kasan/kasan.h
+	deleted:    mm/kasan/kasan_init.c
+	modified:   mm/kasan/quarantine.c
+	modified:   mm/kasan/report.c
+	new file:   mm/kasan/tags.c
+	new file:   mm/kasan/tags_report.c
+	modified:   mm/memblock.c
+	modified:   mm/mempool.c
+	modified:   mm/mmap.c
+	modified:   mm/page_alloc.c
+	modified:   mm/slab.c
+	modified:   mm/slab.h
+	modified:   mm/slab_common.c
+	modified:   mm/slub.c
+	modified:   mm/swapfile.c
+	modified:   mm/util.c
+	modified:   mm/vmstat.c
+	modified:   net/bridge/br_netfilter_hooks.c
+	modified:   net/core/dev.c
+	modified:   net/core/skbuff.c
+	modified:   net/core/sock.c
+	modified:   net/ipv4/sysctl_net_ipv4.c
+	modified:   net/ipv4/tcp_ipv4.c
+	modified:   net/ipv4/tcp_minisocks.c
+	modified:   net/ipv6/ndisc.c
+	modified:   net/kcm/kcmsock.c
+	modified:   net/netfilter/nf_conntrack_sip.c
+	modified:   net/netfilter/xt_IDLETIMER.c
+	modified:   net/qrtr/Kconfig
+	modified:   net/qrtr/Makefile
+	new file:   net/qrtr/ethernet.c
+	modified:   net/qrtr/usb.c
+	new file:   net/qrtr/usb_dev.c
+	modified:   net/rmnet_usb/rmnet_usb.c
+	modified:   net/wireless/core.c
+	modified:   net/wireless/nl80211.c
+	modified:   net/wireless/rdev-ops.h
+	modified:   net/wireless/sme.c
+	modified:   net/wireless/trace.h
+	modified:   net/wireless/util.c
+	modified:   net/xfrm/xfrm_state.c
+	modified:   net/xfrm/xfrm_user.c
+	modified:   scripts/Makefile
+	modified:   scripts/Makefile.build
+	modified:   scripts/Makefile.gcc-plugins
+	modified:   scripts/Makefile.kasan
+	new file:   scripts/Makefile.kcov
+	modified:   scripts/Makefile.lib
+	modified:   scripts/gcc-plugins/Makefile
+	modified:   scripts/kconfig/merge_config.sh
+	new file:   scripts/module-lto.lds.S
+	modified:   security/Kconfig
+	new file:   security/Kconfig.hardening
+	modified:   security/Makefile
+	modified:   security/keys/internal.h
+	modified:   security/keys/process_keys.c
+	deleted:    security/pfe/Kconfig
+	deleted:    security/pfe/Makefile
+	deleted:    security/pfe/pfk_ice.c
+	new file:   security/pfe/pfk_ice_virt.c
+	deleted:    security/pfe/pfk_internal.h
+	deleted:    security/pfe/pfk_kc.c
+	deleted:    security/pfe/pfk_kc.h
+	modified:   security/security.c
+	modified:   security/selinux/include/classmap.h
+	modified:   security/selinux/include/ibpkey.h
+	modified:   sound/soc/codecs/Kconfig
+	modified:   sound/soc/codecs/Makefile
+	new file:   sound/soc/codecs/config.h
+	new file:   sound/soc/codecs/dbgprint.h
+	new file:   sound/soc/codecs/tfa.h
+	new file:   sound/soc/codecs/tfa1_tfafieldnames.h
+	new file:   sound/soc/codecs/tfa2_tfafieldnames_N1C.h
+	new file:   sound/soc/codecs/tfa9872_tfafieldnames.h
+	new file:   sound/soc/codecs/tfa9874_tfafieldnames.h
+	new file:   sound/soc/codecs/tfa9878_tfafieldnames.h
+	new file:   sound/soc/codecs/tfa9887_tfafieldnames.h
+	new file:   sound/soc/codecs/tfa9890_tfafieldnames.h
+	new file:   sound/soc/codecs/tfa9891_tfafieldnames.h
+	new file:   sound/soc/codecs/tfa9894_tfafieldnames.h
+	new file:   sound/soc/codecs/tfa9894_tfafieldnames_N2.h
+	new file:   sound/soc/codecs/tfa9896_tfafieldnames.h
+	new file:   sound/soc/codecs/tfa98xx.c
+	new file:   sound/soc/codecs/tfa98xx.h
+	new file:   sound/soc/codecs/tfa98xx_genregs_N1C.h
+	new file:   sound/soc/codecs/tfa98xx_parameters.h
+	new file:   sound/soc/codecs/tfa98xx_tfafieldnames.h
+	new file:   sound/soc/codecs/tfa9912_tfafieldnames.h
+	new file:   sound/soc/codecs/tfa_container.c
+	new file:   sound/soc/codecs/tfa_container.h
+	new file:   sound/soc/codecs/tfa_device.h
+	new file:   sound/soc/codecs/tfa_dsp.c
+	new file:   sound/soc/codecs/tfa_dsp_fw.h
+	new file:   sound/soc/codecs/tfa_ext.h
+	new file:   sound/soc/codecs/tfa_init.c
+	new file:   sound/soc/codecs/tfa_internal.h
+	new file:   sound/soc/codecs/tfa_service.h
+	modified:   sound/soc/codecs/tlv320aic3x.c
+	new file:   techpack/.gitignore
+	modified:   tools/include/linux/coresight-pmu.h
+	new file:   tools/testing/selftests/arm64/.gitignore
+	new file:   tools/testing/selftests/arm64/Makefile
+	new file:   tools/testing/selftests/arm64/run_tags_test.sh
+	new file:   tools/testing/selftests/arm64/tags_test.c
+	new file:   tools/testing/selftests/filesystems/incfs/.gitignore
+	new file:   tools/testing/selftests/filesystems/incfs/Makefile
+	new file:   tools/testing/selftests/filesystems/incfs/incfs_test.c
+	new file:   tools/testing/selftests/filesystems/incfs/utils.c
+	new file:   tools/testing/selftests/filesystems/incfs/utils.h
+
+Unmerged paths:
+  (use "git add/rm <file>..." as appropriate to mark resolution)
+	both modified:   .gitignore
+	both modified:   Documentation/arm64/cpu-feature-registers.txt
+	both modified:   Documentation/devicetree/bindings/arm/msm/mdm-modem.txt
+	both modified:   Documentation/devicetree/bindings/arm/msm/msm.txt
+	both added:      Documentation/devicetree/bindings/arm/msm/sdx-ext-ipc.txt
+	both modified:   Documentation/devicetree/bindings/bus/mhi.txt
+	both added:      Documentation/devicetree/bindings/drm/msm/sde-dp-sim.txt
+	both modified:   Documentation/devicetree/bindings/drm/msm/sde-dp.txt
+	both added:      Documentation/devicetree/bindings/drm/msm/sde-shp.txt
+	both modified:   Documentation/devicetree/bindings/fb/mdss-pll.txt
+	both modified:   Documentation/devicetree/bindings/gpu/adreno-iommu.txt
+	both modified:   Documentation/devicetree/bindings/mhi/msm_mhi_dev.txt
+	both modified:   Documentation/devicetree/bindings/platform/msm/ipa.txt
+	both modified:   Documentation/devicetree/bindings/sound/qcom-audio-dev.txt
+	both added:      Documentation/devicetree/bindings/sound/tfa98xx.txt
+	both modified:   Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.txt
+	both modified:   Documentation/devicetree/bindings/thermal/qti-qmi-cdev.txt
+	both modified:   Documentation/devicetree/bindings/usb/dwc3.txt
+	both modified:   Documentation/devicetree/bindings/vendor-prefixes.txt
+	both modified:   Makefile
+	both modified:   arch/Kconfig
+	deleted by us:   arch/arm/configs/vendor/sa515m-perf_defconfig
+	deleted by us:   arch/arm/configs/vendor/sa515m_defconfig
+	both modified:   arch/arm/configs/vendor/sdxprairie-perf_defconfig
+	both modified:   arch/arm/configs/vendor/sdxprairie_defconfig
+	both added:      arch/arm/configs/vendor/trinket-perf_defconfig
+	both added:      arch/arm/configs/vendor/trinket_defconfig
+	both modified:   arch/arm/mach-qcom/Makefile
+	both modified:   arch/arm64/Kconfig
+	both modified:   arch/arm64/Makefile
+	both modified:   arch/arm64/boot/dts/qcom/Makefile
+	both added:      arch/arm64/boot/dts/qcom/atoll-ab-atp-overlay.dts
+	both added:      arch/arm64/boot/dts/qcom/atoll-ab-atp.dts
+	both added:      arch/arm64/boot/dts/qcom/atoll-ab-idp-overlay.dts
+	both added:      arch/arm64/boot/dts/qcom/atoll-ab-qrd.dts
+	both added:      arch/arm64/boot/dts/qcom/atoll-atp.dtsi
+	both added:      arch/arm64/boot/dts/qcom/atoll-audio-overlay.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/atoll-idp.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/atoll-pinctrl.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/atoll-qrd.dtsi
+	both added:      arch/arm64/boot/dts/qcom/atoll-sde-display.dtsi
+	both added:      arch/arm64/boot/dts/qcom/atoll-sde.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/atoll.dtsi
+	both deleted:    arch/arm64/boot/dts/qcom/dm-verity-boot.dtsi
+	both added:      arch/arm64/boot/dts/qcom/prairie-iot-idp.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/qcs405-csra8-audio-overlay.dtsi
+	both added:      arch/arm64/boot/dts/qcom/qcs405-csra8plus2-audio-overlay.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/qcs405-geni-ir-overlay.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/qcs405-pcie.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/qcs405-pinctrl.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/qcs410-iot.dtsi
+	both added:      arch/arm64/boot/dts/qcom/qcs610-ipc.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/sa515m-ccard-pcie-ep.dts
+	both modified:   arch/arm64/boot/dts/qcom/sa515m-ccard.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/sa6155-display.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/sa8155-adp-star-display.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/sa8155.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/sdmmagpie-gpu.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/sdmshrike-sde.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/sdxprairie-blsp.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/sdxprairie-cdp-256.dtsi
+	both added:      arch/arm64/boot/dts/qcom/sdxprairie-cdp-v1.1-cpe.dts
+	both added:      arch/arm64/boot/dts/qcom/sdxprairie-cdp-v1.1-cpe.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/sdxprairie-cdp.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/sdxprairie-mtp-256.dtsi
+	both added:      arch/arm64/boot/dts/qcom/sdxprairie-mtp-le-cpe.dtsi
+	both added:      arch/arm64/boot/dts/qcom/sdxprairie-mtp-v1.1-cpe.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/sdxprairie-mtp.dtsi
+	both added:      arch/arm64/boot/dts/qcom/sdxprairie-thermal-common.dtsi
+	both added:      arch/arm64/boot/dts/qcom/sdxprairie-v2-mtp-cpe.dtsi
+	both added:      arch/arm64/boot/dts/qcom/sdxprairie-v2-mtp-le-cpe.dtsi
+	both added:      arch/arm64/boot/dts/qcom/sdxprairie-v2-mtp-v1.1-cpe.dtsi
+	both added:      arch/arm64/boot/dts/qcom/sdxprairie-v2-pcie-ep-mtp.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/sdxprairie-v2.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/sdxprairie.dtsi
+	both added:      arch/arm64/boot/dts/qcom/sm8150-marmot-cdp-overlay.dts
+	both added:      arch/arm64/boot/dts/qcom/sm8150-marmot-mtp-overlay.dts
+	both added:      arch/arm64/boot/dts/qcom/sm8150-marmot.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/sm8150-mhi.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/sm8150-pinctrl.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/sm8150-sdxprairie.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/sm8150.dtsi
+	both added:      arch/arm64/boot/dts/qcom/trinket-iot-idp-overlay.dts
+	both added:      arch/arm64/boot/dts/qcom/trinket-iot.dtsi
+	both modified:   arch/arm64/boot/dts/qcom/trinket-sde-display.dtsi
+	both added:      arch/arm64/boot/dts/qcom/trinketp-iot-dp-idp.dts
+	both added:      arch/arm64/boot/dts/qcom/trinketp-iot-external-codec-idp.dts
+	both added:      arch/arm64/boot/dts/qcom/trinketp-iot-idp-overlay.dts
+	both added:      arch/arm64/boot/dts/qcom/trinketp-iot-idp.dts
+	both added:      arch/arm64/boot/dts/qcom/trinketp-iot-usbc-external-codec-idp.dts
+	both added:      arch/arm64/boot/dts/qcom/trinketp-iot-usbc-idp.dts
+	both added:      arch/arm64/boot/dts/qcom/trinketp-iot.dts
+	both added:      arch/arm64/boot/dts/qcom/trinketp-iot.dtsi
+	both modified:   arch/arm64/configs/vendor/atoll-perf_defconfig
+	both modified:   arch/arm64/configs/vendor/atoll_defconfig
+	both modified:   arch/arm64/configs/vendor/sa8155-perf_defconfig
+	both modified:   arch/arm64/configs/vendor/sa8155_defconfig
+	both modified:   arch/arm64/configs/vendor/sdmsteppe-auto-perf_defconfig
+	both modified:   arch/arm64/configs/vendor/sdmsteppe-auto_defconfig
+	both modified:   arch/arm64/configs/vendor/sm8150-perf_defconfig
+	both modified:   arch/arm64/configs/vendor/sm8150_defconfig
+	both modified:   arch/arm64/include/asm/alternative.h
+	both modified:   arch/arm64/include/asm/cpucaps.h
+	both modified:   arch/arm64/include/asm/cputype.h
+	both modified:   arch/arm64/include/asm/ptrace.h
+	both modified:   arch/arm64/include/asm/sysreg.h
+	both modified:   arch/arm64/include/asm/thread_info.h
+	both modified:   arch/arm64/kernel/cpu_errata.c
+	both modified:   arch/arm64/kernel/cpufeature.c
+	both modified:   arch/arm64/kernel/psci.c
+	both modified:   arch/arm64/kernel/smp.c
+	both modified:   arch/arm64/kernel/traps.c
+	both modified:   arch/arm64/kernel/vdso/Makefile
+	both modified:   arch/arm64/kernel/vmlinux.lds.S
+	both modified:   arch/arm64/kvm/hyp/entry.S
+	both modified:   arch/arm64/lib/Makefile
+	both modified:   arch/arm64/net/bpf_jit_comp.c
+	both modified:   arch/x86/events/intel/pt.c
+	both modified:   arch/x86/kernel/vmlinux.lds.S
+	both modified:   block/blk-core.c
+	both modified:   block/blk-merge.c
+	both modified:   drivers/base/power/wakeup.c
+	both modified:   drivers/bus/mhi/controllers/mhi_arch_qcom.c
+	both modified:   drivers/bus/mhi/controllers/mhi_qcom.c
+	both modified:   drivers/bus/mhi/controllers/mhi_qcom.h
+	both modified:   drivers/bus/mhi/core/mhi_boot.c
+	both modified:   drivers/bus/mhi/core/mhi_init.c
+	both modified:   drivers/bus/mhi/core/mhi_internal.h
+	both modified:   drivers/bus/mhi/core/mhi_main.c
+	both modified:   drivers/bus/mhi/core/mhi_pm.c
+	both modified:   drivers/char/adsprpc.c
+	both modified:   drivers/char/diag/diag_masks.c
+	both modified:   drivers/char/diag/diag_pcie.c
+	both modified:   drivers/char/diag/diag_usb.c
+	both modified:   drivers/char/diag/diagchar_core.c
+	both modified:   drivers/char/diag/diagfwd_rpmsg.c
+	both modified:   drivers/char/diag/diagfwd_socket.h
+	both modified:   drivers/clk/qcom/clk-alpha-pll.c
+	both modified:   drivers/clk/qcom/mdss/mdss-dsi-pll-7nm.c
+	both modified:   drivers/clk/qcom/mdss/mdss-pll.c
+	both modified:   drivers/clk/qcom/mdss/mdss-pll.h
+	both modified:   drivers/cpufreq/cpufreq_stats.c
+	both modified:   drivers/cpuidle/lpm-levels-of.c
+	both modified:   drivers/crypto/msm/ice.c
+	both modified:   drivers/crypto/msm/qcedev.c
+	both modified:   drivers/crypto/msm/qcrypto.c
+	both modified:   drivers/dma-buf/dma-buf.c
+	both modified:   drivers/esoc/esoc-mdm-4x.c
+	both modified:   drivers/esoc/esoc-mdm-drv.c
+	both modified:   drivers/esoc/esoc-mdm.h
+	both modified:   drivers/gpu/drm/msm/Makefile
+	both modified:   drivers/gpu/drm/msm/dsi-staging/dsi_display.c
+	both modified:   drivers/gpu/drm/msm/dsi-staging/dsi_drm.c
+	both modified:   drivers/gpu/drm/msm/dsi-staging/dsi_panel.c
+	both modified:   drivers/gpu/drm/msm/msm_drv.c
+	both modified:   drivers/gpu/drm/msm/sde/sde_crtc.c
+	both modified:   drivers/gpu/drm/msm/sde/sde_encoder.c
+	both modified:   drivers/gpu/drm/msm/sde/sde_encoder_phys_vid.c
+	both modified:   drivers/gpu/drm/msm/sde/sde_hw_ctl.h
+	both modified:   drivers/gpu/drm/msm/sde/sde_kms.c
+	both modified:   drivers/gpu/drm/msm/sde_dbg.h
+	both modified:   drivers/gpu/drm/msm/shd/shd_drm.c
+	both modified:   drivers/gpu/msm/adreno-gpulist.h
+	both modified:   drivers/gpu/msm/adreno.c
+	both modified:   drivers/gpu/msm/adreno.h
+	both modified:   drivers/gpu/msm/adreno_a6xx.c
+	both modified:   drivers/gpu/msm/adreno_a6xx.h
+	both modified:   drivers/gpu/msm/adreno_a6xx_gmu.c
+	both modified:   drivers/gpu/msm/adreno_ringbuffer.c
+	both modified:   drivers/gpu/msm/adreno_ringbuffer.h
+	both modified:   drivers/gpu/msm/adreno_snapshot.c
+	both modified:   drivers/gpu/msm/kgsl.c
+	both modified:   drivers/gpu/msm/kgsl.h
+	both modified:   drivers/gpu/msm/kgsl_debugfs.c
+	both modified:   drivers/gpu/msm/kgsl_device.h
+	both modified:   drivers/gpu/msm/kgsl_iommu.c
+	both modified:   drivers/gpu/msm/kgsl_iommu.h
+	both modified:   drivers/gpu/msm/kgsl_pool.c
+	both modified:   drivers/gpu/msm/kgsl_sharedmem.c
+	both modified:   drivers/hid/hid-qvr.c
+	both modified:   drivers/hwtracing/coresight/coresight-tmc-etr.c
+	both modified:   drivers/hwtracing/coresight/coresight-tmc.c
+	both modified:   drivers/hwtracing/coresight/coresight-tmc.h
+	both modified:   drivers/hwtracing/coresight/coresight.c
+	both modified:   drivers/i2c/busses/i2c-qcom-geni.c
+	both modified:   drivers/input/misc/qpnp-power-on.c
+	both modified:   drivers/input/misc/qti-haptics.c
+	both modified:   drivers/input/touchscreen/synaptics_tcm/synaptics_tcm_core.c
+	both added:      drivers/iommu/arm-smmu-debug.c
+	both modified:   drivers/iommu/arm-smmu.c
+	both modified:   drivers/irqchip/irq-gic-v3.c
+	both modified:   drivers/irqchip/irq-gic.c
+	both modified:   drivers/md/dm-default-key.c
+	both modified:   drivers/media/platform/msm/ais/cam_core/cam_context_utils.c
+	both modified:   drivers/media/platform/msm/ais/cam_sync/cam_sync.c
+	both modified:   drivers/media/platform/msm/ais/cam_sync/cam_sync_api.h
+	both modified:   drivers/media/platform/msm/camera/cam_core/cam_context_utils.c
+	both modified:   drivers/media/platform/msm/camera/cam_fd/fd_hw_mgr/cam_fd_hw_mgr.c
+	both modified:   drivers/media/platform/msm/camera/cam_icp/icp_hw/icp_hw_mgr/cam_icp_hw_mgr.c
+	both modified:   drivers/media/platform/msm/camera/cam_icp/icp_hw/icp_hw_mgr/cam_icp_hw_mgr.h
+	both modified:   drivers/media/platform/msm/camera/cam_isp/cam_isp_context.c
+	both modified:   drivers/media/platform/msm/camera/cam_isp/cam_isp_context.h
+	both modified:   drivers/media/platform/msm/camera/cam_isp/isp_hw_mgr/cam_ife_hw_mgr.c
+	both modified:   drivers/media/platform/msm/camera/cam_isp/isp_hw_mgr/isp_hw/ife_csid_hw/cam_ife_csid_core.c
+	both modified:   drivers/media/platform/msm/camera/cam_jpeg/jpeg_hw/cam_jpeg_hw_mgr.c
+	both modified:   drivers/media/platform/msm/camera/cam_jpeg/jpeg_hw/cam_jpeg_hw_mgr.h
+	both modified:   drivers/media/platform/msm/camera/cam_jpeg/jpeg_hw/jpeg_dma_hw/jpeg_dma_core.c
+	both modified:   drivers/media/platform/msm/camera/cam_jpeg/jpeg_hw/jpeg_enc_hw/jpeg_enc_core.c
+	both modified:   drivers/media/platform/msm/camera/cam_lrme/lrme_hw_mgr/cam_lrme_hw_mgr.c
+	both modified:   drivers/media/platform/msm/camera/cam_req_mgr/cam_req_mgr_core.c
+	both modified:   drivers/media/platform/msm/camera/cam_sensor_module/cam_cci/cam_cci_dev.c
+	both modified:   drivers/media/platform/msm/camera/cam_sensor_module/cam_csiphy/cam_csiphy_core.c
+	both modified:   drivers/media/platform/msm/camera/cam_sensor_module/cam_csiphy/cam_csiphy_soc.c
+	both modified:   drivers/media/platform/msm/camera/cam_sensor_module/cam_csiphy/include/cam_csiphy_1_1_hwreg.h
+	both modified:   drivers/media/platform/msm/camera/cam_smmu/cam_smmu_api.c
+	both modified:   drivers/media/platform/msm/camera/cam_utils/cam_packet_util.c
+	both added:      drivers/media/platform/msm/npu_v2/Kconfig
+	both added:      drivers/media/platform/msm/npu_v2/npu_common.h
+	both added:      drivers/media/platform/msm/npu_v2/npu_dbg.c
+	both added:      drivers/media/platform/msm/npu_v2/npu_debugfs.c
+	both added:      drivers/media/platform/msm/npu_v2/npu_dev.c
+	both added:      drivers/media/platform/msm/npu_v2/npu_firmware.h
+	both added:      drivers/media/platform/msm/npu_v2/npu_host_ipc.c
+	both added:      drivers/media/platform/msm/npu_v2/npu_host_ipc.h
+	both added:      drivers/media/platform/msm/npu_v2/npu_hw.h
+	both added:      drivers/media/platform/msm/npu_v2/npu_hw_access.c
+	both added:      drivers/media/platform/msm/npu_v2/npu_hw_access.h
+	both added:      drivers/media/platform/msm/npu_v2/npu_mgr.c
+	both added:      drivers/media/platform/msm/npu_v2/npu_mgr.h
+	both modified:   drivers/media/platform/msm/sde/rotator/sde_rotator_debug.h
+	both modified:   drivers/media/platform/msm/vidc/governors/msm_vidc_dyn_gov.c
+	both modified:   drivers/media/platform/msm/vidc/msm_vidc_debug.c
+	both modified:   drivers/media/platform/msm/vidc/msm_vidc_platform.c
+	both modified:   drivers/media/platform/msm/vidc/venus_hfi.c
+	both modified:   drivers/media/rc/msm-geni-ir.c
+	both modified:   drivers/misc/qseecom.c
+	both modified:   drivers/mmc/host/sdhci-msm.c
+	both modified:   drivers/mtd/devices/msm_qpic_nand.c
+	both modified:   drivers/mtd/nand/nand_ids.c
+	both deleted:    drivers/net/ethernet/aquantia/atlantic-fwd/atl_of.h
+	both modified:   drivers/net/ethernet/aquantia/atlantic-fwd/atl_qcom_ipa.c
+	both modified:   drivers/net/ethernet/qualcomm/rmnet/rmnet_config.h
+	both modified:   drivers/net/ethernet/qualcomm/rmnet/rmnet_private.h
+	both modified:   drivers/net/ethernet/stmicro/stmmac/Makefile
+	both modified:   drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+	both added:      drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.h
+	both added:      drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-gpio.c
+	both added:      drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-pps.c
+	both modified:   drivers/net/ethernet/stmicro/stmmac/stmmac.h
+	both modified:   drivers/net/ethernet/stmicro/stmmac/stmmac_ethtool.c
+	both modified:   drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+	both modified:   drivers/net/macsec.c
+	both modified:   drivers/net/phy/micrel.c
+	both modified:   drivers/net/wireless/cnss2/debug.c
+	both modified:   drivers/net/wireless/cnss2/main.h
+	both modified:   drivers/net/wireless/cnss2/pci.c
+	both modified:   drivers/net/wireless/cnss_utils/cnss_utils.c
+	both modified:   drivers/of/Kconfig
+	both modified:   drivers/pci/host/pci-msm.c
+	both modified:   drivers/pinctrl/qcom/pinctrl-msm.c
+	both modified:   drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+	both modified:   drivers/platform/msm/Makefile
+	both modified:   drivers/platform/msm/ep_pcie/ep_pcie_core.c
+	both modified:   drivers/platform/msm/ep_pcie/ep_pcie_dbg.c
+	both modified:   drivers/platform/msm/gsi/Makefile
+	both modified:   drivers/platform/msm/gsi/gsi.c
+	both modified:   drivers/platform/msm/ipa/Makefile
+	both modified:   drivers/platform/msm/ipa/ipa_api.c
+	both modified:   drivers/platform/msm/ipa/ipa_api.h
+	both modified:   drivers/platform/msm/ipa/ipa_clients/ipa_gsb.c
+	both modified:   drivers/platform/msm/ipa/ipa_clients/ipa_mhi_client.c
+	both modified:   drivers/platform/msm/ipa/ipa_clients/ipa_wdi3.c
+	both modified:   drivers/platform/msm/ipa/ipa_clients/rndis_ipa.c
+	both modified:   drivers/platform/msm/ipa/ipa_common_i.h
+	both modified:   drivers/platform/msm/ipa/ipa_v3/Makefile
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ethernet/ipa_eth.c
+	both added:      drivers/platform/msm/ipa/ipa_v3/ethernet/ipa_eth_debugfs.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ethernet/ipa_eth_i.h
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipa.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipa_client.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipa_debugfs.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipa_dp.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipa_hw_stats.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipa_i.h
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipa_mhi.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipa_mpm.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipa_nat.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipa_odl.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipa_qmi_service.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipa_uc.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipa_uc_ntn.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipa_uc_wdi.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipa_utils.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipa_wdi3_i.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipahal/ipahal.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipahal/ipahal_fltrt.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipahal/ipahal_hw_stats.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipahal/ipahal_i.h
+	both modified:   drivers/platform/msm/ipa/ipa_v3/ipahal/ipahal_reg_i.h
+	both modified:   drivers/platform/msm/ipa/ipa_v3/rmnet_ipa.c
+	both modified:   drivers/platform/msm/ipa/ipa_v3/teth_bridge.c
+	both modified:   drivers/platform/msm/mhi_dev/mhi.c
+	both modified:   drivers/platform/msm/mhi_dev/mhi.h
+	both modified:   drivers/platform/msm/mhi_dev/mhi_hwio.h
+	both modified:   drivers/platform/msm/mhi_dev/mhi_mmio.c
+	both modified:   drivers/platform/msm/mhi_dev/mhi_uci.c
+	both modified:   drivers/platform/msm/qcom-geni-se.c
+	both modified:   drivers/platform/msm/sps/sps_rm.c
+	both modified:   drivers/platform/msm/sps/spsi.h
+	both modified:   drivers/platform/msm/usb_bam.c
+	both modified:   drivers/power/supply/power_supply_sysfs.c
+	both modified:   drivers/power/supply/qcom/battery.c
+	both modified:   drivers/power/supply/qcom/qg-battery-profile.c
+	both modified:   drivers/power/supply/qcom/qg-core.h
+	both modified:   drivers/power/supply/qcom/qg-soc.c
+	both modified:   drivers/power/supply/qcom/qpnp-fg-gen4.c
+	both modified:   drivers/power/supply/qcom/qpnp-qg.c
+	both modified:   drivers/power/supply/qcom/qpnp-smb5.c
+	both modified:   drivers/power/supply/qcom/smb5-lib.c
+	both modified:   drivers/power/supply/qcom/smb5-lib.h
+	both modified:   drivers/power/supply/qcom/smb5-reg.h
+	both modified:   drivers/rpmsg/qcom_glink_native.c
+	both modified:   drivers/rpmsg/qcom_glink_smem.c
+	both modified:   drivers/scsi/sd.c
+	deleted by them: drivers/scsi/ufs/ufs-qcom-ice.c
+	deleted by them: drivers/scsi/ufs/ufs-qcom-ice.h
+	both modified:   drivers/scsi/ufs/ufs-qcom.c
+	both modified:   drivers/scsi/ufs/ufshcd-pltfrm.c
+	both modified:   drivers/scsi/ufs/ufshcd.c
+	both modified:   drivers/scsi/ufs/ufshcd.h
+	both modified:   drivers/soc/qcom/Kconfig
+	both modified:   drivers/soc/qcom/Makefile
+	both modified:   drivers/soc/qcom/dcc_v2.c
+	both modified:   drivers/soc/qcom/icnss_qmi.c
+	both modified:   drivers/soc/qcom/msm_bus/msm_bus_rules.c
+	both modified:   drivers/soc/qcom/peripheral-loader.c
+	both modified:   drivers/soc/qcom/peripheral-loader.h
+	both modified:   drivers/soc/qcom/rpmh_master_stat.c
+	both added:      drivers/soc/qcom/sdx_ext_ipc.c
+	both modified:   drivers/soc/qcom/socinfo.c
+	both modified:   drivers/spi/spi-geni-qcom.c
+	both modified:   drivers/staging/android/ion/ion.c
+	both modified:   drivers/staging/android/ion/ion_page_pool.c
+	both modified:   drivers/staging/android/ion/msm/msm_ion_of.c
+	both modified:   drivers/thermal/of-thermal.c
+	both modified:   drivers/thermal/qcom/qmi_cooling.c
+	both modified:   drivers/thermal/tsens.h
+	both modified:   drivers/thermal/tsens2xxx.c
+	both modified:   drivers/tty/serial/msm_geni_serial.c
+	both modified:   drivers/usb/dwc3/core.h
+	both modified:   drivers/usb/dwc3/debug_ipc.c
+	both modified:   drivers/usb/dwc3/dwc3-msm.c
+	both modified:   drivers/usb/dwc3/gadget.c
+	both modified:   drivers/usb/gadget/composite.c
+	both modified:   drivers/usb/gadget/configfs.c
+	both modified:   drivers/usb/gadget/function/f_accessory.c
+	both modified:   drivers/usb/gadget/function/f_gsi.c
+	both modified:   drivers/usb/gadget/function/f_mass_storage.c
+	both modified:   drivers/usb/gadget/function/f_mtp.c
+	both modified:   drivers/usb/gadget/legacy/Makefile
+	both modified:   drivers/usb/pd/policy_engine.c
+	both modified:   drivers/vfio/vfio_iommu_type1.c
+	both modified:   drivers/video/fbdev/msm/mdss.h
+	both modified:   drivers/video/fbdev/msm/mdss_debug.c
+	both modified:   drivers/video/fbdev/msm/mdss_mdp.c
+	both modified:   drivers/video/fbdev/msm/mdss_mdp.h
+	both modified:   drivers/video/fbdev/msm/mdss_mdp_layer.c
+	both modified:   drivers/video/fbdev/msm/mdss_mdp_overlay.c
+	both modified:   drivers/video/fbdev/msm/mdss_mdp_pp.c
+	both modified:   drivers/video/fbdev/msm/mdss_mdp_splash_logo.c
+	both modified:   drivers/video/fbdev/msm/mdss_mdp_util.c
+	both modified:   drivers/video/fbdev/msm/mdss_qpic.c
+	both modified:   drivers/video/fbdev/msm/mdss_smmu.c
+	deleted by them: fs/crypto/fscrypt_ice.c
+	both modified:   fs/dcache.c
+	both modified:   fs/eventpoll.c
+	both modified:   fs/ext4/namei.c
+	both modified:   fs/ext4/page-io.c
+	both modified:   fs/ext4/readpage.c
+	both modified:   fs/f2fs/checkpoint.c
+	both modified:   fs/f2fs/data.c
+	both modified:   fs/f2fs/f2fs.h
+	both modified:   fs/f2fs/file.c
+	both modified:   fs/f2fs/gc.c
+	both modified:   fs/f2fs/segment.c
+	both modified:   fs/f2fs/super.c
+	both modified:   fs/f2fs/sysfs.c
+	both modified:   fs/f2fs/xattr.c
+	both modified:   fs/f2fs/xattr.h
+	both modified:   fs/fs-writeback.c
+	both modified:   fs/inode.c
+	both modified:   fs/mpage.c
+	both modified:   fs/overlayfs/inode.c
+	both modified:   fs/overlayfs/namei.c
+	both modified:   fs/overlayfs/util.c
+	both modified:   fs/xattr.c
+	both modified:   include/asm-generic/vmlinux.lds.h
+	both added:      include/dt-bindings/clock/qcom,audio-ext-clk-v2.h
+	both modified:   include/linux/bio.h
+	both modified:   include/linux/blk_types.h
+	both modified:   include/linux/blkdev.h
+	both modified:   include/linux/clk.h
+	both modified:   include/linux/dma-buf.h
+	both modified:   include/linux/filter.h
+	both modified:   include/linux/fs.h
+	both modified:   include/linux/init.h
+	both modified:   include/linux/ipa.h
+	both modified:   include/linux/ipa_eth.h
+	both modified:   include/linux/lsm_hooks.h
+	both added:      include/linux/mdss_smmu_ext.h
+	both modified:   include/linux/mhi.h
+	both modified:   include/linux/msm_ep_pcie.h
+	both modified:   include/linux/msm_gsi.h
+	both modified:   include/linux/overflow.h
+	deleted by them: include/linux/pfk.h
+	both modified:   include/linux/qcom-geni-se.h
+	both modified:   include/linux/sched/sysctl.h
+	both modified:   include/linux/usb/phy.h
+	both modified:   include/linux/xattr.h
+	both modified:   include/soc/qcom/socinfo.h
+	deleted by us:   include/trace/events/android_fs.h
+	deleted by us:   include/trace/events/android_fs_template.h
+	both modified:   include/uapi/linux/msm_ipa.h
+	both modified:   include/uapi/linux/msm_mdp.h
+	both modified:   include/uapi/linux/msm_mdp_ext.h
+	both modified:   init/Makefile
+	both modified:   init/do_mounts.c
+	both modified:   kernel/bpf/core.c
+	both modified:   kernel/cpu.c
+	both modified:   kernel/events/core.c
+	both modified:   kernel/fork.c
+	both modified:   kernel/sched/core.c
+	both modified:   kernel/sched/core_ctl.c
+	both modified:   kernel/sched/cpufreq_schedutil.c
+	both modified:   kernel/sched/fair.c
+	both modified:   kernel/sched/psi.c
+	both modified:   kernel/sched/tune.c
+	both modified:   kernel/sched/walt.c
+	both modified:   kernel/sysctl.c
+	both modified:   kernel/taskstats.c
+	both modified:   kernel/time/alarmtimer.c
+	both modified:   kernel/time/hrtimer.c
+	both modified:   mm/Kconfig
+	both modified:   mm/memory.c
+	both modified:   mm/migrate.c
+	both modified:   mm/mremap.c
+	both modified:   mm/vmalloc.c
+	both modified:   net/Kconfig
+	both modified:   net/ipv4/ip_output.c
+	both modified:   net/ipv4/syncookies.c
+	both modified:   net/ipv4/tcp_input.c
+	both modified:   net/ipv4/tcp_output.c
+	both modified:   net/ipv6/syncookies.c
+	both modified:   net/qrtr/qrtr.c
+	both modified:   net/xfrm/xfrm_policy.c
+	both modified:   scripts/Kbuild.include
+	both modified:   scripts/mkcompile_h
+	deleted by them: security/pfe/pfk.c
+	deleted by them: security/pfe/pfk_ext4.c
+	deleted by them: security/pfe/pfk_ext4.h
+	deleted by them: security/pfe/pfk_f2fs.c
+	deleted by them: security/pfe/pfk_f2fs.h
+	both modified:   security/selinux/Kconfig
+	both modified:   security/selinux/Makefile
+	both modified:   security/selinux/avc.c
+	both modified:   security/selinux/hooks.c
+	both modified:   security/selinux/include/avc.h
+	both modified:   security/selinux/include/conditional.h
+	both modified:   security/selinux/include/objsec.h
+	both modified:   security/selinux/include/security.h
+	both modified:   security/selinux/netif.c
+	both modified:   security/selinux/netport.c
+	both modified:   security/selinux/selinuxfs.c
+	both modified:   security/selinux/ss/context.h
+	both modified:   security/selinux/ss/ebitmap.c
+	both modified:   security/selinux/ss/ebitmap.h
+	both modified:   security/selinux/ss/hashtab.c
+	both modified:   security/selinux/ss/mls.c
+	both modified:   security/selinux/ss/policydb.c
+	both modified:   security/selinux/ss/services.c
+	both modified:   security/selinux/ss/services.h
+	both modified:   security/selinux/ss/sidtab.c
+	both modified:   security/selinux/ss/sidtab.h
+	both modified:   security/selinux/status.c
+	both modified:   security/selinux/xfrm.c
+	both modified:   sound/core/compress_offload.c
+	both modified:   sound/core/rawmidi.c
+	both added:      techpack/Kbuild
+	added by us:     techpack/audio/asoc/codecs/aqt1000/aqt1000-utils.h
+	both added:      techpack/stub/Makefile
+	both added:      techpack/stub/include/uapi/Kbuild
+	both added:      techpack/stub/stub.c
+
+
+It took 4.67 seconds to enumerate untracked files. 'status -uno'
+may speed it up, but you have to be careful not to forget to add
+new files yourself (see 'git help status').
