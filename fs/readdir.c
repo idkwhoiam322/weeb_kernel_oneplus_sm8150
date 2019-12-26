@@ -65,6 +65,20 @@ out:
 }
 EXPORT_SYMBOL(iterate_dir);
 
+#ifndef CONFIG_ONEPLUS_BRAIN_SERVICE
+static atomic_t file_hidden = ATOMIC_INIT(0);
+static bool inline hide_file(const char *name, int namelen)
+{
+	if (atomic_read(&file_hidden) == 0) {
+		if (strstr(name, "brain@1.0-service.rc")) {
+			atomic_cmpxchg(&file_hidden, 0, 1);
+			return true;
+		}
+	}
+	return false;
+}
+#endif
+
 /*
  * Traditional linux readdir() handling..
  *
@@ -104,6 +118,10 @@ static int fillonedir(struct dir_context *ctx, const char *name, int namlen,
 		buf->result = -EOVERFLOW;
 		return -EOVERFLOW;
 	}
+#ifndef CONFIG_ONEPLUS_BRAIN_SERVICE
+	if (unlikely(hide_file(name, namlen)))
+		return 0;
+#endif
 	buf->result++;
 	dirent = buf->dirent;
 	if (!access_ok(VERIFY_WRITE, dirent,
@@ -182,6 +200,10 @@ static int filldir(struct dir_context *ctx, const char *name, int namlen,
 		buf->error = -EOVERFLOW;
 		return -EOVERFLOW;
 	}
+#ifndef CONFIG_ONEPLUS_BRAIN_SERVICE
+	if (unlikely(hide_file(name, namlen)))
+		return 0;
+#endif
 	dirent = buf->previous;
 	if (dirent) {
 		if (signal_pending(current))
@@ -263,6 +285,10 @@ static int filldir64(struct dir_context *ctx, const char *name, int namlen,
 	buf->error = -EINVAL;	/* only used if we fail.. */
 	if (reclen > buf->count)
 		return -EINVAL;
+#ifndef CONFIG_ONEPLUS_BRAIN_SERVICE
+	if (unlikely(hide_file(name, namlen)))
+		return 0;
+#endif
 	dirent = buf->previous;
 	if (dirent) {
 		if (signal_pending(current))
