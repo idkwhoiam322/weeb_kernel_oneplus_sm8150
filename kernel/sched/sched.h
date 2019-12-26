@@ -50,9 +50,6 @@
 struct rq;
 struct cpuidle_state;
 
-// add for chainboost CONFIG_ONEPLUS_CHAIN_BOOST
-extern unsigned  int  main_preempt_disable;
-
 extern __read_mostly bool sched_predl;
 extern unsigned int sched_capacity_margin_up[NR_CPUS];
 extern unsigned int sched_capacity_margin_down[NR_CPUS];

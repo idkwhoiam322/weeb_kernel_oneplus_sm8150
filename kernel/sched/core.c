@@ -46,9 +46,6 @@
 #define CREATE_TRACE_POINTS
 #include <trace/events/sched.h>
 
-// tedlin@ASTI 2019/06/12 add for CONFIG_HOUSTON
-#include <oneplus/houston/houston_helper.h>
-
 DEFINE_PER_CPU_SHARED_ALIGNED(struct rq, runqueues);
 
 /*
@@ -901,11 +898,6 @@ void check_preempt_curr(struct rq *rq, struct task_struct *p, int flags)
 {
 	const struct sched_class *class;
 
-// add for chainboost CONFIG_ONEPLUS_CHAIN_BOOST
-	if (main_preempt_disable && rq->curr->main_boost_switch == 1 &&
-		rq->curr->group_leader == rq->curr &&
-		memcmp(p->comm, "kworker", 7) && !task_has_rt_policy(p))
-		return;
 	if (p->sched_class == rq->curr->sched_class) {
 		rq->curr->sched_class->check_preempt_curr(rq, p, flags);
 	} else {
@@ -2130,11 +2122,6 @@ try_to_wake_up(struct task_struct *p, unsigned int state, int wake_flags,
 	if (p->on_rq && ttwu_remote(p, wake_flags))
 		goto stat;
 
-// add for chainboost CONFIG_ONEPLUS_CHAIN_BOOST
-	if (main_preempt_disable && current->main_boost_switch == 1 &&
-		current->group_leader == current)
-		p->main_wake_boost = 1;
-
 #ifdef CONFIG_SMP
 	/*
 	 * Ensure we load p->on_cpu _after_ p->on_rq, otherwise it would be
@@ -2591,10 +2578,6 @@ void wake_up_new_task(struct task_struct *p)
 	raw_spin_lock_irqsave(&p->pi_lock, rf.flags);
 
 	p->state = TASK_RUNNING;
-// add for chainboost CONFIG_ONEPLUS_CHAIN_BOOST
-	if (main_preempt_disable && current->main_boost_switch == 1 &&
-		current->group_leader == current)
-		p->main_wake_boost = 1;
 
 #ifdef CONFIG_SMP
 	/*
@@ -3589,9 +3572,6 @@ static void __sched notrace __schedule(bool preempt)
 		++*switch_count;
 
 		trace_sched_switch(preempt, prev, next);
-
-// tedlin@ASTI 2019/06/12 add for CONFIG_HOUSTON
-		ht_sched_switch_update(prev, next);
 
 		/* Also unlocks the rq: */
 		rq = context_switch(rq, prev, next, &rf);

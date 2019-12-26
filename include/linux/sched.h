@@ -1433,10 +1433,6 @@ struct task_struct {
 	bool cc_enable;
 	struct cc_tsk_data* ctd;
 #endif
-
-// add for chainboost CONFIG_ONEPLUS_CHAIN_BOOST
-	int main_boost_switch;
-	int main_wake_boost;
 };
 
 static inline struct pid *task_pid(struct task_struct *task)

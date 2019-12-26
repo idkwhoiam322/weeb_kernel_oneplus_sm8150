@@ -2619,67 +2619,6 @@ static const struct file_operations proc_pid_set_timerslack_ns_operations = {
 	.release	= single_release,
 };
 
-// add for chainboost CONFIG_ONEPLUS_CHAIN_BOOST
-static ssize_t main_boost_switch_read(struct file *file,
-			char __user *buf, size_t count, loff_t *ppos)
-{
-	struct task_struct *task = get_proc_task(file_inode(file));
-	char buffer[PROC_NUMBUF];
-	size_t len;
-	int main_boost_switch;
-
-	if (!task)
-		return -ESRCH;
-
-	main_boost_switch = task->main_boost_switch;
-
-	put_task_struct(task);
-
-	len = snprintf(buffer, sizeof(buffer), "%d\n", main_boost_switch);
-	return simple_read_from_buffer(buf, count, ppos, buffer, len);
-}
-
-static ssize_t main_boost_switch_write(struct file *file,
-			const char __user *buf, size_t count, loff_t *ppos)
-{
-	struct task_struct *task;
-	char buffer[PROC_NUMBUF];
-	int main_boost_switch;
-	int err;
-
-	memset(buffer, 0, sizeof(buffer));
-
-	if (count > sizeof(buffer) - 1)
-		count = sizeof(buffer) - 1;
-	if (copy_from_user(buffer, buf, count)) {
-		err = -EFAULT;
-		goto out;
-	}
-
-	err = kstrtoint(strstrip(buffer), 0, &main_boost_switch);
-	if (err)
-		goto out;
-
-	task = get_proc_task(file_inode(file));
-	if (!task) {
-		err = -ESRCH;
-		goto out;
-	}
-
-	task->main_boost_switch = main_boost_switch;
-
-	put_task_struct(task);
-
-out:
-	return err < 0 ? err : count;
-}
-
-
-static const struct file_operations proc_main_boost_switch_operations = {
-	.read		= main_boost_switch_read,
-	.write		= main_boost_switch_write,
-};
-
 static int proc_pident_instantiate(struct inode *dir,
 	struct dentry *dentry, struct task_struct *task, const void *ptr)
 {
@@ -3434,8 +3373,6 @@ static const struct pid_entry tgid_base_stuff[] = {
 	REG("timers",	  S_IRUGO, proc_timers_operations),
 #endif
 	REG("timerslack_ns", S_IRUGO|S_IWUGO, proc_pid_set_timerslack_ns_operations),
-// add for chainboost CONFIG_ONEPLUS_CHAIN_BOOST
-	REG("main_boost_switch", 0666, proc_main_boost_switch_operations),
 #ifdef CONFIG_LIVEPATCH
 	ONE("patch_state",  S_IRUSR, proc_pid_patch_state),
 #endif
