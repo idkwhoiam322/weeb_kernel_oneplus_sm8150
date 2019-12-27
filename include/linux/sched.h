@@ -757,13 +757,10 @@ struct task_struct {
 	unsigned int			flags;
 	unsigned int			ptrace;
 
-    /* add for fd leak debug */
+	/* add for fd leak debug */
 	bool dump_fd_leak;
 
-	int compensate_time;
-	int compensate_need;
-
-        /* huruihuan add for kill task in D status */
+	/* huruihuan add for kill task in D status */
 	unsigned int kill_flag;
 	struct timespec ttu;
 
