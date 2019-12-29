@@ -30,25 +30,25 @@ static void cpufreq_gov_performance_limits(struct cpufreq_policy *policy)
 		|| (get_boot_mode() ==  MSM_BOOT_MODE__FACTORY)) {
 		if (first_cpu != cpumask_first(policy->related_cpus))
 			first_cpu = cpumask_first(policy->related_cpus);
-			table = policy->freq_table;
-			if (!table) {
-				pr_err("Failed to get freqtable\n");
-			} else {
-				for (pos = table; pos->frequency
-					!= CPUFREQ_TABLE_END; pos++)
-					index++;
-				if (index > CPUFREQ_INDEX)
-					index = index - CPUFREQ_INDEX;
-				valid_freq = table[index].frequency;
-				if (valid_freq)
-					__cpufreq_driver_target(policy,
-						valid_freq,
-						CPUFREQ_RELATION_H);
-				else
-					__cpufreq_driver_target(policy,
-						policy->max,
-						CPUFREQ_RELATION_H);
-			}
+		table = policy->freq_table;
+		if (!table) {
+			pr_err("Failed to get freqtable\n");
+		} else {
+			for (pos = table; pos->frequency
+				!= CPUFREQ_TABLE_END; pos++)
+				index++;
+			if (index > CPUFREQ_INDEX)
+				index = index - CPUFREQ_INDEX;
+			valid_freq = table[index].frequency;
+			if (valid_freq)
+				__cpufreq_driver_target(policy,
+					valid_freq,
+					CPUFREQ_RELATION_H);
+			else
+				__cpufreq_driver_target(policy,
+					policy->max,
+					CPUFREQ_RELATION_H);
+		}
 	} else
 		__cpufreq_driver_target(policy, policy->max,
 						CPUFREQ_RELATION_H);
