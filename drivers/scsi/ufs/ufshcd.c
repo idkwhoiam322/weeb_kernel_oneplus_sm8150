@@ -53,7 +53,9 @@
 #include <linux/cpu_input_boost.h>
 #include <linux/binfmts.h>
 
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 struct Scsi_Host *ph_host;
+#endif /* IN_KERNEL_POWERHAL */
 
 #ifdef CONFIG_DEBUG_FS
 
@@ -2489,8 +2491,10 @@ static ssize_t ufshcd_clkgate_enable_store(struct device *dev,
 	if (kstrtou32(buf, 0, &value))
 		return -EINVAL;
 
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 	if (task_is_booster(current))
 		return count;
+#endif /* IN_KERNEL_POWERHAL */
 
 	value = !!value;
 
@@ -2509,6 +2513,7 @@ out:
 	return count;
 }
 
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 void set_ufshcd_clkgate_enable_status(u32 value)
 {
 	unsigned long flags;
@@ -2531,6 +2536,7 @@ void set_ufshcd_clkgate_enable_status(u32 value)
 out:
 	spin_unlock_irqrestore(hba->host->host_lock, flags);
 }
+#endif /* IN_KERNEL_POWERHAL */
 
 static enum hrtimer_restart ufshcd_clkgate_hrtimer_handler(
 					struct hrtimer *timer)
@@ -11088,7 +11094,9 @@ int ufshcd_init(struct ufs_hba *hba, void __iomem *mmio_base, unsigned int irq)
 	struct Scsi_Host *host = hba->host;
 	struct device *dev = hba->dev;
 
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 	ph_host = hba->host;
+#endif /* IN_KERNEL_POWERHAL */
 
 	if (!mmio_base) {
 		dev_err(hba->dev,

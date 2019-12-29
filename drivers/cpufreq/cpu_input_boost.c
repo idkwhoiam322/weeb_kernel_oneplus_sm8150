@@ -40,8 +40,10 @@ static unsigned int cpu_freq_min_big __read_mostly =
 static unsigned int cpu_freq_min_prime __read_mostly =
 	CONFIG_CPU_FREQ_MIN_PERFP;
 
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 static unsigned short powerhal_boost_duration __read_mostly =
 	CONFIG_POWERHAL_BOOST_DURATION_MS;
+#endif /* IN_KERNEL_POWERHAL */
 static unsigned short input_boost_duration __read_mostly =
 	CONFIG_INPUT_BOOST_DURATION_MS;
 static unsigned short wake_boost_duration __read_mostly =
@@ -60,7 +62,9 @@ module_param(cpu_freq_min_prime, uint, 0644);
 unsigned short cib_max_boost_duration __read_mostly =
 	CONFIG_MAX_BOOST_DURATION_MS;
 
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 module_param(powerhal_boost_duration, short, 0644);
+#endif /* IN_KERNEL_POWERHAL */
 module_param(input_boost_duration, short, 0644);
 module_param(wake_boost_duration, short, 0644);
 module_param(cib_max_boost_duration, short, 0644);
@@ -75,27 +79,35 @@ enum {
 };
 
 struct boost_drv {
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 	struct delayed_work powerhal_unboost;
 	struct delayed_work powerhal_max_unboost;
 	struct delayed_work video_streaming_unboost;
+#endif /* IN_KERNEL_POWERHAL */
 	struct delayed_work input_unboost;
 	struct delayed_work max_unboost;
 	struct notifier_block cpu_notif;
 	struct notifier_block msm_drm_notif;
 	wait_queue_head_t boost_waitq;
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 	atomic_long_t powerhal_max_boost_expires;
 	atomic_long_t video_streaming_expires;
+#endif /* IN_KERNEL_POWERHAL */
 	atomic_long_t max_boost_expires;
 	unsigned long state;
 };
 
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 static void powerhal_unboost_worker(struct work_struct *work);
 static void powerhal_max_unboost_worker(struct work_struct *work);
 static void video_streaming_unboost_worker(struct work_struct *work);
+#endif /* IN_KERNEL_POWERHAL */
+
 static void input_unboost_worker(struct work_struct *work);
 static void max_unboost_worker(struct work_struct *work);
 
 static struct boost_drv boost_drv_g __read_mostly = {
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 	.powerhal_unboost = __DELAYED_WORK_INITIALIZER(boost_drv_g.powerhal_unboost,
 							powerhal_unboost_worker, 0),
 	.powerhal_max_unboost = __DELAYED_WORK_INITIALIZER(boost_drv_g.powerhal_max_unboost,
@@ -103,6 +115,7 @@ static struct boost_drv boost_drv_g __read_mostly = {
 	.video_streaming_unboost =
 		__DELAYED_WORK_INITIALIZER(boost_drv_g.video_streaming_unboost,
 							video_streaming_unboost_worker, 0),
+#endif /* IN_KERNEL_POWERHAL */
 	.input_unboost = __DELAYED_WORK_INITIALIZER(boost_drv_g.input_unboost,
 						    input_unboost_worker, 0),
 	.max_unboost = __DELAYED_WORK_INITIALIZER(boost_drv_g.max_unboost,
@@ -166,6 +179,7 @@ static void update_online_cpu_policy(void)
 	put_online_cpus();
 }
 
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 static void __powerhal_boost_kick(struct boost_drv *b)
 {
 	if (!test_bit(SCREEN_ON, &b->state))
@@ -253,6 +267,7 @@ void video_streaming_disable_schedtune(void)
 
 	__video_streaming_disable_schedtune(b);
 }
+#endif /* IN_KERNEL_POWERHAL */
 
 static void __cpu_input_boost_kick(struct boost_drv *b)
 {
@@ -307,6 +322,7 @@ void cpu_input_boost_kick_max(unsigned int duration_ms)
 	__cpu_input_boost_kick_max(b, duration_ms);
 }
 
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 static void powerhal_unboost_worker(struct work_struct *work)
 {
 	struct boost_drv *b = container_of(to_delayed_work(work),
@@ -333,6 +349,7 @@ static void video_streaming_unboost_worker(struct work_struct *work)
 	clear_bit(VIDEO_STREAMING_INPUT_EVENT, &b->state);
 	wake_up(&b->boost_waitq);
 }
+#endif /* IN_KERNEL_POWERHAL */
 
 static void input_unboost_worker(struct work_struct *work)
 {
@@ -401,9 +418,14 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 	}
 
 	/* Boost CPU to max frequency for max boost */
-	if (test_bit(MAX_BOOST, &b->state))
+	if (test_bit(MAX_BOOST, &b->state)) {
 		policy->min = get_max_boost_freq(policy);
+#ifndef CONFIG_IN_KERNEL_POWERHAL
+		return NOTIFY_OK;
+#endif /* IN_KERNEL_POWERHAL */
+	}
 
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 	/* Do powerhal boost for powerhal_max_boost */
 	if (test_bit(POWERHAL_MAX_BOOST, &b->state)) {
 		/* Disable EAS behaviour */
@@ -426,6 +448,7 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 	if (test_bit(MAX_BOOST, &b->state) ||
 		test_bit(POWERHAL_MAX_BOOST, &b->state))
 		return NOTIFY_OK;
+#endif /* IN_KERNEL_POWERHAL */
 
 	/*
 	 * Boost to policy->max if the boost frequency is higher. When
@@ -436,6 +459,7 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 	else
 		policy->min = get_min_freq(policy);
 
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 	if (test_bit(POWERHAL_BOOST, &b->state)) {
 		/* UFS boost */
 		set_ufshcd_clkgate_enable_status(0);
@@ -443,6 +467,7 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 		/* UFS boost */
 		set_ufshcd_clkgate_enable_status(1);
 	}
+#endif /* IN_KERNEL_POWERHAL */
 
 	return NOTIFY_OK;
 }
@@ -462,7 +487,9 @@ static int msm_drm_notifier_cb(struct notifier_block *nb, unsigned long action,
 	if (*blank == MSM_DRM_BLANK_UNBLANK_CUST) {
 		set_bit(SCREEN_ON, &b->state);
 		__cpu_input_boost_kick_max(b, wake_boost_duration);
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 		disable_schedtune_boost("top-app", false);
+#endif /* IN_KERNEL_POWERHAL */
 	} else if (*blank == MSM_DRM_BLANK_POWERDOWN_CUST) {
 		clear_bit(SCREEN_ON, &b->state);
 		wake_up(&b->boost_waitq);

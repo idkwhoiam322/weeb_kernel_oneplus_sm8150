@@ -47,7 +47,9 @@
 static inline bool task_fits_max(struct task_struct *p, int cpu);
 #endif /* CONFIG_SMP */
 
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 bool energy_aware_enable = false;
+#endif /* IN_KERNEL_POWERHAL */
 
 #ifdef CONFIG_SCHED_WALT
 

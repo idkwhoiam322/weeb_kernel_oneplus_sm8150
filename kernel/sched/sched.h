@@ -3096,12 +3096,19 @@ static inline void clear_reserved(int cpu)
 	clear_bit(CPU_RESERVED, &rq->extra_flags);
 }
 
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 extern bool energy_aware_enable;
 
 static inline bool energy_aware(void)
 {
        return energy_aware_enable;
 }
+#else
+static inline bool energy_aware(void)
+{
+	return sched_feat(ENERGY_AWARE);
+}
+#endif /* IN_KERNEL_POWERHAL */
 
 struct sched_avg_stats {
 	int nr;

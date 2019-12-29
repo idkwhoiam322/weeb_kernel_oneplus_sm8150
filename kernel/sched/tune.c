@@ -6,6 +6,7 @@
 #include <linux/printk.h>
 #include <linux/rcupdate.h>
 #include <linux/slab.h>
+#include <linux/power_hal.h>
 
 #include <trace/events/sched.h>
 
@@ -15,10 +16,12 @@
 bool schedtune_initialized = false;
 extern struct reciprocal_value schedtune_spc_rdiv;
 
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 static DEFINE_MUTEX(disable_schedtune_boost_mutex);
 bool disable_boost = false;
 static struct schedtune *getSchedtune(char *st_name);
 int disable_schedtune_boost(char *st_name, bool disable);
+#endif /* IN_KERNEL_POWERHAL */
 
 /*
  * EAS scheduler tunables for task groups.
@@ -823,6 +826,7 @@ schedtune_init_cgroups(void)
 	schedtune_initialized = true;
 }
 
+#ifdef CONFIG_IN_KERNEL_POWERHAL
 static struct schedtune *getSchedtune(char *st_name)
 {
 	int idx;
@@ -870,6 +874,7 @@ int disable_schedtune_boost(char *st_name, bool disable)
 
 	return 0;
 }
+#endif /* IN_KERNEL_POWERHAL */
 
 /*
  * Initialize the cgroup structures
