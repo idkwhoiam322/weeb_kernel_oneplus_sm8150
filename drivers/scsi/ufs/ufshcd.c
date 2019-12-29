@@ -2945,6 +2945,11 @@ static ssize_t ufshcd_hibern8_on_idle_enable_store(struct device *dev,
 	if (kstrtou32(buf, 0, &value))
 		return -EINVAL;
 
+#ifdef CONFIG_IN_KERNEL_POWERHAL
+	if (task_is_booster(current))
+		return count;
+#endif /* IN_KERNEL_POWERHAL */
+
 	value = !!value;
 	if (value == hba->hibern8_on_idle.is_enabled)
 		goto out;
@@ -2973,6 +2978,42 @@ static ssize_t ufshcd_hibern8_on_idle_enable_store(struct device *dev,
 out:
 	return count;
 }
+
+#ifdef CONFIG_IN_KERNEL_POWERHAL
+void set_ufshcd_hibern8_on_idle_enable_status(u32 value)
+{
+	unsigned long flags;
+	struct ufs_hba *hba = shost_priv(ph_host);
+
+	/* Kang from ufshcd_hibern8_on_idle_enable_store() */
+
+	value = !!value;
+	if (value == hba->hibern8_on_idle.is_enabled)
+		return;
+
+	/* Update auto hibern8 timer value if supported */
+	if (ufshcd_is_auto_hibern8_supported(hba)) {
+		__ufshcd_set_auto_hibern8_timer(hba,
+			value ? hba->hibern8_on_idle.delay_ms : value);
+		return;
+	}
+
+	if (value) {
+		/*
+		 * As clock gating work would wait for the hibern8 enter work
+		 * to finish, clocks would remain on during hibern8 enter work.
+		 */
+		ufshcd_hold(hba, false);
+		ufshcd_release_all(hba);
+	} else {
+		spin_lock_irqsave(hba->host->host_lock, flags);
+		hba->hibern8_on_idle.active_reqs++;
+		spin_unlock_irqrestore(hba->host->host_lock, flags);
+	}
+
+	hba->hibern8_on_idle.is_enabled = value;
+}
+#endif /* IN_KERNEL_POWERHAL */
 
 static void ufshcd_init_hibern8_on_idle(struct ufs_hba *hba)
 {

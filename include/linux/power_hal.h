@@ -23,6 +23,7 @@ void powerhal_boost_kick_max(unsigned int duration_ms);
 
 /* UFS Boosting */
 void set_ufshcd_clkgate_enable_status(u32 value);
+void set_ufshcd_hibern8_on_idle_enable_status(u32 value);
 
 /* Video Playback detection */
 void video_streaming_disable_schedtune(void);
@@ -44,6 +45,7 @@ static inline int disable_schedtune_boost(char *st_name, bool disable)
 static inline void powerhal_boost_kick(void) { }
 static inline void powerhal_boost_kick_max(unsigned int duration_ms) { }
 static inline void set_ufshcd_clkgate_enable_status(u32 value) { }
+static inline void set_ufshcd_hibern8_on_idle_enable_status(u32 value) { }
 static inline void video_streaming_disable_schedtune(void) { }
 #endif /* IN_KERNEL_POWERHAL */
 

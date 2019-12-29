@@ -414,6 +414,7 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 		energy_aware_enable = true;
 		/* UFS unboost */
 		set_ufshcd_clkgate_enable_status(1);
+		set_ufshcd_hibern8_on_idle_enable_status(1);
 		return NOTIFY_OK;
 	}
 
@@ -433,6 +434,7 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 
 		/* UFS boost */
 		set_ufshcd_clkgate_enable_status(0);
+		set_ufshcd_hibern8_on_idle_enable_status(0);
 	} else {
 		/* Enable EAS behaviour */
 		energy_aware_enable = true;
@@ -463,9 +465,11 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 	if (test_bit(POWERHAL_BOOST, &b->state)) {
 		/* UFS boost */
 		set_ufshcd_clkgate_enable_status(0);
+		set_ufshcd_hibern8_on_idle_enable_status(0);
 	} else {
 		/* UFS boost */
 		set_ufshcd_clkgate_enable_status(1);
+		set_ufshcd_hibern8_on_idle_enable_status(1);
 	}
 #endif /* IN_KERNEL_POWERHAL */
 
