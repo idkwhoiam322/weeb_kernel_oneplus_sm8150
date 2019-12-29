@@ -414,12 +414,12 @@ static int __init cpu_input_boost_init(void)
 	if (IS_ERR(thread)) {
 		ret = PTR_ERR(thread);
 		pr_err("Failed to start CPU boost thread, err: %d\n", ret);
-		goto unregister_fb_notif;
+		goto unregister_msm_drm_notif;
 	}
 
 	return 0;
 
-unregister_fb_notif:
+unregister_msm_drm_notif:
 	msm_drm_unregister_client(&b->msm_drm_notif);
 unregister_handler:
 	input_unregister_handler(&cpu_input_boost_input_handler);
