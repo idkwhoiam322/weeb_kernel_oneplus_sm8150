@@ -132,3 +132,6 @@ kernel/configs/android-*.cfg
 Android.bp
 
 out/
+build_gcc.sh
+build_aosp_clang.sh
+build_proton_clang.sh
