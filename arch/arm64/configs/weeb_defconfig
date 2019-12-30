@@ -4910,6 +4910,12 @@ CONFIG_AW8697_HAPTIC=y
 #
 
 #
+# Qualcomm RmNet extensions
+#
+# CONFIG_RMNET_PERF is not set
+# CONFIG_RMNET_SHS is not set
+
+#
 # Firmware Drivers
 #
 CONFIG_ARM_PSCI_FW=y
