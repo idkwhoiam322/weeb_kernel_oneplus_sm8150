@@ -549,6 +549,7 @@ static void cc_query_ddrfreq(struct cc_command* cc)
 
 atomic_t cc_expect_ddrfreq;
 
+#ifdef CONFIG_DEBUG_FS
 static void cc_adjust_ddr_freq(struct cc_command *cc)
 {
 #define CC_DDR_RESET_VAL 0
@@ -595,6 +596,7 @@ static void cc_adjust_ddr_freq(struct cc_command *cc)
 	}
 
 }
+#endif /* CONFIG_DEBUG_FS */
 
 static void cc_adjust_sched(struct cc_command *cc)
 {
@@ -647,10 +649,12 @@ void cc_process(struct cc_command* cc)
 		cc_logv("cpufreq_boost: type: %u, cluster: %llu target: %llu\n", cc->type, cc->params[0], cc->params[1]);
 		cc_adjust_cpufreq_boost(cc);
 		break;
+#ifdef CONFIG_DEBUG_FS
 	case CC_CTL_CATEGORY_DDR_FREQ:
 		cc_logv("ddrfreq: type: %u, target: %llu\n", cc->type, cc->params[0]);
 		cc_adjust_ddr_freq(cc);
 		break;
+#endif
 	case CC_CTL_CATEGORY_SCHED_PRIME_BOOST:
 		cc_logv("sched prime boost: type: %u, param: %llu\n", cc->type, cc->params[0]);
 		cc_adjust_sched(cc);
