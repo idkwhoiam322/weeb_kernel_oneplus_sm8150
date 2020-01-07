@@ -1,0 +1,13 @@
+{
+  "kernel": {
+    "name": "Weeb Kernel",
+    "version": "Hentai-perf-r12v4",
+    "link": "https://github.com/idkwhoiam322/weeb_kernel_oneplus_sm8150/releases/download/1.0-beta_FKM/Hentai-perf-r12v4.zip",
+    "changelog_url": "https://raw.githubusercontent.com/idkwhoiam322/weeb_kernel_oneplus_sm8150/staging/updater/changelog",
+    "date": "2020-01-08",
+    "sha1": "f17ff1cf79ac45be607cc8e736c408bce41120df"
+  },
+  "support": {
+    "link": "https://t.me/weebkernelchat"
+  }
+}
