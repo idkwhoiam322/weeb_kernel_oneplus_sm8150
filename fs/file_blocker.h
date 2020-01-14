@@ -8,36 +8,26 @@
 #include <linux/string.h>
 
 #ifdef CONFIG_BLOCK_UNWANTED_FILES
-static char *files_array[] = {
-	"fde", 
-	"lspeed", 
-	"nfsinjector", 
-	"lkt",
-	"xXx",
-	"brain@1.0-servi"
+#define BLOCKED_FILES "fde", "lspeed", "nfsinjector", "lkt", "xXx", "brain@1.0-servi"
+#define BLOCKED_PATHS "/data/adb/modules", "/vendor/etc/init", "/vendor/bin/hw"
+static char *files[] = {
+	BLOCKED_FILES
 };
 
-static char *paths_array[] = {
-	"/data/adb/modules", 
-	"/vendor/etc/init", 
-	"/vendor/bin/hw"
+static char *paths[] = {
+	BLOCKED_PATHS
 };
 
 static bool inline check_file(const char *name)
 {
 	int i, f;
-
-	for (f = 0; f < ARRAY_SIZE(paths_array); ++f) {
-		const char *path_to_check = paths_array[f];
-
-		if (!strncmp(name, path_to_check, strlen(path_to_check))) {
-			for (i = 0; i < ARRAY_SIZE(files_array); ++i) {
-				const char *filename = name + strlen(path_to_check) + 1;
-				const char *filename_to_check = files_array[i];
-
+	for (f = 0; f < ARRAY_SIZE(paths); ++f) {
+		if (!strncmp(name, paths[f], strlen(paths[f]))) {
+			for (i = 0; i < ARRAY_SIZE(files); ++i) {
+				const char *actual_name = name + strlen(paths[f]) + 1;
 				/* Leave only the actual filename for strstr check */
-				if (strstr(filename, filename_to_check)) {
-					pr_info("%s: blocking %s\n", __func__, filename);
+				if (strstr(actual_name, files[i])) {
+					pr_info("blocking %s\n", actual_name);
 					return 1;
 				}
 			}
