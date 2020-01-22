@@ -68,8 +68,6 @@ enum kgsl_event_results {
 	KGSL_EVENT_CANCELLED = 2,
 };
 
-#define KGSL_FLAG_SPARSE        BIT(1)
-
 /*
  * "list" of event types for ftrace symbolic magic
  */
