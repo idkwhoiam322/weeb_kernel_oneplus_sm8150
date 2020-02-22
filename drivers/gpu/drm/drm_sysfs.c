@@ -1132,11 +1132,13 @@ static ssize_t panel_mismatch_show(struct device *dev,
 }
 
 int oneplus_panel_alpha =0;
+int oneplus_fod_panel_alpha =0;
 int oneplus_force_screenfp = 0;
 int op_dimlayer_bl_enable = 0;
 int op_dp_enable = 0;
 int op_dither_enable = 0;
 extern int oneplus_get_panel_brightness_to_alpha(void);
+extern int oneplus_get_fod_panel_brightness_to_alpha(void);
 
 static ssize_t oneplus_display_get_dim_alpha(struct device *dev,
                                 struct device_attribute *attr, char *buf)
@@ -1149,6 +1151,20 @@ static ssize_t oneplus_display_set_dim_alpha(struct device *dev,
                                const char *buf, size_t count)
 {
 	sscanf(buf, "%d", &oneplus_panel_alpha);
+	return count;
+}
+
+static ssize_t oneplus_display_get_fod_dim_alpha(struct device *dev,
+                                struct device_attribute *attr, char *buf)
+{
+	return sprintf(buf, "%d\n", oneplus_get_fod_panel_brightness_to_alpha());
+}
+
+static ssize_t oneplus_display_set_fod_dim_alpha(struct device *dev,
+                               struct device_attribute *attr,
+                               const char *buf, size_t count)
+{
+	sscanf(buf, "%d", &oneplus_fod_panel_alpha);
 	return count;
 }
 
@@ -1280,6 +1296,7 @@ static DEVICE_ATTR_RW(dynamic_dsitiming);
 static DEVICE_ATTR_RO(panel_mismatch);
 static DEVICE_ATTR_RO(dynamic_fps);
 static DEVICE_ATTR(dim_alpha, S_IRUGO|S_IWUSR, oneplus_display_get_dim_alpha, oneplus_display_set_dim_alpha);
+static DEVICE_ATTR(fod_dim_alpha, S_IRUGO|S_IWUSR, oneplus_display_get_fod_dim_alpha, oneplus_display_set_fod_dim_alpha);
 static DEVICE_ATTR(force_screenfp, S_IRUGO|S_IWUSR, oneplus_display_get_forcescreenfp, oneplus_display_set_forcescreenfp);
 static DEVICE_ATTR(notify_fppress, S_IRUGO|S_IWUSR, NULL, oneplus_display_notify_fp_press);
 static DEVICE_ATTR(notify_dim, S_IRUGO|S_IWUSR, NULL, oneplus_display_notify_dim);
@@ -1317,6 +1334,7 @@ static struct attribute *connector_dev_attrs[] = {
 	&dev_attr_panel_mismatch.attr,
 	&dev_attr_force_screenfp.attr,
 	&dev_attr_dim_alpha.attr,
+	&dev_attr_fod_dim_alpha.attr,
 	&dev_attr_dynamic_fps.attr,
 	&dev_attr_notify_fppress.attr,
 	&dev_attr_notify_dim.attr,
