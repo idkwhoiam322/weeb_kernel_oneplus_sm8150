@@ -87,6 +87,7 @@ struct qpnp_pon {
 	u8			warm_reset_reason1;
 	u8			warm_reset_reason2;
 	u8                      twm_state;
+	u8			fs_sync_counter;
 	bool			is_spon;
 	bool			store_hard_reset_reason;
 	bool			resin_hard_reset_disable;
@@ -99,6 +100,8 @@ struct qpnp_pon {
 	ktime_t			kpdpwr_last_release_time;
 	struct notifier_block   pon_nb;
 	bool			legacy_hard_reset_offset;
+	struct delayed_work	fsync_timer;
+	spinlock_t		fs_sync_lock;
 };
 
 enum pon_restart_reason {
