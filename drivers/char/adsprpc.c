@@ -3446,6 +3446,7 @@ static int fastrpc_internal_control(struct fastrpc_file *fl,
 		VERIFY(err, latency != 0);
 		if (err)
 			goto bail;
+		atomic_set(&fl->pm_qos_req.cpus_affine, *cpumask_bits(cpu_lp_mask));
 		if (!fl->qos_request) {
 			pm_qos_add_request(&fl->pm_qos_req,
 				PM_QOS_CPU_DMA_LATENCY, latency);
