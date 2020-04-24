@@ -1096,7 +1096,7 @@ static void __dwc3_prepare_one_trb(struct dwc3_ep *dep, struct dwc3_trb *trb,
 			 */
 			if (speed == USB_SPEED_HIGH) {
 				struct usb_ep *ep = &dep->endpoint;
-				unsigned int mult = ep->mult - 1;
+				unsigned int mult = 2;
 				unsigned int maxp = usb_endpoint_maxp(ep->desc);
 
 				if (length <= (2 * maxp))
@@ -4047,11 +4047,10 @@ int dwc3_gadget_init(struct dwc3 *dwc)
 
 	init_completion(&dwc->ep0_in_setup);
 
-	dwc->gadget.ops                 = &dwc3_gadget_ops;
-	dwc->gadget.speed               = USB_SPEED_UNKNOWN;
-	dwc->gadget.sg_supported        = true;
-	dwc->gadget.name                = "dwc3-gadget";
-	dwc->gadget.is_otg              = dwc->dr_mode == USB_DR_MODE_OTG;
+	dwc->gadget.ops			= &dwc3_gadget_ops;
+	dwc->gadget.speed		= USB_SPEED_UNKNOWN;
+	dwc->gadget.sg_supported	= true;
+	dwc->gadget.name		= "dwc3-gadget";
 
 	/*
 	 * FIXME We might be setting max_speed to <SUPER, however versions

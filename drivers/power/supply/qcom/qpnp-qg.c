@@ -1,4 +1,4 @@
-/* Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+/* Copyright (c) 2018-2020 The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -2159,6 +2159,9 @@ static int qg_psy_get_property(struct power_supply *psy,
 	case POWER_SUPPLY_PROP_VOLTAGE_AVG:
 		rc = qg_get_vbat_avg(chip, &pval->intval);
 		break;
+	case POWER_SUPPLY_PROP_CURRENT_AVG:
+		rc = qg_get_ibat_avg(chip, &pval->intval);
+		break;
 	case POWER_SUPPLY_PROP_POWER_NOW:
 		rc = qg_get_power(chip, &pval->intval, false);
 		break;
@@ -2228,6 +2231,7 @@ static enum power_supply_property qg_psy_props[] = {
 	POWER_SUPPLY_PROP_FG_RESET,
 	POWER_SUPPLY_PROP_CC_SOC,
 	POWER_SUPPLY_PROP_VOLTAGE_AVG,
+	POWER_SUPPLY_PROP_CURRENT_AVG,
 	POWER_SUPPLY_PROP_POWER_AVG,
 	POWER_SUPPLY_PROP_POWER_NOW,
 	POWER_SUPPLY_PROP_SCALE_MODE_EN,
@@ -4181,7 +4185,6 @@ static int process_suspend(struct qpnp_qg *chip)
 		return 0;
 
 	cancel_delayed_work_sync(&chip->ttf->ttf_work);
-	cancel_delayed_work_sync(&chip->qg_sleep_exit_work);
 
 	chip->suspend_data = false;
 
@@ -4347,6 +4350,9 @@ static int qpnp_qg_suspend_noirq(struct device *dev)
 {
 	int rc;
 	struct qpnp_qg *chip = dev_get_drvdata(dev);
+
+	/* cancel any pending sleep_exit work */
+	cancel_delayed_work_sync(&chip->qg_sleep_exit_work);
 
 	mutex_lock(&chip->data_lock);
 

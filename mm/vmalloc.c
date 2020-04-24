@@ -1807,6 +1807,33 @@ void *vm_map_ram(struct page **pages, unsigned int count, int node, pgprot_t pro
 EXPORT_SYMBOL(vm_map_ram);
 
 static struct vm_struct *vmlist __initdata;
+
+/**
+ * vm_area_check_early - check if vmap area is already mapped
+ * @vm: vm_struct to be checked
+ *
+ * This function is used to check if the vmap area has been
+ * mapped already. @vm->addr, @vm->size and @vm->flags should
+ * contain proper values.
+ *
+ */
+int __init vm_area_check_early(struct vm_struct *vm)
+{
+	struct vm_struct *tmp, **p;
+
+	BUG_ON(vmap_initialized);
+	for (p = &vmlist; (tmp = *p) != NULL; p = &tmp->next) {
+		if (tmp->addr >= vm->addr) {
+			if (tmp->addr < vm->addr + vm->size)
+				return 1;
+		} else {
+			if (tmp->addr + tmp->size > vm->addr)
+				return 1;
+		}
+	}
+	return 0;
+}
+
 /**
  * vm_area_add_early - add vmap area early during boot
  * @vm: vm_struct to add
@@ -1938,6 +1965,7 @@ void __init vmalloc_init(void)
 	 * Now we can initialize a free vmap space.
 	 */
 	vmap_init_free_space();
+
 	vmap_initialized = true;
 }
 
@@ -2316,7 +2344,7 @@ void *vmap(struct page **pages, unsigned int count,
 
 	might_sleep();
 
-	if (count > totalram_pages)
+	if (count > totalram_pages())
 		return NULL;
 
 	size = (unsigned long)count << PAGE_SHIFT;
@@ -2425,7 +2453,7 @@ void *__vmalloc_node_range(unsigned long size, unsigned long align,
 	unsigned long real_size = size;
 
 	size = PAGE_ALIGN(size);
-	if (!size || (size >> PAGE_SHIFT) > totalram_pages)
+	if (!size || (size >> PAGE_SHIFT) > totalram_pages())
 		goto fail;
 
 	area = __get_vm_area_node(size, align, VM_ALLOC | VM_UNINITIALIZED |
@@ -2441,7 +2469,7 @@ void *__vmalloc_node_range(unsigned long size, unsigned long align,
 	 * First make sure the mappings are removed from all page-tables
 	 * before they are freed.
 	 */
-	vmalloc_sync_all();
+	vmalloc_sync_unmappings();
 
 	/*
 	 * In this function, newly allocated vm_struct has VM_UNINITIALIZED
@@ -2981,16 +3009,19 @@ int remap_vmalloc_range(struct vm_area_struct *vma, void *addr,
 EXPORT_SYMBOL(remap_vmalloc_range);
 
 /*
- * Implement a stub for vmalloc_sync_all() if the architecture chose not to
- * have one.
+ * Implement stubs for vmalloc_sync_[un]mappings () if the architecture chose
+ * not to have one.
  *
  * The purpose of this function is to make sure the vmalloc area
  * mappings are identical in all page-tables in the system.
  */
-void __weak vmalloc_sync_all(void)
+void __weak vmalloc_sync_mappings(void)
 {
 }
 
+void __weak vmalloc_sync_unmappings(void)
+{
+}
 
 static int f(pte_t *pte, pgtable_t table, unsigned long addr, void *data)
 {

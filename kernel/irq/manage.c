@@ -202,6 +202,8 @@ int irq_do_set_affinity(struct irq_data *data, const struct cpumask *mask,
 	if (!chip || !chip->irq_set_affinity)
 		return -EINVAL;
 
+	/* IRQs only run on the first CPU in the affinity mask; reflect that */
+	mask = cpumask_of(cpumask_first(mask));
 	ret = chip->irq_set_affinity(data, mask, force);
 	switch (ret) {
 	case IRQ_SET_MASK_OK:
@@ -235,7 +237,11 @@ int irq_set_affinity_locked(struct irq_data *data, const struct cpumask *mask,
 
 	if (desc->affinity_notify) {
 		kref_get(&desc->affinity_notify->kref);
-		schedule_work(&desc->affinity_notify->work);
+		if (!schedule_work(&desc->affinity_notify->work)) {
+			/* Work was already scheduled, drop our extra ref */
+			kref_put(&desc->affinity_notify->kref,
+				 desc->affinity_notify->release);
+		}
 	}
 	irqd_set(data, IRQD_AFFINITY_SET);
 
@@ -335,7 +341,10 @@ irq_set_affinity_notifier(unsigned int irq, struct irq_affinity_notify *notify)
 	raw_spin_unlock_irqrestore(&desc->lock, flags);
 
 	if (old_notify) {
-		cancel_work_sync(&old_notify->work);
+		if (cancel_work_sync(&old_notify->work)) {
+			/* Pending work had a ref, put that one too */
+			kref_put(&old_notify->kref, old_notify->release);
+		}
 		kref_put(&old_notify->kref, old_notify->release);
 	}
 
@@ -376,6 +385,9 @@ int irq_setup_affinity(struct irq_desc *desc)
 	if (cpumask_empty(&mask))
 		cpumask_copy(&mask, cpu_online_mask);
 
+	if (irqd_has_set(&desc->irq_data, IRQF_PERF_CRITICAL))
+		cpumask_copy(&mask, cpu_perf_mask);
+
 	if (node != NUMA_NO_NODE) {
 		const struct cpumask *nodemask = cpumask_of_node(node);
 
@@ -393,23 +405,9 @@ int irq_setup_affinity(struct irq_desc *desc)
 {
 	return irq_select_affinity(irq_desc_get_irq(desc));
 }
-#endif
+#endif /* CONFIG_AUTO_IRQ_AFFINITY */
+#endif /* CONFIG_SMP */
 
-/*
- * Called when a bogus affinity is set via /proc/irq
- */
-int irq_select_affinity_usr(unsigned int irq)
-{
-	struct irq_desc *desc = irq_to_desc(irq);
-	unsigned long flags;
-	int ret;
-
-	raw_spin_lock_irqsave(&desc->lock, flags);
-	ret = irq_setup_affinity(desc);
-	raw_spin_unlock_irqrestore(&desc->lock, flags);
-	return ret;
-}
-#endif
 
 /**
  *	irq_set_vcpu_affinity - Set vcpu affinity for the interrupt
@@ -1169,6 +1167,16 @@ static void affine_one_perf_irq(struct irq_desc *desc)
 {
 	int cpu;
 
+	/*
+	* If for some reason all perf cores are offline,
+	* then affine the IRQ to the cores that are left online.
+	*/
+	if (!cpumask_intersects(cpu_perf_mask, cpu_online_mask)) {
+		irq_set_affinity_locked(&desc->irq_data, cpu_online_mask, true);
+		perf_cpu_index = -1;
+		return;
+	}
+
 	/* Balance the performance-critical IRQs across all perf CPUs */
 	while (1) {
 		cpu = cpumask_next_and(perf_cpu_index, cpu_perf_mask,
@@ -1185,7 +1193,6 @@ static void affine_one_perf_irq(struct irq_desc *desc)
 static void setup_perf_irq_locked(struct irq_desc *desc)
 {
 	add_desc_to_perf_list(desc);
-	irqd_set(&desc->irq_data, IRQD_AFFINITY_MANAGED);
 	raw_spin_lock(&perf_irqs_lock);
 	affine_one_perf_irq(desc);
 	raw_spin_unlock(&perf_irqs_lock);
@@ -1323,9 +1330,6 @@ __setup_irq(unsigned int irq, struct irq_desc *desc, struct irqaction *new)
 			if (ret)
 				goto out_thread;
 		}
-
-		if (new->flags & IRQF_PERF_CRITICAL)
-			affine_one_perf_thread(new->thread);
 	}
 
 	/*

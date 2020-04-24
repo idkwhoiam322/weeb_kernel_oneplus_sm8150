@@ -134,6 +134,11 @@ static unsigned int sched_nr_latency = 8;
 unsigned int sysctl_sched_child_runs_first __read_mostly;
 
 /*
+ * To enable/disable energy aware feature.
+ */
+unsigned int __read_mostly sysctl_sched_energy_aware = 1;
+
+/*
  * SCHED_OTHER wake-up granularity.
  *
  * This option delays the preemption effects of decoupled workloads
@@ -5323,7 +5328,7 @@ enqueue_task_fair(struct rq *rq, struct task_struct *p, int flags)
 	 * utilization updates, so do it here explicitly with the IOWAIT flag
 	 * passed.
 	 */
-	if (p->in_iowait)
+	if (p->in_iowait && prefer_idle)
 		cpufreq_update_util(rq, SCHED_CPUFREQ_IOWAIT);
 
 	for_each_sched_entity(se) {
@@ -5795,6 +5800,11 @@ unsigned long capacity_curr_of(int cpu)
 	return cap_scale(max_cap, scale_freq);
 }
 
+inline bool energy_aware(void)
+{
+	return sysctl_sched_energy_aware;
+}
+
 /*
  * Externally visible function. Let's keep the one above
  * so that the check is inlined/optimized in the sched paths.
@@ -5998,9 +6008,6 @@ struct energy_env {
  */
 static unsigned long cpu_util_without(int cpu, struct task_struct *p)
 {
-#ifndef CONFIG_SCHED_WALT
-	struct cfs_rq *cfs_rq;
-#endif
 	unsigned int util;
 
 #ifdef CONFIG_SCHED_WALT
@@ -6022,6 +6029,7 @@ static unsigned long cpu_util_without(int cpu, struct task_struct *p)
 #ifdef CONFIG_SCHED_WALT
 	util = max_t(long, cpu_util(cpu) - task_util(p), 0);
 #else
+	struct cfs_rq *cfs_rq;
 
 	cfs_rq = &cpu_rq(cpu)->cfs;
 	util = READ_ONCE(cfs_rq->avg.util_avg);
@@ -7372,13 +7380,9 @@ static inline bool task_fits_max(struct task_struct *p, int cpu)
 		return true;
 
 	if (is_min_capacity_cpu(cpu)) {
-#ifdef CONFIG_SCHED_WALT
 		if (task_boost_policy(p) == SCHED_BOOST_ON_BIG ||
 			task_boost > 0 ||
 			schedtune_task_boost(p) > 0)
-#else
-		if (task_boost > 0 || schedtune_task_boost(p) > 0)
-#endif
 			return false;
 	} else { /* mid cap cpu */
 		if (task_boost > 1)
@@ -7403,11 +7407,7 @@ static bool is_packing_eligible(struct task_struct *p, int target_cpu,
 {
 	unsigned long tutil, estimated_capacity;
 
-#ifdef CONFIG_SCHED_WALT
 	if (task_placement_boost_enabled(p) || fbt_env->need_idle || boosted)
-#else
-	if (fbt_env->need_idle || boosted)
-#endif
 		return false;
 
 	if (best_idle_cstate == -1)
@@ -7445,10 +7445,8 @@ static int start_cpu(struct task_struct *p, bool boosted,
 		return rd->max_cap_orig_cpu;
 	}
 
-	if (sync_boost) {
-		if (rd->mid_cap_orig_cpu != -1)
-			return rd->mid_cap_orig_cpu;
-	}
+	if (sync_boost && rd->mid_cap_orig_cpu != -1)
+		return rd->mid_cap_orig_cpu;
 
 	/* A task always fits on its rtg_target */
 	if (rtg_target) {
@@ -7832,8 +7830,7 @@ static inline int find_best_target(struct task_struct *p, int *backup_cpu,
 			active_cpus_count++;
 
 			/* Favor CPUs with maximum spare capacity */
-			if (capacity_orig >= target_capacity &&
-			    spare_cap < target_max_spare_cap)
+			if (spare_cap < target_max_spare_cap)
 				continue;
 
 			target_max_spare_cap = spare_cap;
@@ -7853,14 +7850,10 @@ static inline int find_best_target(struct task_struct *p, int *backup_cpu,
 		 */
 		if (!prefer_idle && !boosted &&
 			(target_cpu != -1 || best_idle_cpu != -1) &&
-#ifdef CONFIG_SCHED_WALT
 			(fbt_env->placement_boost == SCHED_BOOST_NONE ||
 			sched_boost() != FULL_THROTTLE_BOOST ||
 			(fbt_env->placement_boost == SCHED_BOOST_ON_BIG &&
 				!next_group_higher_cap)))
-#else
-			!next_group_higher_cap)
-#endif
 			break;
 
 		/*
@@ -7888,6 +7881,14 @@ static inline int find_best_target(struct task_struct *p, int *backup_cpu,
 		}
 
 	} while (sg = sg->next, sg != sd->groups);
+
+	if (prefer_idle && (best_idle_cpu != -1)) {
+		trace_sched_find_best_target(p, prefer_idle, min_util, cpu,
+					     best_idle_cpu, best_active_cpu,
+					     -1, best_idle_cpu, -1);
+
+		return best_idle_cpu;
+	}
 
 	if (best_idle_cpu != -1 && !is_packing_eligible(p, target_cpu, fbt_env,
 					active_cpus_count, best_idle_cstate,
@@ -7922,14 +7923,6 @@ static inline int find_best_target(struct task_struct *p, int *backup_cpu,
 		if (curr_tsk && schedtune_task_boost_rcu_locked(curr_tsk)) {
 			target_cpu = best_idle_cpu;
 		}
-	}
-
-	if (prefer_idle && (best_idle_cpu != -1)) {
-		trace_sched_find_best_target(p, prefer_idle, min_util, cpu,
-					     best_idle_cpu, best_active_cpu,
-					     -1, best_idle_cpu, -1);
-
-		return best_idle_cpu;
 	}
 
 	if (target_cpu == -1)
@@ -8213,11 +8206,7 @@ static int find_energy_efficient_cpu(struct sched_domain *sd,
 	struct cpumask *rtg_target = find_rtg_target(p);
 	struct find_best_target_env fbt_env;
 	bool need_idle = wake_to_idle(p);
-#ifdef CONFIG_SCHED_WALT
 	int placement_boost = task_boost_policy(p);
-#else
-	int placement_boost = -1;
-#endif
 	u64 start_t = 0;
 	int next_cpu = -1, backup_cpu = -1;
 	int boosted = (schedtune_task_boost(p) > 0 || per_task_boost(p) > 0);
@@ -8247,11 +8236,8 @@ static int find_energy_efficient_cpu(struct sched_domain *sd,
 		goto out;
 	}
 
-	if (use_sync_boost) {
+	if (use_sync_boost)
 		sync_boost = sync && cpu >= cpu_rq(cpu)->rd->mid_cap_orig_cpu;
-	} else {
-		sync_boost = false;
-	}
 
 	/* prepopulate energy diff environment */
 	eenv = get_eenv(p, prev_cpu);
@@ -8304,9 +8290,7 @@ static int find_energy_efficient_cpu(struct sched_domain *sd,
 		eenv->max_cpu_count = EAS_CPU_BKP + 1;
 
 		fbt_env.rtg_target = rtg_target;
-#ifdef CONFIG_SCHED_WALT
 		fbt_env.placement_boost = placement_boost;
-#endif
 		fbt_env.need_idle = need_idle;
 		fbt_env.skip_cpu = is_many_wakeup(sibling_count_hint) ?
 				   cpu : -1;
@@ -8325,11 +8309,8 @@ static int find_energy_efficient_cpu(struct sched_domain *sd,
 		if (unlikely(!walt_disabled && sysctl_sched_use_walt_cpu_util) &&
 		    p->state == TASK_WAKING)
 			delta = task_util(p);
-
-		if (task_placement_boost_enabled(p) || need_idle || boosted ||
-#else
-		if (need_idle || boosted ||
 #endif
+		if (task_placement_boost_enabled(p) || need_idle || boosted ||
 		    (rtg_target && (!cpumask_test_cpu(prev_cpu, rtg_target) ||
 		    cpumask_test_cpu(target_cpu, rtg_target))) ||
 		    __cpu_overutilized(prev_cpu, delta) ||
@@ -12141,7 +12122,7 @@ static inline bool nohz_kick_needed(struct rq *rq, bool only_update)
 		return true;
 
 	if (energy_aware())
-		return false;
+		return rq->misfit_task_load > 0;
 
 	rcu_read_lock();
 	sds = rcu_dereference(per_cpu(sd_llc_shared, cpu));

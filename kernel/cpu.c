@@ -498,8 +498,7 @@ static int bringup_wait_for_ap(unsigned int cpu)
 	if (WARN_ON_ONCE((!cpu_online(cpu))))
 		return -ECANCELED;
 
-	/* Unpark the stopper thread and the hotplug thread of the target cpu */
-	stop_machine_unpark(cpu);
+	/* Unpark the hotplug thread of the target cpu */
 	kthread_unpark(st->thread);
 
 	/*
@@ -1032,7 +1031,6 @@ static int cpu_down_maps_locked(unsigned int cpu, enum cpuhp_state target)
 
 static int do_cpu_down(unsigned int cpu, enum cpuhp_state target)
 {
-	struct cpumask newmask;
 	int err;
 
 	/*
@@ -1046,12 +1044,6 @@ static int do_cpu_down(unsigned int cpu, enum cpuhp_state target)
 	 * happens on from other CPUs in the root domain.
 	 */
 	cpuset_wait_for_hotplug();
-
-	cpumask_andnot(&newmask, cpu_online_mask, cpumask_of(cpu));
-	/* One big cluster CPU and one little cluster CPU must remain online */
-	if (!cpumask_intersects(&newmask, cpu_perf_mask) ||
-		!cpumask_intersects(&newmask, cpu_lp_mask))
-		return -EINVAL;
 
 	cpu_maps_update_begin();
 	err = cpu_down_maps_locked(cpu, target);
@@ -1096,8 +1088,8 @@ void notify_cpu_starting(unsigned int cpu)
 
 /*
  * Called from the idle task. Wake up the controlling task which brings the
- * stopper and the hotplug thread of the upcoming CPU up and then delegates
- * the rest of the online bringup to the hotplug thread.
+ * hotplug thread of the upcoming CPU up and then delegates the rest of the
+ * online bringup to the hotplug thread.
  */
 void cpuhp_online_idle(enum cpuhp_state state)
 {
@@ -1106,6 +1098,12 @@ void cpuhp_online_idle(enum cpuhp_state state)
 	/* Happens for the boot cpu */
 	if (state != CPUHP_AP_ONLINE_IDLE)
 		return;
+
+	/*
+	 * Unpart the stopper thread before we start the idle loop (and start
+	 * scheduling); this ensures the stopper task is always available.
+	 */
+	stop_machine_unpark(smp_processor_id());
 
 	st->state = CPUHP_AP_ONLINE_IDLE;
 	complete_ap_thread(st, true);
@@ -1264,8 +1262,8 @@ int freeze_secondary_cpus(int primary)
 {
 	int cpu, error = 0;
 
-	unaffine_perf_irqs();
 	cpu_maps_update_begin();
+	unaffine_perf_irqs();
 	if (!cpu_online(primary))
 		primary = cpumask_first(cpu_online_mask);
 	/*
@@ -1355,9 +1353,9 @@ void enable_nonboot_cpus(void)
 	arch_enable_nonboot_cpus_end();
 
 	cpumask_clear(frozen_cpus);
+	reaffine_perf_irqs();
 out:
 	cpu_maps_update_done();
-	reaffine_perf_irqs();
 }
 
 static int __init alloc_frozen_cpus(void)
@@ -2183,10 +2181,8 @@ int cpuhp_smt_disable(enum cpuhp_smt_control ctrlval)
 		 */
 		cpuhp_offline_cpu_device(cpu);
 	}
-	if (!ret) {
+	if (!ret)
 		cpu_smt_control = ctrlval;
-		arch_smt_update();
-	}
 	cpu_maps_update_done();
 	return ret;
 }
@@ -2197,7 +2193,6 @@ int cpuhp_smt_enable(void)
 
 	cpu_maps_update_begin();
 	cpu_smt_control = CPU_SMT_ENABLED;
-	arch_smt_update();
 	for_each_present_cpu(cpu) {
 		/* Skip online CPUs and CPUs on offline nodes */
 		if (cpu_online(cpu) || !node_online(cpu_to_node(cpu)))

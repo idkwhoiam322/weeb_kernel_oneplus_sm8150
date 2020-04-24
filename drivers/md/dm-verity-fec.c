@@ -215,11 +215,14 @@ static int fec_read_bufs(struct dm_verity *v, struct dm_verity_io *io,
 	struct dm_verity_fec_io *fio = fec_io(io);
 	u64 block, ileaved;
 	u8 *bbuf, *rs_block;
-	u8 want_digest[v->digest_size];
+	u8 want_digest[HASH_MAX_DIGESTSIZE];
 	unsigned n, k;
 
 	if (neras)
 		*neras = 0;
+
+	if (WARN_ON(v->digest_size > sizeof(want_digest)))
+		return -EINVAL;
 
 	/*
 	 * read each of the rsn data blocks that are part of the RS block, and
@@ -556,6 +559,7 @@ void verity_fec_dtr(struct dm_verity *v)
 	mempool_destroy(f->rs_pool);
 	mempool_destroy(f->prealloc_pool);
 	mempool_destroy(f->extra_pool);
+	mempool_destroy(f->output_pool);
 	kmem_cache_destroy(f->cache);
 
 	if (f->data_bufio)

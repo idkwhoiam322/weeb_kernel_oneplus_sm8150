@@ -175,7 +175,7 @@ extern struct sde_dbg_evtlog *sde_dbg_base_evtlog;
 #define SDE_DBG_CTRL(...) sde_dbg_ctrl(__func__, ##__VA_ARGS__, \
 		SDE_DBG_DUMP_DATA_LIMITER)
 
-#if 0
+#if defined(CONFIG_DEBUG_FS)
 
 /**
  * sde_evtlog_init - allocate a new event log object
@@ -418,7 +418,7 @@ static inline void sde_dbg_destroy(void)
 {
 }
 
-static inline void sde_dbg_dump(enum sde_dbg_dump_context mode,
+static inline void sde_dbg_dump(enum sde_dbg_dump_context ctx,
 	const char *name, ...)
 {
 }
@@ -433,14 +433,14 @@ static inline int sde_dbg_reg_register_base(const char *name,
 	return 0;
 }
 
-static inline int sde_dbg_reg_register_cb(const char *name, void (*cb)(void *),
-					  void *ptr)
+static inline int sde_dbg_reg_register_cb(const char *name,
+		void (*cb)(void *), void *ptr)
 {
 	return 0;
 }
 
 static inline void sde_dbg_reg_unregister_cb(const char *name,
-					     void (*cb)(void *), void *ptr)
+		void (*cb)(void *), void *ptr)
 {
 }
 

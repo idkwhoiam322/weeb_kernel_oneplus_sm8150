@@ -698,6 +698,7 @@ static void _sde_crtc_deinit_events(struct sde_crtc *sde_crtc)
 		return;
 }
 
+#ifdef CONFIG_DEBUG_FS
 static int _sde_debugfs_fps_status_show(struct seq_file *s, void *data)
 {
 	struct sde_crtc *sde_crtc;
@@ -744,6 +745,7 @@ static int _sde_debugfs_fps_status(struct inode *inode, struct file *file)
 	return single_open(file, _sde_debugfs_fps_status_show,
 			inode->i_private);
 }
+#endif
 
 static ssize_t set_fps_periodicity(struct device *device,
 		struct device_attribute *attr, const char *buf, size_t count)
@@ -3422,9 +3424,9 @@ int oneplus_get_panel_brightness_to_alpha(void)
 		return 0;
 	if (oneplus_panel_alpha)
 		return oneplus_panel_alpha;
-    if (display->panel->dim_status)
+	if (display->panel->dim_status)
 		return brightness_to_alpha(display->panel->hbm_backlight);
-    else
+	else
 	return bl_to_alpha_dc(display->panel->hbm_backlight);
 }
 
@@ -6098,7 +6100,7 @@ static int sde_crtc_atomic_check(struct drm_crtc *crtc,
 			SDE_ERROR("plane w/h:%x*%x > mixer w/h:%x*%x\n",
 				pstate->crtc_w, pstate->crtc_h,
 				mixer_width, mixer_height);
-			return -E2BIG;
+			rc = -E2BIG;
 			goto end;
 		}
 	}

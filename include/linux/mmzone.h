@@ -434,14 +434,8 @@ struct zone {
 	 * Write access to present_pages at runtime should be protected by
 	 * mem_hotplug_begin/end(). Any reader who can't tolerant drift of
 	 * present_pages should get_online_mems() to get a stable value.
-	 *
-	 * Read access to managed_pages should be safe because it's unsigned
-	 * long. Write access to zone->managed_pages and totalram_pages are
-	 * protected by managed_page_count_lock at runtime. Idealy only
-	 * adjust_managed_page_count() should be used instead of directly
-	 * touching zone->managed_pages and totalram_pages.
 	 */
-	unsigned long		managed_pages;
+	atomic_long_t		managed_pages;
 	unsigned long		spanned_pages;
 	unsigned long		present_pages;
 
@@ -529,6 +523,11 @@ enum pgdat_flags {
 					 */
 	PGDAT_RECLAIM_LOCKED,		/* prevents concurrent reclaim */
 };
+
+static inline unsigned long zone_managed_pages(struct zone *zone)
+{
+	return (unsigned long)atomic_long_read(&zone->managed_pages);
+}
 
 static inline unsigned long zone_end_pfn(const struct zone *zone)
 {
@@ -660,6 +659,7 @@ typedef struct pglist_data {
 	unsigned long node_spanned_pages; /* total size of physical page
 					     range, including holes */
 	int node_id;
+	atomic_t kswapd_waiters;
 	wait_queue_head_t kswapd_wait;
 	wait_queue_head_t pfmemalloc_wait;
 	struct task_struct *kswapd;	/* Protected by
@@ -848,7 +848,7 @@ unsigned long __init node_memmap_size_bytes(int, unsigned long, unsigned long);
  */
 static inline bool managed_zone(struct zone *zone)
 {
-	return zone->managed_pages;
+	return zone_managed_pages(zone);
 }
 
 /* Returns true if a zone has memory */

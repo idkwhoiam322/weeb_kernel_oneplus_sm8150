@@ -274,14 +274,15 @@ static int htable_create(struct net *net, struct hashlimit_cfg3 *cfg,
 	struct xt_hashlimit_htable *hinfo;
 	const struct file_operations *fops;
 	unsigned int size, i;
+	unsigned long nr_pages = totalram_pages();
 	int ret;
 
 	if (cfg->size) {
 		size = cfg->size;
 	} else {
-		size = (totalram_pages << PAGE_SHIFT) / 16384 /
+		size = (nr_pages << PAGE_SHIFT) / 16384 /
 		       sizeof(struct hlist_head);
-		if (totalram_pages > 1024 * 1024 * 1024 / PAGE_SIZE)
+		if (nr_pages > 1024 * 1024 * 1024 / PAGE_SIZE)
 			size = 8192;
 		if (size < 16)
 			size = 16;
@@ -845,6 +846,8 @@ hashlimit_mt(const struct sk_buff *skb, struct xt_action_param *par)
 	return hashlimit_mt_common(skb, par, hinfo, &info->cfg, 3);
 }
 
+#define HASHLIMIT_MAX_SIZE 1048576
+
 static int hashlimit_mt_check_common(const struct xt_mtchk_param *par,
 				     struct xt_hashlimit_htable **hinfo,
 				     struct hashlimit_cfg3 *cfg,
@@ -855,6 +858,14 @@ static int hashlimit_mt_check_common(const struct xt_mtchk_param *par,
 
 	if (cfg->gc_interval == 0 || cfg->expire == 0)
 		return -EINVAL;
+	if (cfg->size > HASHLIMIT_MAX_SIZE) {
+		cfg->size = HASHLIMIT_MAX_SIZE;
+		pr_info_ratelimited("size too large, truncated to %u\n", cfg->size);
+	}
+	if (cfg->max > HASHLIMIT_MAX_SIZE) {
+		cfg->max = HASHLIMIT_MAX_SIZE;
+		pr_info_ratelimited("max too large, truncated to %u\n", cfg->max);
+	}
 	if (par->family == NFPROTO_IPV4) {
 		if (cfg->srcmask > 32 || cfg->dstmask > 32)
 			return -EINVAL;

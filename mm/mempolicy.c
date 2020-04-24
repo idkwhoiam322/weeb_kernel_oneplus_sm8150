@@ -2049,43 +2049,29 @@ alloc_pages_vma(gfp_t gfp, int order, struct vm_area_struct *vma,
 		 * If the policy is interleave, or does not allow the current
 		 * node in its nodemask, we allocate the standard way.
 		 */
-		if (pol->mode == MPOL_PREFERRED &&
-						!(pol->flags & MPOL_F_LOCAL))
+		if (pol->mode == MPOL_PREFERRED && !(pol->flags & MPOL_F_LOCAL))
 			hpage_node = pol->v.preferred_node;
 
 		nmask = policy_nodemask(gfp, pol);
 		if (!nmask || node_isset(hpage_node, *nmask)) {
 			mpol_cond_put(pol);
 			/*
-			 * We cannot invoke reclaim if __GFP_THISNODE
-			 * is set. Invoking reclaim with
-			 * __GFP_THISNODE set, would cause THP
-			 * allocations to trigger heavy swapping
-			 * despite there may be tons of free memory
-			 * (including potentially plenty of THP
-			 * already available in the buddy) on all the
-			 * other NUMA nodes.
-			 *
-			 * At most we could invoke compaction when
-			 * __GFP_THISNODE is set (but we would need to
-			 * refrain from invoking reclaim even if
-			 * compaction returned COMPACT_SKIPPED because
-			 * there wasn't not enough memory to succeed
-			 * compaction). For now just avoid
-			 * __GFP_THISNODE instead of limiting the
-			 * allocation path to a strict and single
-			 * compaction invocation.
-			 *
-			 * Supposedly if direct reclaim was enabled by
-			 * the caller, the app prefers THP regardless
-			 * of the node it comes from so this would be
-			 * more desiderable behavior than only
-			 * providing THP originated from the local
-			 * node in such case.
+			 * First, try to allocate THP only on local node, but
+			 * don't reclaim unnecessarily, just compact.
 			 */
-			if (!(gfp & __GFP_DIRECT_RECLAIM))
-				gfp |= __GFP_THISNODE;
-			page = __alloc_pages_node(hpage_node, gfp, order);
+			page = __alloc_pages_node(hpage_node,
+				gfp | __GFP_THISNODE | __GFP_NORETRY, order);
+
+			/*
+			 * If hugepage allocations are configured to always
+			 * synchronous compact or the vma has been madvised
+			 * to prefer hugepage backing, retry allowing remote
+			 * memory with both reclaim and compact as well.
+			 */
+			if (!page && (gfp & __GFP_DIRECT_RECLAIM))
+				page = __alloc_pages_node(hpage_node,
+								gfp, order);
+
 			goto out;
 		}
 	}
@@ -2742,6 +2728,9 @@ int mpol_parse_str(char *str, struct mempolicy **mpol)
 	char *flags = strchr(str, '=');
 	int err = 1;
 
+	if (flags)
+		*flags++ = '\0';	/* terminate mode string */
+
 	if (nodelist) {
 		/* NUL-terminate mode or flags string */
 		*nodelist++ = '\0';
@@ -2751,9 +2740,6 @@ int mpol_parse_str(char *str, struct mempolicy **mpol)
 			goto out;
 	} else
 		nodes_clear(nodes);
-
-	if (flags)
-		*flags++ = '\0';	/* terminate mode string */
 
 	for (mode = 0; mode < MPOL_MAX; mode++) {
 		if (!strcmp(str, policy_modes[mode])) {
@@ -2766,13 +2752,17 @@ int mpol_parse_str(char *str, struct mempolicy **mpol)
 	switch (mode) {
 	case MPOL_PREFERRED:
 		/*
-		 * Insist on a nodelist of one node only
+		 * Insist on a nodelist of one node only, although later
+		 * we use first_node(nodes) to grab a single node, so here
+		 * nodelist (or nodes) cannot be empty.
 		 */
 		if (nodelist) {
 			char *rest = nodelist;
 			while (isdigit(*rest))
 				rest++;
 			if (*rest)
+				goto out;
+			if (nodes_empty(nodes))
 				goto out;
 		}
 		break;

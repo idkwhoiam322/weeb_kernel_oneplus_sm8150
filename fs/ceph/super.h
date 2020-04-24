@@ -85,7 +85,7 @@ struct ceph_mount_options {
 
 	char *snapdir_name;   /* default ".snap" */
 	char *mds_namespace;  /* default NULL */
-	char *server_path;    /* default  "/" */
+	char *server_path;    /* default NULL (means "/") */
 	char *fscache_uniq;   /* default NULL */
 };
 
@@ -752,7 +752,7 @@ static inline int default_congestion_kb(void)
 	 * This allows larger machines to have larger/more transfers.
 	 * Limit the default to 256M
 	 */
-	congestion_kb = (16*int_sqrt(totalram_pages)) << (PAGE_SHIFT-10);
+	congestion_kb = (16*int_sqrt(totalram_pages())) << (PAGE_SHIFT-10);
 	if (congestion_kb > 256*1024)
 		congestion_kb = 256*1024;
 

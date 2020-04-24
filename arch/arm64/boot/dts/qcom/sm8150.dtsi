@@ -572,7 +572,7 @@
 	};
 
 	chosen {
-		bootargs = "noirqdebug rcu_nocbs=0-7 cgroup.memory=nokmem,nosocket";
+		bootargs = "noirqdebug rcupdate.rcu_expedited=1 rcu_nocbs=0-7 cgroup.memory=nokmem,nosocket";
 	};
 
 	soc: soc { };
@@ -619,6 +619,21 @@
 		xbl_aop_mem: xbl_aop_mem {
 			no-map;
 			reg = <0x0 0x85e00000 0x0 0x140000>;
+		};
+
+		abl_mem: abl_mem {
+			 no-map;
+			 reg = <0x0 0x88f00000 0x0 0x1C00000>;
+		};
+
+		abl_unmapped_mem: abl_unmapped_mem {
+			no-map;
+			reg = <0x0 0x85f40000 0x0 0xc0000>;
+		};
+
+		abl_unmapped_mem1: abl_unmapped_mem1 {
+			no-map;
+			reg = <0x0 0x85d00000 0x0 0x100000>;
 		};
 
 		smem_region: smem {

@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2019, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2012-2020, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -914,7 +914,7 @@ struct ipa3_ep_context {
 	unsigned long gsi_chan_hdl;
 	unsigned long gsi_evt_ring_hdl;
 	struct ipa_gsi_ep_mem_info gsi_mem_info;
-	union __packed gsi_channel_scratch chan_scratch;
+	union gsi_channel_scratch chan_scratch;
 	struct gsi_chan_xfer_notify xfer_notify;
 	bool xfer_notify_valid;
 	struct ipa_ep_cfg cfg;
@@ -969,9 +969,9 @@ struct ipa_request_gsi_channel_params {
 	bool skip_ep_cfg;
 	bool keep_ipa_awake;
 	struct gsi_evt_ring_props evt_ring_params;
-	union __packed gsi_evt_scratch evt_scratch;
+	union gsi_evt_scratch evt_scratch;
 	struct gsi_chan_props chan_params;
-	union __packed gsi_channel_scratch chan_scratch;
+	union gsi_channel_scratch chan_scratch;
 };
 
 enum ipa3_sys_pipe_policy {
@@ -2231,8 +2231,10 @@ struct ipa3_mem_partition {
 	u32 uc_descriptor_ram_size;
 	u32 pdn_config_ofst;
 	u32 pdn_config_size;
-	u32 stats_quota_ofst;
-	u32 stats_quota_size;
+	u32 stats_quota_q6_ofst;
+	u32 stats_quota_q6_size;
+	u32 stats_quota_ap_ofst;
+	u32 stats_quota_ap_size;
 	u32 stats_tethering_ofst;
 	u32 stats_tethering_size;
 	u32 stats_fnr_ofst;
@@ -2335,6 +2337,8 @@ int ipa3_clear_endpoint_delay(u32 clnt_hdl);
  * Configuration
  */
 int ipa3_cfg_ep(u32 clnt_hdl, const struct ipa_ep_cfg *ipa_ep_cfg);
+
+int ipa3_cfg_ep_seq(u32 clnt_hdl, const struct ipa_ep_cfg_seq *seq_cfg);
 
 int ipa3_cfg_ep_nat(u32 clnt_hdl, const struct ipa_ep_cfg_nat *ipa_ep_cfg);
 
@@ -2702,7 +2706,7 @@ bool ipa3_has_open_aggr_frame(enum ipa_client_type client);
 
 int ipa3_mhi_resume_channels_internal(enum ipa_client_type client,
 		bool LPTransitionRejected, bool brstmode_enabled,
-		union __packed gsi_channel_scratch ch_scratch, u8 index);
+		union gsi_channel_scratch ch_scratch, u8 index);
 
 int ipa3_mhi_destroy_channel(enum ipa_client_type client);
 
@@ -2815,8 +2819,21 @@ int __ipa3_del_rt_rule(u32 rule_hdl);
 int __ipa3_del_hdr(u32 hdr_hdl, bool by_user);
 int __ipa3_release_hdr(u32 hdr_hdl);
 int __ipa3_release_hdr_proc_ctx(u32 proc_ctx_hdl);
+#ifdef CONFIG_DEBUG_FS
 int _ipa_read_ep_reg_v3_0(char *buf, int max_len, int pipe);
 int _ipa_read_ep_reg_v4_0(char *buf, int max_len, int pipe);
+#else
+static inline
+int _ipa_read_ep_reg_v3_0(char *buf, int max_len, int pipe)
+{
+	return 0;
+}
+static inline
+int _ipa_read_ep_reg_v4_0(char *buf, int max_len, int pipe)
+{
+	return 0;
+}
+#endif
 int _ipa_read_ipahal_regs(void);
 void _ipa_enable_clks_v3_0(void);
 void _ipa_disable_clks_v3_0(void);

@@ -183,7 +183,7 @@ static void sugov_update_commit(struct sugov_policy *sg_policy, u64 time,
 	} else {
 		if (likely(use_pelt()))
 			sg_policy->work_in_progress = true;
-		irq_work_queue(&sg_policy->irq_work);
+		sched_irq_work_queue(&sg_policy->irq_work);
 	}
 }
 
@@ -217,7 +217,6 @@ static unsigned int get_next_freq(struct sugov_policy *sg_policy,
 				policy->cpuinfo.max_freq : policy->cur;
 
 	freq = (freq + (freq >> 2)) * util / max;
-	trace_sugov_next_freq(policy->cpu, util, max, freq);
 
 	if (freq == sg_policy->cached_raw_freq && sg_policy->next_freq != UINT_MAX)
 		return sg_policy->next_freq;
@@ -781,8 +780,12 @@ static int sugov_init(struct cpufreq_policy *policy)
 		goto stop_kthread;
 	}
 
-	tunables->up_rate_limit_us = 500;
-	tunables->down_rate_limit_us = 20000;
+
+	tunables->up_rate_limit_us =
+				CONFIG_SCHEDUTIL_UP_RATE_LIMIT;
+	tunables->down_rate_limit_us =
+				CONFIG_SCHEDUTIL_DOWN_RATE_LIMIT;
+
 
 	tunables->iowait_boost_enable = true;
 	policy->governor_data = sg_policy;
@@ -899,7 +902,6 @@ static void sugov_limits(struct cpufreq_policy *policy)
 	struct sugov_policy *sg_policy = policy->governor_data;
 	unsigned long flags;
 	unsigned int ret;
-	int cpu;
 
 	if (!policy->fast_switch_enabled) {
 		mutex_lock(&sg_policy->work_lock);
@@ -910,8 +912,6 @@ static void sugov_limits(struct cpufreq_policy *policy)
 		ret = cpufreq_policy_apply_limits_fast(policy);
 		if (ret && policy->cur != ret) {
 			policy->cur = ret;
-			for_each_cpu(cpu, policy->cpus)
-				trace_cpu_frequency(ret, cpu);
 		}
 		raw_spin_unlock_irqrestore(&sg_policy->update_lock, flags);
 	}

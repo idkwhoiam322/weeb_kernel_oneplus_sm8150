@@ -150,7 +150,7 @@ struct gsi_chan_ctx {
 	struct completion compl;
 	bool allocated;
 	atomic_t poll_mode;
-	union __packed gsi_channel_scratch scratch;
+	union gsi_channel_scratch scratch;
 	struct gsi_chan_stats stats;
 	bool enable_dp_stats;
 	bool print_dp_stats;
@@ -169,7 +169,7 @@ struct gsi_evt_ctx {
 	struct completion compl;
 	struct gsi_chan_ctx *chan;
 	atomic_t chan_ref_cnt;
-	union __packed gsi_evt_scratch scratch;
+	union gsi_evt_scratch scratch;
 	struct gsi_evt_stats stats;
 };
 
@@ -201,6 +201,7 @@ struct ch_debug_stats {
 
 struct gsi_generic_ee_cmd_debug_stats {
 	unsigned long halt_channel;
+	unsigned long flow_ctrl_channel;
 };
 
 struct gsi_ctx {
@@ -329,6 +330,8 @@ enum gsi_evt_ch_cmd_opcode {
 enum gsi_generic_ee_cmd_opcode {
 	GSI_GEN_EE_CMD_HALT_CHANNEL = 0x1,
 	GSI_GEN_EE_CMD_ALLOC_CHANNEL = 0x2,
+	GSI_GEN_EE_CMD_ENABLE_FLOW_CHANNEL = 0x3,
+	GSI_GEN_EE_CMD_DISABLE_FLOW_CHANNEL = 0x4,
 };
 
 enum gsi_generic_ee_cmd_return_code {

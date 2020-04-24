@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0
 VERSION = 4
 PATCHLEVEL = 14
-SUBLEVEL = 169
+SUBLEVEL = 177
 EXTRAVERSION =
 NAME = Petit Gorille
 
@@ -364,21 +364,17 @@ HOST_LFS_LIBS := $(shell getconf LFS_LIBS 2>/dev/null)
 HOSTCC       = gcc
 HOSTCXX      = g++
 HOSTCFLAGS   := -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 \
-		-fomit-frame-pointer -std=gnu89 $(HOST_LFS_CFLAGS)
+		-fomit-frame-pointer -std=gnu89 -pipe $(HOST_LFS_CFLAGS)
 HOSTCXXFLAGS := -O2 $(HOST_LFS_CFLAGS)
 HOSTLDFLAGS  := $(HOST_LFS_LDFLAGS)
 HOST_LOADLIBES := $(HOST_LFS_LIBS)
-
-ifeq ($(shell $(HOSTCC) -v 2>&1 | grep -c "clang version"), 1)
-HOSTCFLAGS  += -Wno-unused-value -Wno-unused-parameter \
-		-Wno-missing-field-initializers
-endif
 
 # Make variables (CC, etc...)
 AS		= $(CROSS_COMPILE)as
 LD		= $(CROSS_COMPILE)ld
 CC		= $(CROSS_COMPILE)gcc
 LDGOLD		= $(CROSS_COMPILE)ld.gold
+LDLLD		= ld.lld
 CPP		= $(CC) -E
 AR		= $(CROSS_COMPILE)ar
 NM		= $(CROSS_COMPILE)nm
@@ -421,7 +417,7 @@ LINUXINCLUDE    := \
 		$(USERINCLUDE)
 
 KBUILD_AFLAGS   := -D__ASSEMBLY__
-KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
+KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -pipe \
 		   -fno-strict-aliasing -fno-common -fshort-wchar \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
@@ -498,11 +494,14 @@ endif
 ifneq ($(GCC_TOOLCHAIN),)
 CLANG_FLAGS	+= --gcc-toolchain=$(GCC_TOOLCHAIN)
 endif
-CLANG_FLAGS	+= -no-integrated-as
 CLANG_FLAGS	+= -Werror=unknown-warning-option
 KBUILD_CFLAGS	+= $(CLANG_FLAGS)
-KBUILD_AFLAGS	+= $(CLANG_FLAGS)
+KBUILD_AFLAGS	+= $(CLANG_FLAGS) -no-integrated-as
 export CLANG_FLAGS
+ifeq ($(ld-name),lld)
+KBUILD_CFLAGS += -fuse-ld=lld
+endif
+KBUILD_CPPFLAGS += -Qunused-arguments
 endif
 
 RETPOLINE_CFLAGS_GCC := -mindirect-branch=thunk-extern -mindirect-branch-register
@@ -654,16 +653,26 @@ export CFLAGS_GCOV CFLAGS_KCOV
 
 # Make toolchain changes before including arch/$(SRCARCH)/Makefile to ensure
 # ar/cc/ld-* macros return correct values.
-ifdef CONFIG_LTO_CLANG
-# use GNU gold with LLVMgold for LTO linking, and LD for vmlinux_link
+ifdef CONFIG_LD_GOLD
 LDFINAL_vmlinux := $(LD)
 LD		:= $(LDGOLD)
+endif
+ifdef CONFIG_LD_LLD
+LD		:= $(LDLLD)
+endif
+
+ifdef CONFIG_LTO_CLANG
+# use GNU gold with LLVMgold or LLD for LTO linking, and LD for vmlinux_link
+ifeq ($(ld-name),gold)
 LDFLAGS		+= -plugin LLVMgold.so
+endif
 # use llvm-ar for building symbol tables from IR files, and llvm-dis instead
 # of objdump for processing symbol versions and exports
 LLVM_AR		:= llvm-ar
 LLVM_DIS	:= llvm-dis
 export LLVM_AR LLVM_DIS
+# Set O3 optimization level for LTO
+LDFLAGS		+= --plugin-opt=O3
 endif
 
 # The arch Makefile can set ARCH_{CPP,A,C}FLAGS to override the default
@@ -693,6 +702,17 @@ KBUILD_CFLAGS	+= -mcpu=cortex-a76.cortex-a55 -mtune=cortex-a76.cortex-a55
 endif
 ifeq ($(cc-name),clang)
 KBUILD_CFLAGS	+= -mcpu=cortex-a55 -mtune=cortex-a55
+
+ifdef CONFIG_LLVM_POLLY
+KBUILD_CFLAGS	+= -mllvm -polly \
+		   -mllvm -polly-run-dce \
+		   -mllvm -polly-run-inliner \
+		   -mllvm -polly-opt-fusion=max \
+		   -mllvm -polly-ast-use-context \
+		   -mllvm -polly-detect-keep-going \
+		   -mllvm -polly-vectorizer=stripmine \
+		   -mllvm -polly-invariant-load-hoisting
+endif
 endif
 endif
 endif
@@ -748,7 +768,6 @@ endif
 KBUILD_CFLAGS += $(stackp-flag)
 
 ifeq ($(cc-name),clang)
-KBUILD_CPPFLAGS += $(call cc-option,-Qunused-arguments,)
 KBUILD_CFLAGS += $(call cc-disable-warning, format-invalid-specifier)
 KBUILD_CFLAGS += $(call cc-disable-warning, gnu)
 KBUILD_CFLAGS += $(call cc-disable-warning, duplicate-decl-specifier)
@@ -757,21 +776,33 @@ KBUILD_CFLAGS += $(call cc-option, -Wno-undefined-optimized)
 KBUILD_CFLAGS += $(call cc-option, -Wno-tautological-constant-out-of-range-compare)
 KBUILD_CFLAGS += $(call cc-option, -mllvm -disable-struct-const-merge)
 KBUILD_CFLAGS += $(call cc-option, -Wno-sometimes-uninitialized)
+KBUILD_CFLAGS += $(call cc-disable-warning, void-pointer-to-int-cast)
 
 # Quiet clang warning: comparison of unsigned expression < 0 is always false
 
 KBUILD_CFLAGS += $(call cc-disable-warning, tautological-compare)
+
+ifdef CONFIG_MODULES
 # CLANG uses a _MergedGlobals as optimization, but this breaks modpost, as the
 # source of a reference will be _MergedGlobals and not on of the whitelisted names.
 # See modpost pattern 2
 KBUILD_CFLAGS += $(call cc-option, -mno-global-merge,)
-KBUILD_CFLAGS += $(call cc-option, -fcatch-undefined-behavior)
+endif
+# clang's -Wpointer-to-int-cast warns when casting to enums, which does not match GCC.
+# Disable that part of the warning because it is very noisy across the kernel and does
+# not point out any real bugs.
+KBUILD_CFLAGS += $(call cc-disable-warning, pointer-to-enum-cast)
+KBUILD_CFLAGS += $(call cc-disable-warning, pointer-to-int-cast)
 else
 
 KBUILD_CFLAGS += $(call cc-option,-fno-delete-null-pointer-checks,)
 # These warnings generated too much noise in a regular build.
 # Use make W=1 to enable them (see scripts/Makefile.extrawarn)
 KBUILD_CFLAGS += $(call cc-disable-warning, unused-but-set-variable)
+endif
+
+ifeq ($(ld-name),lld)
+LDFLAGS += -O2
 endif
 
 KBUILD_CFLAGS += $(call cc-disable-warning, unused-const-variable)
@@ -910,9 +941,6 @@ KBUILD_CFLAGS	+= $(call cc-option,-fmerge-constants)
 # Make sure -fstack-check isn't enabled (like gentoo apparently did)
 KBUILD_CFLAGS  += $(call cc-option,-fno-stack-check,)
 
-# conserve stack if available
-KBUILD_CFLAGS   += $(call cc-option,-fconserve-stack)
-
 ifdef CONFIG_CC_WERROR
 # disallow errors like 'EXPORT_GPL(foo);' with missing header
 KBUILD_CFLAGS   += $(call cc-option,-Werror=implicit-int)
@@ -964,6 +992,10 @@ endif
 
 ifeq ($(CONFIG_STRIP_ASM_SYMS),y)
 LDFLAGS_vmlinux	+= $(call ld-option, -X,)
+endif
+
+ifeq ($(CONFIG_RELR),y)
+LDFLAGS_vmlinux	+= --pack-dyn-relocs=relr
 endif
 
 # Default kernel image to build when no specific target is given.
@@ -1223,8 +1255,10 @@ ifdef CONFIG_LTO_CLANG
   ifneq ($(call clang-ifversion, -ge, 0500, y), y)
 	@echo Cannot use CONFIG_LTO_CLANG: requires clang 5.0 or later >&2 && exit 1
   endif
-  ifneq ($(call gold-ifversion, -ge, 112000000, y), y)
-	@echo Cannot use CONFIG_LTO_CLANG: requires GNU gold 1.12 or later >&2 && exit 1
+  ifneq ($(ld-name), lld)
+    ifneq ($(call gold-ifversion, -ge, 112000000, y), y)
+	@echo Cannot use CONFIG_LTO_CLANG: requires LLD or GNU gold 1.12 or later >&2 && exit 1
+    endif
   endif
 endif
 # Make sure compiler supports LTO flags

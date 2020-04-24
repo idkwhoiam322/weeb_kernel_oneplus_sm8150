@@ -1,4 +1,4 @@
-/* Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -48,6 +48,7 @@ const char * const mhi_state_tran_str[MHI_ST_TRANSITION_MAX] = {
 	[MHI_ST_TRANSITION_READY] = "READY",
 	[MHI_ST_TRANSITION_SBL] = "SBL",
 	[MHI_ST_TRANSITION_MISSION_MODE] = "MISSION MODE",
+	[MHI_ST_TRANSITION_DISABLE] = "DISABLE",
 };
 
 const char * const mhi_state_str[MHI_STATE_MAX] = {
@@ -71,10 +72,12 @@ static const char * const mhi_pm_state_str[] = {
 	[MHI_PM_BIT_M3] = "M3",
 	[MHI_PM_BIT_M3_EXIT] = "M3->M0",
 	[MHI_PM_BIT_FW_DL_ERR] = "FW DL Error",
+	[MHI_PM_BIT_DEVICE_ERR_DETECT] = "Device Error Detect",
 	[MHI_PM_BIT_SYS_ERR_DETECT] = "SYS_ERR Detect",
 	[MHI_PM_BIT_SYS_ERR_PROCESS] = "SYS_ERR Process",
 	[MHI_PM_BIT_SHUTDOWN_PROCESS] = "SHUTDOWN Process",
 	[MHI_PM_BIT_LD_ERR_FATAL_DETECT] = "LD or Error Fatal Detect",
+	[MHI_PM_BIT_SHUTDOWN_NO_ACCESS] = "SHUTDOWN No Access",
 };
 
 struct mhi_bus mhi_bus;
@@ -358,6 +361,11 @@ static int mhi_init_debugfs_mhi_chan_open(struct inode *inode, struct file *fp)
 	return single_open(fp, mhi_debugfs_mhi_chan_show, inode->i_private);
 }
 
+static int mhi_init_debugfs_mhi_vote_open(struct inode *inode, struct file *fp)
+{
+	return single_open(fp, mhi_debugfs_mhi_vote_show, inode->i_private);
+}
+
 static const struct file_operations debugfs_state_ops = {
 	.open = mhi_init_debugfs_mhi_states_open,
 	.release = single_release,
@@ -376,8 +384,14 @@ static const struct file_operations debugfs_chan_ops = {
 	.read = seq_read,
 };
 
-DEFINE_SIMPLE_ATTRIBUTE(debugfs_trigger_reset_fops, NULL,
-			mhi_debugfs_trigger_reset, "%llu\n");
+static const struct file_operations debugfs_vote_ops = {
+	.open = mhi_init_debugfs_mhi_vote_open,
+	.release = single_release,
+	.read = seq_read,
+};
+
+DEFINE_DEBUGFS_ATTRIBUTE(debugfs_trigger_reset_fops, NULL,
+			 mhi_debugfs_trigger_reset, "%llu\n");
 
 void mhi_init_debugfs(struct mhi_controller *mhi_cntrl)
 {
@@ -400,6 +414,8 @@ void mhi_init_debugfs(struct mhi_controller *mhi_cntrl)
 	debugfs_create_file("events", 0444, dentry, mhi_cntrl,
 			    &debugfs_ev_ops);
 	debugfs_create_file("chan", 0444, dentry, mhi_cntrl, &debugfs_chan_ops);
+	debugfs_create_file("vote", 0444, dentry, mhi_cntrl,
+			    &debugfs_vote_ops);
 	debugfs_create_file("reset", 0444, dentry, mhi_cntrl,
 			    &debugfs_trigger_reset_fops);
 	mhi_cntrl->dentry = dentry;
@@ -606,7 +622,6 @@ int mhi_init_timesync(struct mhi_controller *mhi_cntrl)
 		return -ENOMEM;
 
 	spin_lock_init(&mhi_tsync->lock);
-	mutex_init(&mhi_tsync->lpm_mutex);
 	INIT_LIST_HEAD(&mhi_tsync->head);
 	init_completion(&mhi_tsync->completion);
 
@@ -1022,7 +1037,7 @@ static int of_parse_ev_cfg(struct mhi_controller *mhi_cntrl,
 	if (!mhi_cntrl->mhi_event)
 		return -ENOMEM;
 
-	INIT_LIST_HEAD(&mhi_cntrl->lp_ev_rings);
+	INIT_LIST_HEAD(&mhi_cntrl->sp_ev_rings);
 
 	/* populate ev ring */
 	mhi_event = mhi_cntrl->mhi_event;
@@ -1105,13 +1120,13 @@ static int of_parse_ev_cfg(struct mhi_controller *mhi_cntrl,
 							      "mhi,offload");
 
 		/*
-		 * low priority events are handled in a separate worker thread
+		 * special purpose events are handled in a separate kthread
 		 * to allow for sleeping functions to be called.
 		 */
 		if (!mhi_event->offload_ev) {
-			if (IS_MHI_ER_PRIORITY_LOW(mhi_event))
+			if (IS_MHI_ER_PRIORITY_SPECIAL(mhi_event))
 				list_add_tail(&mhi_event->node,
-						&mhi_cntrl->lp_ev_rings);
+						&mhi_cntrl->sp_ev_rings);
 			else
 				mhi_event->request_irq = true;
 		}
@@ -1354,7 +1369,7 @@ static int of_parse_dt(struct mhi_controller *mhi_cntrl,
 	return 0;
 
 error_ev_cfg:
-	kfree(mhi_cntrl->mhi_chan);
+	vfree(mhi_cntrl->mhi_chan);
 
 	return ret;
 }
@@ -1392,14 +1407,19 @@ int of_register_mhi_controller(struct mhi_controller *mhi_cntrl)
 
 	INIT_LIST_HEAD(&mhi_cntrl->transition_list);
 	mutex_init(&mhi_cntrl->pm_mutex);
+	mutex_init(&mhi_cntrl->tsync_mutex);
 	rwlock_init(&mhi_cntrl->pm_lock);
 	spin_lock_init(&mhi_cntrl->transition_lock);
 	spin_lock_init(&mhi_cntrl->wlock);
 	INIT_WORK(&mhi_cntrl->st_worker, mhi_pm_st_worker);
-	INIT_WORK(&mhi_cntrl->fw_worker, mhi_fw_load_worker);
-	INIT_WORK(&mhi_cntrl->syserr_worker, mhi_pm_sys_err_worker);
-	INIT_WORK(&mhi_cntrl->low_priority_worker, mhi_low_priority_worker);
 	init_waitqueue_head(&mhi_cntrl->state_event);
+
+	mhi_cntrl->special_wq = alloc_ordered_workqueue("mhi_special_w",
+						WQ_MEM_RECLAIM | WQ_HIGHPRI);
+	if (!mhi_cntrl->special_wq)
+		goto error_alloc_cmd;
+
+	INIT_WORK(&mhi_cntrl->special_work, mhi_special_purpose_work);
 
 	mhi_cmd = mhi_cntrl->mhi_cmd;
 	for (i = 0; i < NR_OF_CMD_RINGS; i++, mhi_cmd++)
@@ -1413,7 +1433,7 @@ int of_register_mhi_controller(struct mhi_controller *mhi_cntrl)
 		mhi_event->mhi_cntrl = mhi_cntrl;
 		spin_lock_init(&mhi_event->lock);
 
-		if (IS_MHI_ER_PRIORITY_LOW(mhi_event))
+		if (IS_MHI_ER_PRIORITY_SPECIAL(mhi_event))
 			continue;
 
 		if (mhi_event->data_type == MHI_ER_CTRL_ELEMENT_TYPE)
@@ -1429,6 +1449,9 @@ int of_register_mhi_controller(struct mhi_controller *mhi_cntrl)
 		mutex_init(&mhi_chan->mutex);
 		init_completion(&mhi_chan->completion);
 		rwlock_init(&mhi_chan->lock);
+
+		mhi_event = &mhi_cntrl->mhi_event[mhi_chan->er_index];
+		mhi_chan->bei = !!(mhi_event->intmod);
 	}
 
 	if (mhi_cntrl->bounce_buf) {
@@ -1470,6 +1493,7 @@ int of_register_mhi_controller(struct mhi_controller *mhi_cntrl)
 	}
 
 	mhi_dev->dev_type = MHI_CONTROLLER_TYPE;
+	mhi_dev->chan_name = mhi_cntrl->name;
 	mhi_dev->mhi_cntrl = mhi_cntrl;
 	dev_set_name(&mhi_dev->dev, "%04x_%02u.%02u.%02u", mhi_dev->dev_id,
 		     mhi_dev->domain, mhi_dev->bus, mhi_dev->slot);
@@ -1518,9 +1542,10 @@ error_add_dev:
 
 error_alloc_dev:
 	kfree(mhi_cntrl->mhi_cmd);
+	destroy_workqueue(mhi_cntrl->special_wq);
 
 error_alloc_cmd:
-	kfree(mhi_cntrl->mhi_chan);
+	vfree(mhi_cntrl->mhi_chan);
 	kfree(mhi_cntrl->mhi_event);
 
 	return ret;
@@ -1534,7 +1559,7 @@ void mhi_unregister_mhi_controller(struct mhi_controller *mhi_cntrl)
 
 	kfree(mhi_cntrl->mhi_cmd);
 	kfree(mhi_cntrl->mhi_event);
-	kfree(mhi_cntrl->mhi_chan);
+	vfree(mhi_cntrl->mhi_chan);
 	kfree(mhi_cntrl->mhi_tsync);
 
 	if (sfr_info) {
@@ -1832,10 +1857,6 @@ static int mhi_driver_remove(struct device *dev)
 
 		mutex_unlock(&mhi_chan->mutex);
 	}
-
-
-	if (mhi_cntrl->tsync_dev == mhi_dev)
-		mhi_cntrl->tsync_dev = NULL;
 
 	/* relinquish any pending votes for device */
 	while (atomic_read(&mhi_dev->dev_vote))

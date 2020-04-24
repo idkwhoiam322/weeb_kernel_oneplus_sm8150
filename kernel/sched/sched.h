@@ -137,6 +137,8 @@ extern void init_sched_groups_capacity(int cpu, struct sched_domain *sd);
 static inline void cpu_load_update_active(struct rq *this_rq) { }
 #endif
 
+extern bool energy_aware(void);
+
 /*
  * Helpers for converting nanosecond timing to jiffy resolution
  */
@@ -159,7 +161,13 @@ static inline void cpu_load_update_active(struct rq *this_rq) { }
 #ifdef CONFIG_64BIT
 # define NICE_0_LOAD_SHIFT	(SCHED_FIXEDPOINT_SHIFT + SCHED_FIXEDPOINT_SHIFT)
 # define scale_load(w)		((w) << SCHED_FIXEDPOINT_SHIFT)
-# define scale_load_down(w)	((w) >> SCHED_FIXEDPOINT_SHIFT)
+# define scale_load_down(w) \
+({ \
+	unsigned long __w = (w); \
+	if (__w) \
+		__w = max(2UL, __w >> SCHED_FIXEDPOINT_SHIFT); \
+	__w; \
+})
 #else
 # define NICE_0_LOAD_SHIFT	(SCHED_FIXEDPOINT_SHIFT)
 # define scale_load(w)		(w)
@@ -1960,7 +1968,10 @@ static inline int hrtick_enabled(struct rq *rq)
 #ifdef CONFIG_SCHED_WALT
 u64 sched_ktime_clock(void);
 #else
-#define sched_ktime_clock ktime_get_ns
+static inline u64 sched_ktime_clock(void)
+{
+	return sched_clock();
+}
 #endif
 
 #ifdef CONFIG_SMP
@@ -2519,16 +2530,20 @@ DECLARE_PER_CPU(struct update_util_data *, cpufreq_update_util_data);
 static inline void cpufreq_update_util(struct rq *rq, unsigned int flags)
 {
 	struct update_util_data *data;
+	u64 clock;
 
 #ifdef CONFIG_SCHED_WALT
 	if (!(flags & SCHED_CPUFREQ_WALT))
 		return;
+	clock = sched_ktime_clock();
+#else
+	clock = rq_clock(rq);
 #endif
 
 	data = rcu_dereference_sched(*per_cpu_ptr(&cpufreq_update_util_data,
 					cpu_of(rq)));
 	if (data)
-		data->func(data, sched_ktime_clock(), flags);
+		data->func(data, clock, flags);
 }
 #else
 static inline void cpufreq_update_util(struct rq *rq, unsigned int flags) {}
@@ -2940,18 +2955,22 @@ void note_task_waking(struct task_struct *p, u64 wallclock);
 
 static inline bool task_placement_boost_enabled(struct task_struct *p)
 {
-	if (task_sched_boost(p))
-		return sched_boost_policy() != SCHED_BOOST_NONE;
+	if (likely(sched_boost_policy() == SCHED_BOOST_NONE))
+		return false;
 
-	return false;
+	return task_sched_boost(p);
 }
-
 
 static inline enum sched_boost_policy task_boost_policy(struct task_struct *p)
 {
-	enum sched_boost_policy policy = task_sched_boost(p) ?
-							sched_boost_policy() :
-							SCHED_BOOST_NONE;
+	enum sched_boost_policy policy = sched_boost_policy();
+
+	if (likely(policy == SCHED_BOOST_NONE))
+		return SCHED_BOOST_NONE;
+
+	if (!task_sched_boost(p))
+		return SCHED_BOOST_NONE;
+
 	if (policy == SCHED_BOOST_ON_BIG) {
 		/*
 		 * Filter out tasks less than min task util threshold
@@ -3111,7 +3130,7 @@ static inline void update_cpu_cluster_capacity(const cpumask_t *cpus) { }
 #ifdef CONFIG_SMP
 static inline unsigned long thermal_cap(int cpu)
 {
-	return cpu_rq(cpu)->cpu_capacity_orig;
+	return SCHED_CAPACITY_SCALE;
 }
 #endif
 
@@ -3154,14 +3173,19 @@ static inline void clear_reserved(int cpu)
 	clear_bit(CPU_RESERVED, &rq->extra_flags);
 }
 
-static inline bool energy_aware(void)
-{
-	return sched_feat(ENERGY_AWARE);
-}
-
 struct sched_avg_stats {
 	int nr;
 	int nr_misfit;
 	int nr_max;
 };
 extern void sched_get_nr_running_avg(struct sched_avg_stats *stats);
+
+#ifdef CONFIG_SMP
+static inline void sched_irq_work_queue(struct irq_work *work)
+{
+	if (likely(cpu_online(raw_smp_processor_id())))
+		irq_work_queue(work);
+	else
+		irq_work_queue_on(work, cpumask_any(cpu_online_mask));
+}
+#endif

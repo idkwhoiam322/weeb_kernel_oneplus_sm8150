@@ -1095,7 +1095,7 @@ int gsi_alloc_evt_ring(struct gsi_evt_ring_props *props, unsigned long dev_hdl,
  * @Return gsi_status
  */
 int gsi_write_evt_ring_scratch(unsigned long evt_ring_hdl,
-		union __packed gsi_evt_scratch val);
+		union gsi_evt_scratch val);
 
 /**
  * gsi_dealloc_evt_ring - Peripheral should call this function to
@@ -1222,7 +1222,7 @@ int gsi_alloc_channel(struct gsi_chan_props *props, unsigned long dev_hdl,
  * @Return gsi_status
  */
 int gsi_write_channel_scratch(unsigned long chan_hdl,
-		union __packed gsi_channel_scratch val);
+		union gsi_channel_scratch val);
 
 /**
  * gsi_write_channel_scratch3_reg - Peripheral should call this function to
@@ -1235,7 +1235,7 @@ int gsi_write_channel_scratch(unsigned long chan_hdl,
  * @Return gsi_status
  */
 int gsi_write_channel_scratch3_reg(unsigned long chan_hdl,
-		union __packed gsi_wdi_channel_scratch3_reg val);
+		union gsi_wdi_channel_scratch3_reg val);
 
 /**
  * gsi_write_wdi3_channel_scratch2_reg - Peripheral should call this function
@@ -1261,7 +1261,7 @@ int gsi_write_wdi3_channel_scratch2_reg(unsigned long chan_hdl,
  * @Return gsi_status
  */
 int gsi_read_channel_scratch(unsigned long chan_hdl,
-		union __packed gsi_channel_scratch *val);
+		union gsi_channel_scratch *val);
 
 /**
  * gsi_read_wdi3_channel_scratch2_reg - Peripheral should call this function to
@@ -1289,7 +1289,7 @@ int gsi_read_wdi3_channel_scratch2_reg(unsigned long chan_hdl,
  * @Return gsi_status
  */
 int gsi_update_mhi_channel_scratch(unsigned long chan_hdl,
-		struct __packed gsi_mhi_channel_scratch mscr);
+		struct gsi_mhi_channel_scratch mscr);
 
 /**
  * gsi_start_channel - Peripheral should call this function to
@@ -1618,6 +1618,19 @@ int gsi_alloc_channel_ee(unsigned int chan_idx, unsigned int ee, int *code);
 
 
 int gsi_chk_intset_value(void);
+/**
+ * gsi_enable_flow_control_ee - Peripheral should call this function
+ * to enable flow control other EE's channel. This is usually done in USB
+ * connent and SSR scenarios.
+ *
+ * @chan_idx: Virtual channel index
+ * @ee: EE
+ * @code: [out] response code for operation
+
+ * @Return gsi_status
+ */
+int gsi_enable_flow_control_ee(unsigned int chan_idx, unsigned int ee,
+								int *code);
 
 /*
  * Here is a typical sequence of calls
@@ -1677,7 +1690,7 @@ static inline int gsi_alloc_evt_ring(struct gsi_evt_ring_props *props,
 }
 
 static inline int gsi_write_evt_ring_scratch(unsigned long evt_ring_hdl,
-		union __packed gsi_evt_scratch val)
+		union gsi_evt_scratch val)
 {
 	return -GSI_STATUS_UNSUPPORTED_OP;
 }
@@ -1717,24 +1730,24 @@ static inline int gsi_alloc_channel(struct gsi_chan_props *props,
 }
 
 static inline int gsi_write_channel_scratch(unsigned long chan_hdl,
-		union __packed gsi_channel_scratch val)
+		union gsi_channel_scratch val)
 {
 	return -GSI_STATUS_UNSUPPORTED_OP;
 }
 static inline int gsi_write_channel_scratch3_reg(unsigned long chan_hdl,
-		union __packed gsi_wdi_channel_scratch3_reg val)
+		union gsi_wdi_channel_scratch3_reg val)
 {
 	return -GSI_STATUS_UNSUPPORTED_OP;
 }
 
 static inline int gsi_read_channel_scratch(unsigned long chan_hdl,
-		union __packed gsi_channel_scratch *val)
+		union gsi_channel_scratch *val)
 {
 	return -GSI_STATUS_UNSUPPORTED_OP;
 }
 
 static inline int gsi_update_mhi_channel_scratch(unsigned long chan_hdl,
-		struct __packed gsi_mhi_channel_scratch mscr)
+		struct gsi_mhi_channel_scratch mscr)
 {
 	return -GSI_STATUS_UNSUPPORTED_OP;
 }
@@ -1882,8 +1895,13 @@ static inline int gsi_alloc_channel_ee(unsigned int chan_idx, unsigned int ee,
 	return -GSI_STATUS_UNSUPPORTED_OP;
 }
 
-
 static inline int gsi_chk_intset_value(void)
+{
+	return -GSI_STATUS_UNSUPPORTED_OP;
+}
+
+static inline int gsi_enable_flow_control_ee(unsigned int chan_idx,
+			unsigned int ee, int *code)
 {
 	return -GSI_STATUS_UNSUPPORTED_OP;
 }

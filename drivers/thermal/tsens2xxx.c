@@ -94,6 +94,7 @@ static int tsens2xxx_get_temp(struct tsens_sensor *sensor, int *temp)
 	trdy = TSENS_TM_TRDY(tmdev->tsens_tm_addr);
 
 	code = readl_relaxed(trdy);
+
 	if (!((code & TSENS_TM_TRDY_FIRST_ROUND_COMPLETE) >>
 			TSENS_TM_TRDY_FIRST_ROUND_COMPLETE_SHIFT)) {
 		pr_err("tsens device first round not complete0x%x, ctr is %d\n",

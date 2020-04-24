@@ -458,8 +458,15 @@ do_pass:
 				break;
 
 			if (fp->code == (BPF_ALU | BPF_DIV | BPF_X) ||
-			    fp->code == (BPF_ALU | BPF_MOD | BPF_X))
+			    fp->code == (BPF_ALU | BPF_MOD | BPF_X)) {
 				*insn++ = BPF_MOV32_REG(BPF_REG_X, BPF_REG_X);
+				/* Error with exception code on div/mod by 0.
+				 * For cBPF programs, this was always return 0.
+				 */
+				*insn++ = BPF_JMP_IMM(BPF_JNE, BPF_REG_X, 0, 2);
+				*insn++ = BPF_ALU32_REG(BPF_XOR, BPF_REG_A, BPF_REG_A);
+				*insn++ = BPF_EXIT_INSN();
+			}
 
 			*insn = BPF_RAW_INSN(fp->code, BPF_REG_A, BPF_REG_X, 0, fp->k);
 			break;
@@ -3260,6 +3267,8 @@ tc_cls_act_func_proto(enum bpf_func_id func_id)
 		return &bpf_skb_adjust_room_proto;
 	case BPF_FUNC_skb_change_tail:
 		return &bpf_skb_change_tail_proto;
+	case BPF_FUNC_skb_change_head:
+		return &bpf_skb_change_head_proto;
 	case BPF_FUNC_skb_get_tunnel_key:
 		return &bpf_skb_get_tunnel_key_proto;
 	case BPF_FUNC_skb_set_tunnel_key:

@@ -112,7 +112,7 @@ root_schedtune = {
  *    implementation especially for the computation of the per-CPU boost
  *    value
  */
-#define BOOSTGROUPS_COUNT 6
+#define BOOSTGROUPS_COUNT 7
 
 /* Array of configured boostgroups */
 static struct schedtune *allocated_group[BOOSTGROUPS_COUNT] = {
@@ -698,9 +698,9 @@ static void write_default_values(struct cgroup_subsys_state *css)
 	static struct st_data st_targets[] = {
 		{ "audio-app",	0, 0, 0, 0 },
 		{ "background",	0, 0, 0, 0 },
-		{ "foreground",	0, 1, 0, 1 },
+		{ "foreground",	0, 1, 0, 0 },
 		{ "rt",		0, 0, 0, 0 },
-		{ "top-app",	2, 1, 0, 1 },
+		{ "top-app",	2, 1, 0, 0 },
 	};
 	int i;
 
@@ -708,16 +708,17 @@ static void write_default_values(struct cgroup_subsys_state *css)
 		struct st_data tgt = st_targets[i];
 
 		if (!strcmp(css->cgroup->kn->name, tgt.name)) {
-			pr_info("stune_assist: setting values for %s: boost=%d prefer_idle=%d colocate=%d no_override=%d\n",
-				tgt.name, tgt.boost, tgt.prefer_idle,
-				tgt.colocate, tgt.no_override);
-
 			boost_write(css, NULL, tgt.boost);
 			prefer_idle_write(css, NULL, tgt.prefer_idle);
-#ifdef CONFIG_SCHED_WALT
-			sched_colocate_write(css, NULL, tgt.colocate);
-#endif
 			sched_boost_override_write(css, NULL, tgt.no_override);
+#ifndef CONFIG_SCHED_WALT
+			pr_info("stune_assist: setting values for %s: boost=%d prefer_idle=%d no_override=%d\n",
+				tgt.name, tgt.boost, tgt.prefer_idle, tgt.no_override);
+#else
+			sched_colocate_write(css, NULL, tgt.colocate);
+			pr_info("stune_assist: setting values for %s: boost=%d prefer_idle=%d colocate=%d no_override=%d\n",
+				tgt.name, tgt.boost, tgt.prefer_idle, tgt.colocate, tgt.no_override);
+#endif
 		}
 	}
 }

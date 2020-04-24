@@ -1,4 +1,4 @@
-/* Copyright (c) 2015-2019, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2015-2020, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -2632,6 +2632,7 @@ static int icnss_smmu_init(struct icnss_priv *priv)
 	int s1_bypass = 1;
 	int fast = 1;
 	int stall_disable = 1;
+	int non_fatal_faults = 1;
 	int ret = 0;
 
 	icnss_pr_dbg("Initializing SMMU\n");
@@ -2685,6 +2686,16 @@ static int icnss_smmu_init(struct icnss_priv *priv)
 			goto set_attr_fail;
 		}
 		icnss_pr_dbg("SMMU STALL DISABLE map set\n");
+
+		ret = iommu_domain_set_attr(mapping->domain,
+					    DOMAIN_ATTR_NON_FATAL_FAULTS,
+					    &non_fatal_faults);
+		if (ret) {
+			icnss_pr_err("Failed to set SMMU non_fatal_faults attribute, err = %d\n",
+				    ret);
+			goto set_attr_fail;
+		}
+		icnss_pr_dbg("SMMU NON FATAL map set\n");
 	}
 
 	ret = arm_iommu_attach_device(&priv->pdev->dev, mapping);
@@ -3554,7 +3565,7 @@ static int icnss_debugfs_create(struct icnss_priv *priv)
 
 	if (IS_ERR(root_dentry)) {
 		ret = PTR_ERR(root_dentry);
-		icnss_pr_err("Unable to create debugfs %d\n", ret);
+		icnss_pr_dbg("Unable to create debugfs %d\n", ret);
 		return ret;
 	}
 
@@ -4055,6 +4066,7 @@ static struct platform_driver icnss_driver = {
 		.pm = &icnss_pm_ops,
 		.owner = THIS_MODULE,
 		.of_match_table = icnss_dt_match,
+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
 	},
 };
 

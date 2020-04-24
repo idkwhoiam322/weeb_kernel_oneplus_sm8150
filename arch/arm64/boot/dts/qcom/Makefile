@@ -9,6 +9,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-angler-rev-101.dtb
 dtb-$(CONFIG_ARCH_QCOM)	+= msm8996-mtp.dtb
 
 dtb-$(CONFIG_ARCH_QCS403) += qcs403-iot-sku1.dtb \
+			qcs403-iot-sku2.dtb \
 			qcs403-iot-sku3.dtb \
 			qcs403-iot-sku5.dtb \
 			qcs401-iot-sku5.dtb \
@@ -51,6 +52,9 @@ ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
 		sm8150-sdxprairie-mtp-overlay.dtbo \
 		sm8150-sdxprairie-v2-cdp-overlay.dtbo \
 		sm8150-sdxprairie-v2-mtp-overlay.dtbo \
+		sm8150-sdxprairie-v3-mtp-overlay.dtbo \
+		sm8150-marmot-cdp-overlay.dtbo \
+		sm8150-marmot-mtp-overlay.dtbo \
 		sm8150-hdk-overlay.dtbo
 
 sm8150-cdp-overlay.dtbo-base := sm8150.dtb sm8150-v2.dtb sm8150p.dtb sm8150p-v2.dtb
@@ -71,6 +75,7 @@ sm8150-sdx50m-mtp-2.5k-panel-overlay.dtbo-base := sm8150.dtb sm8150-v2.dtb sm815
 sm8150-sdx50m-qrd-overlay.dtbo-base := sm8150.dtb sm8150-v2.dtb sm8150p.dtb sm8150p-v2.dtb
 sm8150-sdxprairie-cdp-overlay.dtbo-base := sm8150.dtb sm8150-v2.dtb sm8150p.dtb sm8150p-v2.dtb
 sm8150-sdxprairie-mtp-overlay.dtbo-base := sm8150.dtb sm8150-v2.dtb sm8150p.dtb sm8150p-v2.dtb
+sm8150-marmot-mtp-overlay.dtbo-base := sm8150.dtb sm8150-v2.dtb sm8150p.dtb sm8150p-v2.dtb
 endif
 endif
 
@@ -311,25 +316,26 @@ endif
 
 dtb-$(CONFIG_ARCH_SDXPRAIRIE) += sdxprairie-rumi.dtb \
 	sdxprairie-cdp.dtb \
-	sdxprairie-dsda-cdp.dtb \
-	sdxprairie-mtp.dtb \
-	sdxprairie-pcie-ep-mtp.dtb \
-	sdxprairie-v2-pcie-ep-mtp.dtb \
-	sdxprairie-mtp-cpe.dtb \
-	sdxprairie-cdp-cpe.dtb \
-	sdxprairie-mtp-v1.1-cpe.dtb \
-	sdxprairie-cdp-v1.1-cpe.dtb \
-	sdxprairie-v2-mtp-v1.1-cpe.dtb \
-	sdxprairie-mtp-v1.1.dtb \
-	sdxprairie-v2-mtp-v1.1.dtb \
-	sdxprairie-mtp-le-cpe.dtb \
-	sdxprairie-v2-mtp-le-cpe.dtb \
 	sdxprairie-cdp-256.dtb \
+	sdxprairie-cdp-cpe.dtb \
+	sdxprairie-cdp-v1.1-cpe.dtb \
+	sdxprairie-dsda-cdp.dtb \
+	sdxprairie-v2-cdp.dtb \
+	sdxprairie-mtp.dtb \
 	sdxprairie-mtp-256.dtb \
 	sdxprairie-mtp-aqc.dtb \
+	sdxprairie-mtp-cpe.dtb \
+	sdxprairie-mtp-le-cpe.dtb \
+	sdxprairie-mtp-v1.1.dtb \
+	sdxprairie-mtp-v1.1-cpe.dtb \
 	sdxprairie-dsda-mtp.dtb \
-	sdxprairie-v2-cdp.dtb \
+	sdxprairie-pcie-ep-mtp.dtb \
 	sdxprairie-v2-mtp.dtb \
+	sdxprairie-v2-mtp-cpe.dtb \
+	sdxprairie-v2-mtp-le-cpe.dtb \
+	sdxprairie-v2-mtp-v1.1.dtb \
+	sdxprairie-v2-mtp-v1.1-cpe.dtb \
+	sdxprairie-v2-pcie-ep-mtp.dtb \
 	sa515m-ccard.dtb \
 	sa515m-ccard-pcie-ep.dtb \
 	sa515m-ccard-usb-ep.dtb
