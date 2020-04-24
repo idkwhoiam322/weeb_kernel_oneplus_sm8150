@@ -41,4 +41,23 @@ https://raw.githubusercontent.com/idkwhoiam322/weeb_kernel_oneplus_sm8150/custom
 - Refined a scheduler commit
 - ion from 4.19
 - add back sched_boost's influence on scheduler ( seems better both for perf and battery )
+[ 2.0 Release ]
+- Raise SLMK Minfree to 256MiB
+- Fix some more VLAs
+- Fix some long overdue warnings using Proton Clang
+- Change cpufreq_stats atomic optimizations to Google's
+- scripts/wireguard: Make it convenient to automatically apply commits when run
+- Clean up of less useful tracings and spammy loggers
+- Further optimizations from Google's Android R source drop [ Up to DP 2]
+- Some block optimizations from Android Common Kernel to reduce expensive calls
+- Upstream kernel to LA.UM.8.1.r1-14700-sm8150.0
+- Add back perf critical kthreads and IRQs
+- More ion backports from CAF msm-4.19 early(!) source drop
+- wireguard: Update to version 1.0.20200413
+- Fix CAF camera memory leak
+- Several changes to further optimize the scheduler
+- Merge LTS tag v4.14.177
+Custom Only fixes:
+- Add FP support for maximum ROMs.
+- Enable some gestures by default to support ROMs that are based on PA.
 ```
