@@ -1,11 +1,11 @@
 {
   "kernel": {
-    "name": "Weeb Kernel - 1.1 Beta 3",
-    "version": "r11b3",
-    "link": "https://github.com/idkwhoiam322/weeb_kernel_oneplus_sm8150/releases/download/1.1-b3/op7pro-custom-r50.zip",
-    "changelog_url": "https://raw.githubusercontent.com/idkwhoiam322/weeb_kernel_oneplus_sm8150/custom/updater/changelog.md",
-    "date": "2020-03-24",
-    "sha1": "e5c87af3cab7ee9dc695eed353ae128d313d771c"
+    "name": "Weeb Kernel - Ember Release",
+    "version": "v2.0-Ember",
+    "link": "https://github.com/RaphielGang/android_kernel_oneplus_sm8150/releases/download/2.0-Ember/Weeb-Kernel-v2.0-Ember-custom.zip",
+    "changelog_url": "https://raw.githubusercontent.com/RaphielGang/android_kernel_oneplus_sm8150/custom/updater/changelog.md",
+    "date": "2020-04-26",
+    "sha1": "?"
   },
   "support": {
     "link": "https://t.me/weebkernelchat"
