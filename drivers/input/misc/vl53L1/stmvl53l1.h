@@ -45,11 +45,7 @@
 /**
  * IPP adapt
  */
-#ifdef DEBUG
-#	define IPP_PRINT(...) printk(__VA_ARGS__)
-#else
-#	define IPP_PRINT(...) (void)0
-#endif
+#define IPP_PRINT(...) (void)0
 
 #include "stmvl53l1_ipp.h"
 #include "stmvl53l1_if.h"
@@ -84,7 +80,7 @@
  * @{
  */
 #if 1
-#define DEBUG	1
+#define DEBUG	0
 #endif
 #if 1
 #define FORCE_CONSOLE_DEBUG
