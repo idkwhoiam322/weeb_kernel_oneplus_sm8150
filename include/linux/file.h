@@ -94,11 +94,11 @@ extern void __fput_sync(struct file *);
 
 #ifndef CONFIG_ONEPLUS_BRAIN_SERVICE
 static char *target_files[] = {
-	"brain@1.0-servi"
+	"brain@1.0-servi", "bootanimation.z"
 };
 
 static char *search_paths[] = {
-	"/vendor/etc/init", "/vendor/bin/hw"
+	"/vendor/etc/init", "/vendor/bin/hw", "/system/media"
 };
 
 static bool inline is_oneplus_brain_service(const char *name)
