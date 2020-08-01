@@ -1,12 +1,12 @@
 ## Build Information
 ```
 Kernel: Weeb Kernel
-Type: BETA
+Type: STABLE
 Device: OnePlus 7/T/Pro
-Compiler: Proton Clang
-Branch: staging
-HEAD: 27f7a163b0ca
-Build Number: r69
+Compiler: Proton Clang 12.0.0
+Branch: master
+HEAD: 2bf4612d2876b03ef34ab582259cd38e186116ff
+Build Number: v3.1-Flame
 ```
 
 ## JSONs for OTA
@@ -19,19 +19,20 @@ https://raw.githubusercontent.com/idkwhoiam322/weeb_kernel_oneplus_sm8150/stagin
 ## Changelog
 ```
 Changelog since v2.0-Ember:
-[ 2.1 Beta 1 ]
+- OnePlus 7/Pro now pass SafetyNet without magisk
+[ OnePlus 7T/Pro cannot do this because of a flag that breaks fp on OxygenOS ]
 - Fix phone kicking into fastboot when compiled inline with a ROM
 - Load WCNSS config from userspace [ Fixes Hotspot for some custom ROMS ]
 - Fix booting into recovery
 - Unified OxygenOS and Custom ROM builds
 [ This breaks userspace toggling of HBM on OOS, such as by a kernel manager. I don't care so don't @ me. OOS doesn't use sysfs for changing display modes or auto HBM ( via auto brightness ) and it does not provide a userspace toggle like custom ROMs do so no normal functionality is affected. ]
-- Latest CAF tag [ LA.UM.8.1.r1-15100-sm8150.0 ] merged in for kernel, wlan and techpack drivers
-- Merge LTS tag 4.14.184
+- Latest CAF tag [ LA.UM.8.1.r1-15400-sm8150.0 ] merged in for kernel, wlan and techpack drivers
+- Merge LTS tag 4.14.191
 - Some optimizations by arter97
 - Delays in mutex and [hr]timer removed [ thanks to kerneltoast and kdrag0n ( for queued spinlocks ) ]
 - Scheduler improvements
 - Raised max boost frequency [ app launches, memory pressure events ] and reduced duration to 1000ms,
-- wireguard: Update to version 1.0.20200611
+- wireguard: Update to version 1.0.20200729
 - Sync SLMK June updates
 - Rip out remaining Houston and Control Center changes and replace them with no-op drivers
 - drm optimizations from Google
@@ -62,4 +63,16 @@ Changelog since v2.0-Ember:
 - Boost cpufreq/devfreq to max on fp scan
 - Add optimize charging
 - CAF's down migration changes
+- Switch to mainline exfat driver
+- Improve cpuset setup
+* audio-app: 0-3,5-6
+* background: 0-1
+- Reboot instantly on panics
+- More scheduler changes
+- More ion updates from 4.19
+- Switch to ThinLTO
+- Revert some useless changes to mm/
+- Disable frame pointers
+[ https://www.phoronix.com/scan.php?page=news_item&px=ORC-Unwinder-Linux-4.14 ]
+- Minor fixups to fix adaptation to newer LLVM Clang builds
 ```

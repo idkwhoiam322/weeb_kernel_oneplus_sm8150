@@ -1,11 +1,11 @@
 {
   "kernel": {
-    "name": "Weeb Kernel - 2.1 Beta 1",
-    "version": "r21b1",
-    "link": "https://github.com/idkwhoiam322/weeb_kernel_oneplus_sm8150/releases/download/2.1-b1/op7pro-staging-r69.zip",
-    "changelog_url": "https://raw.githubusercontent.com/idkwhoiam322/weeb_kernel_oneplus_sm8150/staging/updater/changelog.md",
-    "date": "2020-06-17",
-    "sha1": "4e80f22aa4d6405d53cb7f21d570ac44ef4b55a0"
+    "name": "Weeb Kernel - 3.1 Flame Release",
+    "version": "v3.1-Flame",
+    "link": "https://github.com/RaphielGang/android_kernel_oneplus_sm8150/releases/download/3.1-Flame/Weeb-Kernel-v3.1-Flame-master.zip",
+    "changelog_url": "https://raw.githubusercontent.com/RaphielGang/android_kernel_oneplus_sm8150/master/updater/changelog.md",
+    "date": "2020-08-01",
+    "sha1": "161fa145980c4409bdf4d86e74dcee8992875c5f"
   },
   "support": {
     "link": "https://t.me/weebkernelchat"
