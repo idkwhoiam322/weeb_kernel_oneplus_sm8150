@@ -2668,8 +2668,6 @@ static int fastrpc_internal_munmap(struct fastrpc_file *fl,
 
 	VERIFY(err, fl->dsp_proc_init == 1);
 	if (err) {
-		pr_err("adsprpc: ERROR: %s: user application %s trying to unmap without initialization\n",
-			 __func__, current->comm);
 		err = -EBADR;
 		return err;
 	}
@@ -2735,8 +2733,6 @@ static int fastrpc_internal_munmap_fd(struct fastrpc_file *fl,
 		return err;
 	VERIFY(err, fl->dsp_proc_init == 1);
 	if (err) {
-		pr_err("adsprpc: ERROR: %s: user application %s trying to unmap without initialization\n",
-			__func__, current->comm);
 		err = -EBADR;
 		return err;
 	}
@@ -2772,8 +2768,6 @@ static int fastrpc_internal_mmap(struct fastrpc_file *fl,
 
 	VERIFY(err, fl->dsp_proc_init == 1);
 	if (err) {
-		pr_err("adsprpc: ERROR: %s: user application %s trying to map without initialization\n",
-			__func__, current->comm);
 		err = -EBADR;
 		return err;
 	}
@@ -3095,7 +3089,7 @@ static ssize_t fastrpc_debugfs_read(struct file *filp, char __user *buffer,
 	int i, j, sess_used = 0, ret = 0;
 	char *fileinfo = NULL;
 	char single_line[UL_SIZE] = "----------------";
-	char title[UL_SIZE] = "=========================";
+	char title[UL_SIZE] = "========================";
 
 	fileinfo = kzalloc(DEBUGFS_SIZE, GFP_KERNEL);
 	if (!fileinfo)
