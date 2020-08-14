@@ -528,6 +528,7 @@ CONFIG_PCI_MSM_MSI=y
 # PCI switch controller drivers
 #
 # CONFIG_PCI_SW_SWITCHTEC is not set
+# CONFIG_PCI_SW_QCOM_SWITCH is not set
 
 #
 # Kernel Features
