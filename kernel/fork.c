@@ -2111,9 +2111,11 @@ long _do_fork(unsigned long clone_flags,
 	int trace = 0;
 	long nr;
 
+#ifdef CONFIG_CPU_INPUT_BOOST
 	/* Boost to max for ${app_launch_boost_duration} ms when userspace launches an app */
 	if (task_is_zygote(current))
 		cpu_input_boost_kick_max(app_launch_boost_duration);
+#endif /* CONFIG_CPU_INPUT_BOOST */
 
 	/*
 	 * Determine whether and which event to report to ptracer.  When
