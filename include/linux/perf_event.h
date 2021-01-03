@@ -1451,5 +1451,4 @@ int perf_event_restart_events(unsigned int cpu);
 #define perf_event_exit_cpu	NULL
 #define perf_event_restart_events NULL
 #endif
-
 #endif /* _LINUX_PERF_EVENT_H */

@@ -2472,6 +2472,7 @@ static int filename_lookup(int dfd, struct filename *name, unsigned flags,
 		nd.root = *root;
 		flags |= LOOKUP_ROOT;
 	}
+
 	set_nameidata(&nd, dfd, name);
 	retval = path_lookupat(&nd, flags | LOOKUP_RCU, path);
 	if (unlikely(retval == -ECHILD))
@@ -4805,6 +4806,7 @@ retry_deleg:
 	error = vfs_rename2(old_path.mnt, old_path.dentry->d_inode, old_dentry,
 			   new_path.dentry->d_inode, new_dentry,
 			   &delegated_inode, flags);
+
 exit5:
 	dput(new_dentry);
 exit4:

@@ -3236,15 +3236,6 @@ static int proc_pid_personality(struct seq_file *m, struct pid_namespace *ns,
 	return err;
 }
 
-#ifdef CONFIG_LIVEPATCH
-static int proc_pid_patch_state(struct seq_file *m, struct pid_namespace *ns,
-				struct pid *pid, struct task_struct *task)
-{
-	seq_printf(m, "%d\n", task->patch_state);
-	return 0;
-}
-#endif /* CONFIG_LIVEPATCH */
-
 /*
  * Thread groups
  */
